@@ -1,0 +1,2 @@
+# notes
+Personal learning notes.
