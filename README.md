@@ -6,4 +6,4 @@ Personal learning notes.
 #### 2.1 Stages of Learning How To Hack
 - [The Unix and Internet Fundamentals HOWTO](http://www.tldp.org/HOWTO/Unix-and-Internet-Fundamentals-HOWTO/index.html)
 
-### 3. [Teach Yourself Programming in Ten Years](http://www.catb.org/esr/faqs/hacker-howto.html)- Eric
+### 3. [Teach Yourself Programming in Ten Years](http://norvig.com/21-days.html)- Eric
