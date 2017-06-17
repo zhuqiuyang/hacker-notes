@@ -39,5 +39,5 @@
 | differential           |         微分          |
 | derivative             |         导数的         |
 | differential equations |        微分方程        |
-
+| identical              |        相同的          |
 
