@@ -60,4 +60,39 @@
    )
    ```
 
-   ​
+6. sum-sq 
+
+   ```lisp
+   (DEFINE (SUM-SQ A B)
+   	(SUM SQUARE A 1+ B) 
+   )
+   ```
+
+7. pi-sum
+
+   ```lisp
+   (DEFINE (PI-SUM A B)
+   (SUM (lamda (i) (/ 1 (* i (+ i 2)))) 
+        a
+        (lamda (i) (+ i 4))
+        b
+        )        
+   )
+   ```
+
+### Iterative implementation of sum 
+
+```lis
+(define (sum term a next b)
+	(define (iter j ans)
+		(if (> j b)
+			ans
+			(iter (next j)
+				(+ (term j) ans)
+			)
+		)
+	)
+	(iter a 0)
+)
+```
+
