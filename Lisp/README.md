@@ -13,4 +13,8 @@
 - Else
   - `And the reason why people think of programming as being hard, of course, is because you're writing down a general rule, which is going to be used for lots of instances`
 
+### 2A: Higher-order Procedures
+
+
+
 
