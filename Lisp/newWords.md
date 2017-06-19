@@ -38,6 +38,9 @@
 | proportional           |        成比例的         |
 | differential           |         微分          |
 | derivative             |         导数的         |
-| differential equations |        微分方程        |
-| identical              |        相同的          |
+| differential equations |        微分方程         |
+| identical              |         相同的         |
+| HP-35                  |惠普-35(世界第一部手持计算器)  |
+| theorem                |  定理 |
+| converge                | 相交, 趋于一致 |
 

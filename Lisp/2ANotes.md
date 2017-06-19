@@ -96,3 +96,28 @@
 )
 ```
 
+### Square Root of Fixed Point
+
+```lisp
+(DEFINE (SQRT X)
+	(FIXED-POINT 
+    	(lamda (y) (AVERAGE (/ X Y) Y))
+     	1
+     )
+)
+```
+
+```lisp
+(DEFINE (FIXED-POINT f START)
+	(DEFINE (ITER OLD NEW)
+   		(IF (CLOSE-ENUF? OLD NEW)
+            NEW
+            (ITER NEW (F NEW))
+        )
+    )
+   (ITER START (F START))
+)
+```
+
+
+
