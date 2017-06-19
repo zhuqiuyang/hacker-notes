@@ -119,5 +119,36 @@
 )
 ```
 
+```lisp
+(define (fixed-point f start)
+  (define tolerance 0.0001)
+  (define (close-enuf? u v)
+    (< (abs (- u v)) tolerance))
+  (define (iter old new)
+    (if (close-enuf? old new)
+        new
+        (iter new (f new))))
+  (iter start (f start))
+)
+```
 
 
+
+### why use this average to get square root ,not other function?
+
+```lisp
+(DEFINE (SQRT X)
+	(FIXED-POINT
+    	(AVERAGE-DAMP (lamda (y) (/ x y)))
+     	1
+    )
+)
+
+(DEFINE AVERAGE-DAMP
+	(lamda (f)
+		(lamda (x) (AVERAGE f(x) x))
+	)
+)
+```
+
+### Question : Use lamda to define anonymous procedure should to learn deeply!!
