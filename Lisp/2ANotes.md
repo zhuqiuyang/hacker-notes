@@ -152,3 +152,13 @@
 ```
 
 ### Question : Use lamda to define anonymous procedure should to learn deeply!!
+
+```lisp
+(DEFINE (AVERAGE-DAMP F)
+	(DEFINE (FOO X)
+		(AVERAGE (F X) X)
+	)
+    FOO
+)
+```
+
