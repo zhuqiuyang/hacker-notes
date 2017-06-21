@@ -162,3 +162,36 @@
 )
 ```
 
+
+### Newton Method
+
+> Newton Method is to find roots of a function.
+
+#### 用牛顿法求平方根
+
+```lisp
+(DEFINE (SQRT X)
+	(NEWTON (lambda (y) (- x (SQARE y)))
+		1
+	)
+)
+
+(DEFINE (NEWTON f guess)
+	(DEFINE DF (DERIV F))
+    (FIXED-POINT
+    	(lambda (x) (- x (/ (f x) (df x))))
+     	guess
+    )
+)
+
+(DEFINE DERIV
+	(lambda (f)
+		(lambda (x)
+			(/ (- (f (+ x dx))
+                  (f x))
+               dx
+            )
+		)
+	)
+)
+```

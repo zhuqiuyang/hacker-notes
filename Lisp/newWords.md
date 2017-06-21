@@ -42,7 +42,7 @@
 | identical              |         相同的         |
 | HP-35                  |  惠普-35(世界第一部手持计算器)  |
 | theorem                |         定理          |
-| converge               |      相交, 趋于一致    |
-| oscillate               |     震荡    |
-| elucidate               |    阐明    |
-
+| converge               |      相交, 趋于一致       |
+| oscillate              |         震荡          |
+| elucidate              |         阐明          |
+| approximation          |         近似值          |
