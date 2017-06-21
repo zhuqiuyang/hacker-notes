@@ -45,4 +45,5 @@
 | converge               |      相交, 趋于一致       |
 | oscillate              |         震荡          |
 | elucidate              |         阐明          |
-| approximation          |         近似值          |
+| approximation          |         近似值         |
+| legimate               |         合法的         |

@@ -195,3 +195,23 @@
 	)
 )
 ```
+
+### Chris Strachey
+
+- inventors of **denotational semantics**
+- He was a great advocate of making procedures or functions first-class citizens in a programming language
+
+```markdown
+The rights and privileges of first-class citizens
+- To be named by variables
+- To be passed as arguments to procedures
+- To be returned as values of procedures
+- To be incorporated into data structures (目前课程还没有讲到)
+```
+
+### QA
+
+```lisp
+
+```
+
