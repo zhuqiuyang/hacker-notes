@@ -47,3 +47,7 @@
 | elucidate              |         阐明          |
 | approximation          |         近似值         |
 | legimate               |         合法的         |
+| divorce                |         分离        |
+| numerator              |         分子        |
+| adenominator           |         分母        |
+
