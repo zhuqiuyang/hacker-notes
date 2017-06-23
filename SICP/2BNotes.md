@@ -28,5 +28,13 @@ Imagine we have three procedure:
     	(* (DENOM X) (DENOM Y))
     )
 )
+
+(DEFINE (*RAT X Y)
+	(MAKE-RAT
+    	(* (NUMER X) (NUMER Y))
+     	(* (DENUM X) (DENUM Y))
+    )        
+)
 ```
 
+### why do we want a procedure like +RAT that takes in two rational numbers and returns a rational number?
