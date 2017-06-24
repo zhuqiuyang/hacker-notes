@@ -47,7 +47,10 @@
 | elucidate              |         阐明          |
 | approximation          |         近似值         |
 | legimate               |         合法的         |
-| divorce                |         分离        |
-| numerator              |         分子        |
-| adenominator           |         分母        |
-
+| divorce                |         分离          |
+| numerator              |         分子          |
+| adenominator           |         分母          |
+| postulate              |         假设          |
+| constitute             |         合成           |
+| sorcery                |         巫术           |
+| axiom                  |         公理           |
