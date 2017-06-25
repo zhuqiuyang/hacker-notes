@@ -54,3 +54,4 @@
 | constitute             |         合成           |
 | sorcery                |         巫术           |
 | axiom                  |         公理           |
+| segment                |         线段           |

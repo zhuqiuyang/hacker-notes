@@ -147,3 +147,42 @@ But the **real issue** is that you might not be able to decide at the moment you
 
 And in fact, we'll see a couple times from now that **you may never have to choose any particular representation, ever, ever**. Anyway,that's a very powerful **design technique**. It's the key to the reason people use data abstraction.And we're going to see that idea again and again
 
+### QA:
+
+1. computer science 中好的部分like magic, 不好的部分 like religion. In general,好的设计师并不会， 在实现之前设计好所有的事情。
+   - 真的值得称道的是，假设你已经做出决定，之后在figure out which one is right。
+   - 当你掌握了它，你拥有了两个世界的精华。
+
+
+
+### Part 3
+
+```lisp
+; representing vectors in the plane
+(define (marke-vector x y) (cons x y))
+
+(define (xcor p) (car p))
+
+(define (ycor p) (cdr p))
+
+; representing line segments
+; p, q are two points
+(define (make-seg p q) (cons p q))
+
+(define (seg-start s) (car s))
+
+(define (seg-end s) (cdr s))
+
+; midpoint of s
+(define (midpoint s)
+  (let ((a (seg-start s))
+        (b (seg-end s)))
+       (make-vertor
+        (average (xcor a) (xcor b))
+        (average (ycor a) (ycor b))
+        )
+       )
+  )
+; length of s (勾股定理)
+```
+
