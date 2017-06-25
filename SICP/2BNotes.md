@@ -184,5 +184,56 @@ And in fact, we'll see a couple times from now that **you may never have to choo
        )
   )
 ; length of s (勾股定理)
+(define (length s)
+  (let 
+   ((dx (- (xcor (seg-end s))
+           (xcor (seg-start s))))
+	(dy (- (ycor (seg-end s))
+           (ycor (seg-start s)))))
+   (sqrt (+ (square dx)
+            (square dy)))))
 ```
 
+
+
+#### build a layer system
+
+```markdown
+SEGMENTS
+
+---
+MAKE-SEG/SEG-START/SEG-END
+---
+
+VECTORS
+
+---
+MAKE-VECTOR/X-COR/Y-COR
+---
+
+PAIRS
+
+```
+
+
+
+### Closure
+
+combination运算的是封闭的. 
+
+> So I can have not only a pair of numbers, but I can have a pair of pairs.
+
+```lisp
+; redifined lengh
+(DEFINE (LENGTH S)
+	(LET ((DX (- (CAR (CAR S)) (CAR (CDR S))))
+          (DY (- (CDR (CAR S)) (CDR (CDR S))))
+          ))
+)
+```
+
+> So again, the way we've gotten out of that is we've named that **spirit**. We built a system where there is a thing, which is the representation choice for how you're going to talk about vectors.And choices about that representation are localized right there. They don't have their guts spilling over into things like how you compute the length and how you compute the midpoint.
+
+通过 a thing，我们构建一个系统, which 代表了我们决定如何和vector进行沟通。
+
+而这种决定(representation的实现方式)内化了，我们不需要关心起内部实现。

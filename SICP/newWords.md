@@ -55,3 +55,4 @@
 | sorcery                |         巫术           |
 | axiom                  |         公理           |
 | segment                |         线段           |
+| gut                    |         内脏           |
