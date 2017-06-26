@@ -56,3 +56,5 @@
 | axiom                  |         公理           |
 | segment                |         线段           |
 | gut                    |         内脏           |
+| antidote               |         对策           |
+| lull                   |         使平静          |

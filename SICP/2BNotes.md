@@ -252,3 +252,48 @@ THEN
 (NUMBER X)/(DENOM X) = N/D
 ```
 
+
+
+What is a rational number is ?
+
+> a rational number really is sort of this axiom, is three procedures, make-RAT, numerator, and denominator,that satisfy this axiom.
+>
+> 三个Procedure组成的 this axiom(公理)
+
+```lisp
+rational number
+---
+---
+pairs
+```
+
+### What is pairs?
+
+```lisp
+; AXIOM FOR PAIRS
+; For any x and y
+
+(car (cons x y)) is x
+
+(cdr (cons x y)) is y
+
+(define (cons a b)
+	(lambda (pick)
+		(cond ((= pick 1) a)
+        	((= pick 2) b))))
+
+(define (car x) (x 1))
+
+(define (cdr x) (x 1))
+```
+
+个人理解: `cons` 构造了一个函数闭包，接收连个参数分别对应其中两个value的索引。(传入index取值的操作就是 `car` 和 `cdr` )
+
+> 课程里，如果对一个thing 感到confused ，go mechanically through the substitution model.(eval & apply)
+
+### Why did i terrify you in this way ?(震撼了)
+
+1. reinforce the idea of abstraction, 你确实可以do these things abstractly.
+2. blue the line between what's data and what's procedure.
+
+> 在上个例子中,cons返回的其实是一个procedure。但我们却一直认为那是一个data.
