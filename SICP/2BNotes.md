@@ -237,3 +237,18 @@ combination运算的是封闭的.
 通过 a thing，我们构建一个系统, which 代表了我们决定如何和vector进行沟通。
 
 而这种决定(representation的实现方式)内化了，我们不需要关心起内部实现。
+
+### Part 4
+
+we've just gone off and done a couple of simple examples of data abstraction. Now We're going to talk about what it means.
+
+what suitable might mean is if I have to assume something like this:
+
+```markdown
+IF X = (MAKE-RAT N D)
+
+THEN
+
+(NUMBER X)/(DENOM X) = N/D
+```
+
