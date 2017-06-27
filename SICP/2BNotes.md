@@ -2,7 +2,18 @@
 
 ### Part1
 
-### Divorce the task of building things from the task of implementing the parts.
+承前: 
+
+- so far in this course we've been talking about procedures.
+- **And then we talked about the means of abstraction, how you can take those complicated things and name them so you can use them as simple building blocks**.
+- **So the crucial idea is that when we're building things, we divorce the task of building things from the task of implementing the parts**.
+
+启后:
+
+- **So the crucial idea is that when we're building things, we divorce the task of building things from the task of implementing the parts.**
+- Well, now what we're going to do is look at the same issues for data.
+
+#### Rational number
 
 We have individual numbers , But we don't have what a rational number is.
 
@@ -94,22 +105,20 @@ Pairs.
 
 > This methodology has a name, data abstraction.
 
-`Use`     +RAT   * RAT   -RAT
+```markdown
+Use     +RAT   * RAT   -RAT
 
 ---
-
-MAKE-RAT/NUMER/DENOM   (constructor & selector )              `ABSTRACTION LAYER`
-
+MAKE-RAT/NUMER/DENOM   (constructor & selector )              ABSTRACTION LAYER
 ---
 
-`REPRESENTATION`   PAIRS
+REPRESENTATION   PAIRS
+```
 
-
-
-> Data abstraction is sort of theprogramming methodology of setting up data objects by postulating constructors and selectors to isolate use from representation
+> Data abstraction is sort of the programming methodology of setting up data objects by postulating constructors and selectors to isolate use from representation
 
 ```lisp
-; defining +RAT without date abstraction
+; defining +RAT without data abstraction
 
 (define (+rat x y)
   (cons (+ (* (car x) (cdr y))
@@ -212,16 +221,15 @@ MAKE-VECTOR/X-COR/Y-COR
 ---
 
 PAIRS
-
 ```
 
-
-
-### Closure
+#### Closure
 
 combination运算的是封闭的. 
 
 > So I can have not only a pair of numbers, but I can have a pair of pairs.
+
+#### 在一个大型的系统里, 你 losing control of complexity, 如果你不使用data abstraction.
 
 ```lisp
 ; redifined lengh
@@ -233,10 +241,8 @@ combination运算的是封闭的.
 ```
 
 > So again, the way we've gotten out of that is we've named that **spirit**. We built a system where there is a thing, which is the representation choice for how you're going to talk about vectors.And choices about that representation are localized right there. They don't have their guts spilling over into things like how you compute the length and how you compute the midpoint.
-
-通过 a thing，我们构建一个系统, which 代表了我们决定如何和vector进行沟通。
-
-而这种决定(representation的实现方式)内化了，我们不需要关心起内部实现。
+>
+> 通过 a thing，我们构建一个系统, which 代表了我们决定如何和vector进行沟通。而这种决定(representation的实现方式)内化了，我们不需要关心其内部实现。
 
 ### Part 4
 
@@ -287,7 +293,7 @@ pairs
 (define (cdr x) (x 1))
 ```
 
-个人理解: `cons` 构造了一个函数闭包，接收连个参数分别对应其中两个value的索引。(传入index取值的操作就是 `car` 和 `cdr` )
+个人理解: `cons` 构造了一个函数闭包，接收一个参数(这个参数的两种取值分别对应两个value的索引)。(传入index取值的操作就是 `car` 和 `cdr` )
 
 > 课程里，如果对一个thing 感到confused ，go mechanically through the substitution model.(eval & apply)
 

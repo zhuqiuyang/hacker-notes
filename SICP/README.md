@@ -24,5 +24,25 @@
 - 以Newton Metho 为例。进一步解释HOP。谈到了Wishful thinking，First-class citizens。
 
 
+### 2B: Compund Data
+
+#### 大纲:
+
+- the system has primitive data.
+- There's glue that allows you to put primitive data together to make more complicated, kind of compound data
+- And then we're going to see a methodology for **abstraction** that's a very good thing to use when you start building up data in terms of simpler data.
+- And again, the key idea is that you're going to build the system **in layers**
+
+
+- Part 1: 通过Rational number 引入**data abstraction**.
+- Part 2: `list structure`, Lisp 中构建compound data的方法.
+  - constructor & selector (abstract layer)
+- Part 3: Use segment & vector. To show use data abstraction can control complexity.
+- Part 4: What's data abstraction really mean?
+  - 满足公理的procedure
+  - what's pair.
+    - we can do things abstractly
+    - blue the line between what's procedure and what's data.
+
 
 
