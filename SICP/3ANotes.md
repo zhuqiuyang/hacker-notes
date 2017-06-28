@@ -110,3 +110,8 @@ some thing like map is called for-each
                     (cdr list)))))
 ```
 
+### Part 2
+
+#### the major third theme in this course: meta-linguistic abstraction
+
+And anyway I hope by the end of this morning, if you're not already, you will be completely confused about what the difference between procedures and data are
