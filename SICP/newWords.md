@@ -57,5 +57,7 @@
 | segment                |         线段          |
 | gut                    |         内脏          |
 | antidote               |         对策          |
-| lull                   |         使平静        |
-| trap                   |         限制，困住     |
+| lull                   |         使平静         |
+| trap                   |        限制，困住        |
+| aggregates             |        总数        |
+| offhand                |        漫不经心的      |

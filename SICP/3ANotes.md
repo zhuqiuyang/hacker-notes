@@ -68,6 +68,8 @@ procedure can be objects, and that you can name them.
 
 ```lisp
 (SCALE-LIST 10 1-TO-4) -> (10 20 30 40)
+(MAP SQUARE 1-To-4) -> (1 4 9 16)
+(MAP (LAMBDA (X) (+ X 10)) 1-TO-4) -> (11 12 13 14)
 
 ; CDR-ing down a list 
 (define (scale-list s l)
@@ -82,10 +84,29 @@ procedure can be objects, and that you can name them.
 > take a list l , and take a procedure p, apply p to each element in l. and return a new list.
 
 ```lisp
+; general procedure called map
 (define (map p l)
   (if (null? l)
       nil
       (cons (p (car l))
             (map (cdr l)))))
+
+(define (scale-list s l)
+  (map (lambda (item) (* item s))
+       l))
+```
+
+
+
+#### Really really import : stop thinking about control structure, start thinking about operations on aggregates.we'll see when we talk about something called **stream processing**.
+
+some thing like map is called for-each
+
+```lisp
+(define (for-each proc list)
+  (cond ((null? list) *done*)
+    (else (proc (car list))
+          (for-each proc
+                    (cdr list)))))
 ```
 
