@@ -54,7 +54,7 @@ procedure can be objects, and that you can name them.
 
 > List is essentially, just a convention for representing sequence.
 
-![List](/Users/Ace/Documents/Workspace/hacker-notes/SICP/png/List.png)
+![List](./png/List.png)
 
 `List` primitive just a abbreviation(缩写) for nested cons.
 
@@ -114,4 +114,124 @@ some thing like map is called for-each
 
 #### the major third theme in this course: meta-linguistic abstraction
 
-And anyway I hope by the end of this morning, if you're not already, you will be completely confused about what the difference between procedures and data are
+```markdown
+PRIMITIVES
+MEANS OF COMBINATION
+MEANS OF ABSTRACTION
+
+```
+
+#### primitive (here is picture)
+
+![woodcut](./png/woodcut.png)
+
+Peter Henderson's **language** was for describing figures that look like that and designing new ones that look like that and drawing them on a display screen
+
+> And anyway I hope by the end of this morning, if you're not already, you will be completely confused about what the difference between procedures and data are.
+> Peter Henderson's Language Has only one primitive `picture`.
+
+Picture就是draw a figure(图形)，让它fit 一个矩形.
+
+![picture](./png/picture.png)
+
+上图的three things are the same `picture`,I'm just giving it different rectangles to scale itself.
+
+#### means of combination & operation
+
+1. means of combination of one element
+
+   - Rotate (旋转 : may be 90 degree)
+
+
+   - Flip (翻转 either horizontallyor vertically)
+
+2. means of combination, put things together
+
+   - Besides (两张图片,水平方向,根据比例Fit 一个矩形)
+   - Above (vertically, 垂直方向)
+
+example:
+
+![3A_G](./png/3A_G.png)
+
+```lisp
+; Beside G with (Above empty picture and G)
+(BESIDE G
+        (ABOVE EMPTY G .5)
+        .5)
+```
+
+
+
+![3A_G_P](./png/3A_G_P.png)
+
+```lisp
+(DEFINE P
+        (BESIDE G
+                (ROTATE (FLIP G) 180)
+                .5))
+```
+
+![3A_G_Q](./png/3A_G_Q.png)
+
+```lisp
+(DEFINE Q
+        (ABOVE P (FLIP P) .5))
+```
+
+#### Why we do it fast. The answer is it's **closure** property.
+
+The world of picture is closed under those means of combination.(Rotate , Flip etc..)
+
+operations are closed.
+
+#### let's talk about how this language is actually implemented.
+
+The basic element that sits under the table here is a thing called a **rectangle**:
+
+```lisp
+rectangle:
+- horiz
+- vert
+- origin (vector)
+
+; constructor
+(MAKE-RECT)
+; selectors
+HORIZ
+VERT
+ORIGIN
+```
+
+that's George's problem. It's just a data representation problem. So let's assume we have these rectangles to work with.
+
+我们需要考虑的是，每当give you a rectangle，a transformation from the standard square(单位正方形) into that rectangle.
+
+(x, y) -> ORIGIN  + (x * HORIZ, y*VERT)
+
+把单位正方形中的point，以Origin为原点，做伸缩。
+
+```lisp
+(define (coord-map rect)
+  (lambda (point)
+          (+vect
+           (+vect (scale (xcor point)
+                         (horiz rect))
+                  (scale (ycor point)
+                         (vert rect)))
+           (origin rect))))
+```
+
+```lisp
+;Constructing Primitive Pictures from Lists of Segments
+
+(define (make-picture seglist)
+  (lambda (rect)
+          (for-each
+           (lambda (s)
+                   (drawline
+                    ((coord-map rect) (seg-start s))
+                    ((coord-map rect) (seg-end s))))
+           seglist)))
+```
+
