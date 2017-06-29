@@ -98,7 +98,7 @@ procedure can be objects, and that you can name them.
 
 
 
-#### Really really import : stop thinking about control structure, start thinking about operations on aggregates.we'll see when we talk about something called **stream processing**.
+#### Really really important : stop thinking about control structure, start thinking about operations on aggregates(总数). we'll see when we talk about something called **stream processing**.
 
 some thing like map is called for-each
 
@@ -254,3 +254,24 @@ For-each Seglists, get its start and end, transforms that by the coordinate MAP 
 给一张图片一个Rectangle, 它就会Draw the picture to Fit the Rectangle.
 
 ### Part 3
+
+ The reason it's nice is that once you've implemented the primitives in this way, the means of combination just fall out by implementing procedures.
+
+个人理解 build system in layers:
+
+```markdown
+Picture(Beside 其实是对RCECTANGLE进行操作,然后调用MAKE-PICTURE)
+
+---
+MAKE-PICTURE
+---
+
+RECTANGLE
+
+---
+MAKE-RECT/ORGIN/VERT/HORIZON
+---
+
+POINT, VECTOR
+```
+
