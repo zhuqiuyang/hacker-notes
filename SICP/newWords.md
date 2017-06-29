@@ -61,7 +61,9 @@
 | trap                   |        限制，困住        |
 | aggregates             |         总数          |
 | offhand                |        漫不经心的        |
-| tackle                 |        阻截,处理        |
-| woodcut                |         木版画         |
-| algeba                |         代数         |
-
+| tackle                 |        阻截,处理      |
+| woodcut                |         木版画        |
+| algeba                 |         代数          |
+| edifice                |       大厦，体系       |
+| mythology              |         神话       |
+| erect                  |         直立，建造     |

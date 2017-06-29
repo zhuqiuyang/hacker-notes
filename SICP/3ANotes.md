@@ -257,6 +257,30 @@ For-each Seglists, get its start and end, transforms that by the coordinate MAP 
 
  The reason it's nice is that once you've implemented the primitives in this way, the means of combination just fall out by implementing procedures.
 
+```lisp
+; p1 go do your thing in one rectangle
+; p2 go do your thing in another rectangle
+(define (beside p1 p2 a)
+  (lambda (rect)
+          (p1 (make-rect
+               (origin rect)
+               (scale a (horiz rect))
+               vert rect))
+          (p2 (make-rect
+               (+vect (origin rect)
+                      (scale a (horiz rect)))
+               (scale (- 1 a) (horiz rect))
+               (vert rect)))))
+
+(define (rotate90 pict)
+  (lambda (rect)
+          (pict (make-rect
+                 (+vect (origin rect)
+                        (horiz rect))
+                 (vert rect)
+                 (scale -1 (horiz rect))))))
+```
+
 个人理解 build system in layers:
 
 ```markdown
@@ -275,3 +299,41 @@ MAKE-RECT/ORGIN/VERT/HORIZON
 POINT, VECTOR
 ```
 
+
+
+#### The technical term I want to say is not only is this language implemented in List,obviously it is, but the language is nicely **embedded** in List
+
+recursive means of combination
+
+```lisp
+(DEFINE (RIGHT-PUSH P N A)
+        (IF (= N D)
+            P
+            (BESIDE P (RIGHT-PUSH P
+                                  (- N 1)
+                                  A)
+                    A)))
+```
+
+![3A_RIGHT_PUSH](./png/3A_RIGHT_PUSH.png)
+
+> Right, the important point, the difference **between** merely implementing something in a language **and** embedding something in the language, so that you don't lose the original power of the language, and what List is great at, see List is a lousy language for doing any particular problem. What it's **good** for is figuring out the right language that you want and **embedding** that in List. That's the real power of this approach to design.
+
+```lisp
+(DEFINE (PUSH COMB)
+        (LAMBDA (PICT N A)
+                ((REPEATED
+                  (LAMBDA (P) (COMB PICT P A))
+                  N)
+                   PICT)))
+
+(DEFINE RIGHT-PUSH (PUSH BESIDE))
+```
+
+> The main point I've been dwelling on is the notion of nicely embedding a language inside another language. Right, so that all the power of this language like List of the surrounding language is still accessible to you and appears as a natural extension of the language that you built.
+
+
+
+decompose task to sub-tree task is not robust.
+
+Design in language level.
