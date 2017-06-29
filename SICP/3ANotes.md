@@ -143,7 +143,7 @@ Picture就是draw a figure(图形)，让它fit 一个矩形.
    - Rotate (旋转 : may be 90 degree)
 
 
-   - Flip (翻转 either horizontallyor vertically)
+- Flip (翻转 either horizontallyor vertically)
 
 2. means of combination, put things together
 
@@ -211,6 +211,8 @@ that's George's problem. It's just a data representation problem. So let's assum
 
 把单位正方形中的point，以Origin为原点，做伸缩。
 
+ So any rectangle defines a **coordinate MAP**, which is a procedure on points:
+
 ```lisp
 (define (coord-map rect)
   (lambda (point)
@@ -221,6 +223,11 @@ that's George's problem. It's just a data representation problem. So let's assum
                          (vert rect)))
            (origin rect))))
 ```
+
+What's a picture have to be? First of all it's a procedure that's defined on rectangles.
+
+For-each Seglists, get its start and end, transforms that by the coordinate MAP of the rectangle.
+
 
 ```lisp
 ;Constructing Primitive Pictures from Lists of Segments
@@ -235,3 +242,15 @@ that's George's problem. It's just a data representation problem. So let's assum
            seglist)))
 ```
 
+```lisp
+(DEFINE R (MAKE-RECT ...))
+
+(DEFINE G (MAKE-PICTURE ...)) ; here stuff is List of line segment using MAKE-SEGMENT
+
+; picture is a procedure that takes a rectangle as argument
+(G R)
+```
+
+给一张图片一个Rectangle, 它就会Draw the picture to Fit the Rectangle.
+
+### Part 3
