@@ -21,7 +21,7 @@
 
 - 抽离出 sum procedure. sigma .累加
 - 求SQRT. 以(Heron of Alexandria)为例。讲解了 average damp is a high-order procedure。(用lambda 定义anonymous procedure.)
-- 以Newton Metho 为例。进一步解释HOP。谈到了Wishful thinking，First-class citizens。
+- 以Newton Method 为例。进一步解释HOP。谈到了Wishful thinking，First-class citizens。
 
 
 ### 2B: Compund Data
