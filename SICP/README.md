@@ -4,7 +4,13 @@
 
 > Don't confused of the essence of things what you are doing with the tools that you use.
 >
-> CS is about how-to knowledge. Formalize intuitions of process.
+> CS is about **how-to Imperative** knowledge. Formalize intuitions of process.
+
+#### Three Topic
+
+- black-box abstraction
+- conventional Interface
+- metalinguitic abstraction (make new language)
 
 ### 1B: Procedures and Processes; Substitution Model
 
