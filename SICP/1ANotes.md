@@ -20,6 +20,12 @@ how-to
 
 **procedure**: And the thing that directs a process is a pattern of rules called a **procedure**.
 
+比喻(spells:咒语)
+
+>So procedures are the spells, if you like, that control these magical spirits that are the processes.
+>
+>We're going to conjure our spirits in a magical language called **Lisp**, which is a language designed for talking about, for **casting the spells**(施法) that are procedures to direct the processes.
+
 so in computer-science, we're in business of formalizing this sort of **how-to imperative knowledge**
 
 #### 这套课程的研究内容

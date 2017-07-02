@@ -35,11 +35,13 @@
 | aperture               |        孔, 孔径        |
 | test stripes           |         试纸          |
 | identical              |         相同的         |
+| bureaucracy            |        官僚、等级体系    |
 | proportional           |        成比例的         |
 | differential           |         微分          |
 | derivative             |         导数的         |
 | differential equations |        微分方程         |
 | identical              |         相同的         |
+| perturbation           |         不安         |
 | HP-35                  |  惠普-35(世界第一部手持计算器)  |
 | theorem                |         定理          |
 | converge               |      相交, 趋于一致       |
@@ -61,9 +63,9 @@
 | trap                   |        限制，困住        |
 | aggregates             |         总数          |
 | offhand                |        漫不经心的        |
-| tackle                 |        阻截,处理      |
-| woodcut                |         木版画        |
+| tackle                 |        阻截,处理        |
+| woodcut                |         木版画         |
 | algeba                 |         代数          |
-| edifice                |       大厦，体系       |
-| mythology              |         神话       |
-| erect                  |         直立，建造     |
+| edifice                |        大厦，体系        |
+| mythology              |         神话          |
+| erect                  |        直立，建造        |
