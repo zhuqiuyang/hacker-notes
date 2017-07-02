@@ -1,5 +1,7 @@
 # 1A: Overview and Introduction to Lisp
 
+Hal Abelson
+
 ## Part 1 (Most Important)
 
 ### declarative knowledge

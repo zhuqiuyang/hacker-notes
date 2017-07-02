@@ -1,5 +1,7 @@
 ## Henderson Escher Example
 
+Hal Abelson
+
 ### Part 1
 
 #### Review : compound data

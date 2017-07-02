@@ -1,5 +1,7 @@
 # 1B: Procedures and Processes; Substitution Model
 
+Gerald Jay Sussman
+
 ## Part 1
 
 ### 回顾1A (spells procedure process)
