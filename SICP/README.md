@@ -51,4 +51,58 @@
     - blue the line between what's procedure and what's data.
 
 
+### 3A: Herderson Escher Example
+
+#### Part 1
+
+- 回顾data abstraction, pairs
+
+  > as amathematician might say, the set of data objects in List is closed under the operation of forming pairs.
+
+- 引出 **List** (List just a abbr for this nested of cons)
+
+- Map
+
+  - thinking about opertation on **aggregate** (整体)
+  - stream processing
+
+- ForEach
+
+#### Part 2
+
+- 回顾到现在所讲的一切内容
+- 提示`you will be complete confused about what's the difference between procedures and data are.` At the end of this morining.
+- 介绍这门语言
+  - only one primitive `picture`
+  - means of combination and the operation
+    - Rotate
+    - Beside
+    - Flip
+  - 之所以能快速变化，`because operations are **closed**.`
+- 实现Picture
+  - build rectangle，coordinate-map，draw this image
+  - a picture is a procedure that takes a rectangle as argument.
+
+#### Part 3
+
+- 把Picture定义成procedure 最nice的地方就是，Combination 只要去计算出Rectangle即可。
+
+  > the means of combination just fall out by implementing procedures
+  >
+  > The only computation it has to do is figure out what these rectangles are
+  >
+  > So implementing pictures as procedures makes these means of combination, you know, both pretty simple and also, I think, elegant.
+
+- List 赋予我们进行操作的procedure，同样适用于Picture Language
+
+  - The language is nicely embedded in List
+
+- Language Level
+
+  > viewing the engineering design process as one of creating language **or** rather one of creating a sort of sequence of layers of language
+
+  - Each level has a full rang of linguistic Power.
+
+
+
 

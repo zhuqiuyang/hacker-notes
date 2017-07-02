@@ -332,8 +332,29 @@ recursive means of combination
 
 > The main point I've been dwelling on is the notion of nicely embedding a language inside another language. Right, so that all the power of this language like List of the surrounding language is still accessible to you and appears as a natural extension of the language that you built.
 
+#### decompose task to sub-tree task is not robust.
 
+each node to do specific task
 
-decompose task to sub-tree task is not robust.
+#### Design in language level.
 
-Design in language level.
+```markdown
+
+---
+LANGUAGE OF
+SCHEMES OF COBINATION
+---
+
+---
+LANGUAGE OF 
+GEOMETRIC POSITION (Like Rotate,Besides)
+
+---
+
+---
+LANGUAGE OF
+PRIMITIVE PICTS
+---
+```
+
+> that's sort of a big point about the **difference** in software methodology that `comes out from List`, **and** it all `comes, again, out of the notion that really, the design process` is **not so much** `implementing programs` **as** `implementing languages`. And that's really the powerful of List.
