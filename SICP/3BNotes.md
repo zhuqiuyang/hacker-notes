@@ -48,3 +48,30 @@ write the program that encapsulates these rules independent of the representatio
 ```
 
 > 定义predicate, 用`?`结尾, 便于阅读 eg:`SUM?`
+
+```lisp
+(+ (* a (* x x))
+   (+ (* b x)
+      c))
+```
+
+> This is list structure. And the reason why this is nice, is because any one of these objects has a property. I know where the car is. The car is the operator. And the operands are the successive cdrs the successive cars of the cdrs of the list that this is. It makes it very convenient.
+
+let's start using list structure to write down the representation that I'm implicitly assuming here.(Like `CONSTANGE?`)
+
+```lisp
+; It's just that I'm going to look at the primitive constants in this way.
+(DEFINE (CONTANT? EXP VAR)
+        (AND (ATOM? EXP)
+             (NOT (EQ? EXP VAR))))
+
+(DEFINE (SAME-VAR? EXP VAR)
+        (AND (ATOM? EXP)
+             (EQ? EXP VAR)))
+
+(DEFINE (SUM? EXP)
+        (AND (NOT (ATOM? EXP))
+             (EQ (CAR (EXP) '+))))
+```
+
+The expression is `atomic`, meaning it cannot be brokeninto parts. It doesn't have a car and a cdr.
