@@ -75,3 +75,33 @@ let's start using list structure to write down the representation that I'm impli
 ```
 
 The expression is `atomic`, meaning it cannot be brokeninto parts. It doesn't have a car and a cdr.
+
+`quote` example:
+
+```markdown
+; 两种意思:
+Say your name.
+
+Say "your name".
+```
+
+> However, this way I'm asking, is this the **symbolic object plus**, which normally stands for the addition operator?
+
+**quotation** is a very complex concept, and adding it to a language causes a great deal of troubles.
+
+defuction(推论)
+
+```markdown
+Alyssa is smart.
+Alyssa is George's mother.
+---
+George's mother is smart.
+
+
+"Chicago" has seven letters.
+Chicago is the biggest city in Illinois.
+---
+"The biggest city in Illinois" has seven letters. (False)
+```
+
+We can't substitute into what's called referentially **opaque contexts**, of which a quotation is the prototypical type of referentially opaque context.
