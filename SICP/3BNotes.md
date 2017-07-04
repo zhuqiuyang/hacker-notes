@@ -105,3 +105,109 @@ Chicago is the biggest city in Illinois.
 ```
 
 We can't substitute into what's called referentially **opaque contexts**, of which a quotation is the prototypical type of referentially opaque context.
+
+```lisp
+(DEFINE (MAKE-SUM a1 a2)
+        (LIST '+ a1 a2))
+; CADR is car of cdr of something
+(DEFINE A1 CADR)
+(DEFINE A2 CADDR)
+
+(DEFINE (PRODUCT? EXP)
+        (AND (NOT (ATOM? EXP))
+             (EQ? (CAR EXP) '*)))
+(DEFINE (MAKE-PRODUCT m1 m2)
+        (LIST '* m1 m2))
+(DEFINE M1 CAR)
+(DEFINE M2 CADDR)
+```
+
+对foo求导
+
+```lisp
+; foo = a*x*x + b*x + c
+(define foo
+  '(+ (* a (* x x))
+      (+ (* b x)
+         c)))
+
+; 2ax + b
+(defiv foo 'x)
+(+ (+ (* A (+ (* 1 x) (x 1)))
+      (+ 0 (* x x)))
+   (* (* (* B 1) (* 0 X))
+      0))
+```
+
+
+
+### Part 2
+
+上面求导得出的表达式so bad：
+
+> So what we're seeing here is exactly the thing I was trying to tell you about with Fibonacci numbers a while ago, that the form of the process is expanded from the local rules that you see in the procedure, that the procedure represents a set of local rules for the expansion of this process.
+
+```lisp
+; foo对a求导: x*x
+
+; foo对b求导: x
+
+; foo对c求导: 1
+```
+
+#### changed representation.
+
+就像在rational number运算，得到 `6/8`rather than `3/4`
+
+> I'm not trying to say that it always works. But it's one of the pieces of artillery(大炮) we have in our war against complexity.
+
+有了对付困难的武器.
+
+```markdown
+
+derivatives rules
+
+---
+CONSTANT?       SUM?
+SAME-VAR?     MAKE-SUM?
+               A1 A2
+---
+
+Representation(List Structure)
+
+
+```
+
+> Making this barrier allows me to arbitrarily change the representation without changing the rules that are written in terms of that representation.
+
+```lisp
+(DEFINE (MAKE-SUM A1 A2)
+        (COND ((AND (NUMBER? A1)
+                    (NUMBER? A2))
+               (+ A1 A2))
+              ((AND (NUMBER? A1) (= A1 0))
+               A2)
+              ((AND (NUMBER? A2) (= A2 0))
+               A1)
+              (ELSE (LIST '+ A1 A2))
+              ))
+
+; The same to product
+```
+
+After Change
+
+```lisp
+]=> (deriv foo 'x)
+(+ (* A (+ X X)) B)
+
+]=> (deriv foo 'a)
+(* X X)
+
+]=> (deriv foo 'b)
+X
+
+]=> (deriv foo 'c)
+1
+```
+

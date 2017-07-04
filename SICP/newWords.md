@@ -70,4 +70,5 @@
 | mythology              |         神话          |
 | erect                  |        直立，建造        |
 | calculus               |         微积分         |
-| deduction              |         推理,推论       |
+| deduction              |        推理,推论        |
+| artillery              |        大炮            |
