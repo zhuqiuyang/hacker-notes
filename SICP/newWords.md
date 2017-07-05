@@ -71,4 +71,6 @@
 | erect                  |        直立，建造        |
 | calculus               |         微积分         |
 | deduction              |        推理,推论        |
-| artillery              |        大炮            |
+| artillery              |         大炮          |
+| contrived              |     设法做成,勉强做到了   |
+| sledgehammer           |     长柄大锤, 有力武器   |

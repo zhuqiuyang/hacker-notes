@@ -211,3 +211,18 @@ X
 1
 ```
 
+### Qutation; abstract syntax
+
+What you've seen is, of course, a little bit contrived, carefully organized example to show youhow we can manipulate algebraic expressions, how we do that abstractly in terms of **abstract syntax** rather than concrete syntax and how we can use the abstraction to control what goes onin building these expressions.
+
+> http://pico.vub.ac.be/mc/absconc.html
+>
+> concret syntax: 编程常用的语法
+>
+> abstract synctax: 描述语言本身 自身实现的一些语法.
+
+I created the necessity to have things like **quotation** because of the fact that my language is capable of writing expressions that talk about expressions of the language.
+
+>  I need to have something that says, `'x` this is an expression I'm talking about rather than this expression is talking about something, and I want to talk about that.
+
+So quotation stops and says, I'm talking about this expression itself. Now, given that power, *if I can manipulate expressions of the language, I can begin to build even much more powerful layers upon layers of languages. Because I can write languages that not only are embedded in Lisp or whatever language you start with, but languages that are completely different*, that are just, if we say, interpreted in Lisp or something like that.
