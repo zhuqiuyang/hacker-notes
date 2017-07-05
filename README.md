@@ -7,3 +7,8 @@ Personal learning notes.
 - [The Unix and Internet Fundamentals HOWTO](http://www.tldp.org/HOWTO/Unix-and-Internet-Fundamentals-HOWTO/index.html)
 
 ### 3. [Teach Yourself Programming in Ten Years](http://norvig.com/21-days.html)- Eric
+
+> the most effective learning requires a well-defined task with an **appropriate difficulty** level for the particular individual, informative feedback, and opportunities for repetition and corrections of errors.
+
+- Learn at least a half dozen **programming languages**
+
