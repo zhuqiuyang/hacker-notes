@@ -140,3 +140,59 @@ recursive loop,
 I would like to teach you how to do it so you don't depend upon some language designer.
 
 You make it yourself. You can roll your own.(教我们一种实现方式，可以不受language 约束？)
+
+
+
+### Part 2
+
+![4A_Matcher](./png/4A_Matcher.png)
+
+
+
+```lisp
+(define (match pat exp dict)
+  (cond ((eq? dict 'failed) 'failed)
+    	((atom? pat)
+         *** Atomic patterns)
+    	*** Pattern variable clauses
+    	; pattern not atomic, but exp is atomis , so failed
+    	((atom? exp) 'failed)
+    	(else
+         (match (cdr pat)
+                (cdr exp)
+                (match (car pat)
+                       (car exp)
+                       dict)))))
+```
+
+
+
+e.g.:
+
+```lisp
+; a pattern
+(+ (* (? X) (? Y)) (? Y))
+
+; an expression
+(+ (* 3 x) x)
+```
+
+> my pattern variable, `x` match `3`, in my dictionary, and the dictionary's going to follow along with me: `x` equals `three`
+
+解释第一个条件判断分局
+
+this matcher takes the dictionary from the previous match as input, it must be able to propagate(产生) the failures. And so that's what the first clause of this conditional does.
+
+
+
+#### atomic patter
+
+```lisp
+((atom? pat)
+ (if (atom? exp)
+     (if (eq? pat exp)
+         dict
+         'failed)
+     'failed))
+```
+
