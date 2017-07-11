@@ -255,3 +255,34 @@ a little about `evaluate`:
 QA：
 
  All you've got there is we're making up the dictionary for later substitution.
+
+### Part 3
+
+Now we have to understand the control structure by which the rules are applied to the expressions so as to do algebraic simplification.
+
+之前是一种`GIGC`: garbage- in, garbage-out simplifier.
+
+```lisp
+(define (simplifier the-rules)
+  (define (simplify-exp exp)
+    ***)
+  (define (simplify-parts exp)
+    ***)
+  simplify-exp)
+```
+
+And then the result of this simplifier procedure is, in fact, one of the procedures that was defined.
+
+```lisp
+(define (simplify-exp exp)
+  (try-rules (if (compound? exp)
+                 (simplify-parts exp)
+                 exp)))
+
+(define (simplify-parts exp)
+  (if (null? exp)
+      '()
+      (cons (simplify-exp (car exp))
+            (simplify-parts (cdr exp)))))
+```
+
