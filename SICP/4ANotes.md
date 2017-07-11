@@ -286,3 +286,74 @@ And then the result of this simplifier procedure is, in fact, one of the procedu
             (simplify-parts (cdr exp)))))
 ```
 
+#### There's another way to write simplified expressions so there would be only one of them.
+
+```lisp
+(DEFINE (SIMPLIFY-EXP EXP)
+        (TRY-RULES
+         (IF (COMPOUND? EXP)
+             (MAP SIMPLIFY-EXP EXP)
+             EXP)))
+```
+
+#### look at how you try rules. 
+
+```lisp
+(define (try-rulse exp)
+  (define (scan rules)
+    ***)
+  (scan the-rules))
+
+; scan
+(define (scan rules)
+  (if (null? rules)
+      exp
+      (let ((dict
+             (match (pattern (car rules))
+                    exp
+                    (empty-dictionary))))
+           (if (eq? dict 'failed)
+               (scan (cdr rules))
+               (simplify-exp
+                (instantiate
+                 (skeleton (car rules))
+                 dict))))))
+```
+
+
+
+> The **key** to this--it's very good programming and very good design-- is to **know what not to think about**.
+
+```lisp
+; dict
+(define (empty-dictionary) '())
+
+(define (extend-dictionary pat dat dict)
+  ; pat 代表的时 pattern variable
+  ; pull out pattern variable 的name
+  ; 查找dict 有没有, 没有添加
+  ; 有但不一致, 匹配failed
+ (let ((name (variable-name pat)))
+  (let ((v (assq name dict)))
+   (cond ((null? v)
+     (cons (list name dat) dict))
+      ((eq? (cadr v) dat) dict)
+      (else 'failed)))))
+
+(define (lookup var dict)
+ (let ((v (assq var dict)))
+  (if (null? v) var (cadr v))))
+```
+
+`assq`: https://www.gnu.org/software/mit-scheme/documentation/mit-scheme-ref/Association-Lists.html
+
+```lis
+(define e '((a 1) (b 2) (c 3)))
+          (assq 'a e)                             =>  (a 1)
+          (assq 'b e)                             =>  (b 2)
+          (assq 'd e)                             =>  #f
+```
+
+QA:
+
+So the spec of a **simplified expression** is that any expression you put into it comes out simplified according to those rules.
