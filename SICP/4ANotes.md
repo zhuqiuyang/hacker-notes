@@ -143,7 +143,7 @@ You make it yourself. You can roll your own.(教我们一种实现方式，可�
 
 
 
-### Part 2
+### Part 2 matching and instantiation
 
 ![4A_Matcher](./png/4A_Matcher.png)
 
@@ -165,8 +165,6 @@ You make it yourself. You can roll your own.(教我们一种实现方式，可�
                        dict)))))
 ```
 
-
-
 e.g.:
 
 ```lisp
@@ -176,6 +174,8 @@ e.g.:
 ; an expression
 (+ (* 3 x) x)
 ```
+
+![4A_Tree](./png/4A_Tree.png)
 
 > my pattern variable, `x` match `3`, in my dictionary, and the dictionary's going to follow along with me: `x` equals `three`
 
@@ -196,3 +196,62 @@ this matcher takes the dictionary from the previous match as input, it must be a
      'failed))
 ```
 
+```lisp
+((arbitrary-constant? pat)
+ (if (constant? exp)
+     (extend-dict pat exp dict)
+     'failed))
+
+((arbitrary-variable? pat)
+ (if (variable? exp)
+     (extend-dict pat exp dict)
+     'failed))
+
+((arbitrary-expression? pat)
+ (extend-dict pat exp dict))
+```
+
+
+
+So you've just seen a complete, very simple matcher. Now, one of the things that's rather remarkable about this is people pay an awful lot of money these days for someone to make a,quote, AI expert system that has nothing more in it than a matcher and maybe an instantiater like this.
+
+#### instantiater
+
+the purpose of the instantiater is to make expressions given a dictionary and a skeleton.
+
+![4A_Instantiate](./png/4A_Instantiate.png)
+
+```lisp
+(define (instantiate skeleton dict)
+  (define (loop s)
+    (cond ((atom? s) s)
+      ((skeleton-evaluation? s)
+       (evaluate (eval-exp s) dict))
+      (else (cons (loop (car s))
+                  (loop (cdr s))))))
+  (loop skeleton))
+```
+
+To instantiate a skeleton, given a particular dictionary-- oh, this is easy. We're going to do a recursive tree walk over the skeleton. And for everything which is a `skeleton variable` -- I don't know, call it a `skeleton evaluation`. That's the name and the abstract syntax that I give it in this program: a skeleton evaluation, a thing beginning with a colon in the rules.(有冒号开头的变量)
+
+a little about `evaluate`:
+
+```lisp
+(define (evaluate form dict)
+  (if (atom? form)
+      (loopup form dict)
+      (apply
+       ; I want you realize you're seeing magic now. 
+       ; This magic will become clear very soon, but not today.
+       (eval (koopup (car form) dict)
+             user-initial-enviroment)
+       (mapcar (lambda (v)
+                 (lookup v dict))
+               (cdr form)))))
+```
+
+
+
+QA：
+
+ All you've got there is we're making up the dictionary for later substitution.
