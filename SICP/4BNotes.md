@@ -20,6 +20,8 @@ So that's the problem you should be thinking about. Like it's sort of just your 
 
 real- and imaginary-part
 
+![4B_complex](./png/4B_complex.png)
+
 rectangular representation, real- and imaginary-part, or polar representation. (直角坐标系, 极坐标)
 
 magnitude and angle
