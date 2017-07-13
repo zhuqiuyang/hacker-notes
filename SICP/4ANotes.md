@@ -179,7 +179,7 @@ e.g.:
 
 > my pattern variable, `x` match `3`, in my dictionary, and the dictionary's going to follow along with me: `x` equals `three`
 
-解释第一个条件判断分局
+解释第一个条件判断分句
 
 this matcher takes the dictionary from the previous match as input, it must be able to propagate(产生) the failures. And so that's what the first clause of this conditional does.
 

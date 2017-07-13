@@ -104,5 +104,22 @@
   - Each level has a full rang of linguistic Power.
 
 
+### 3B: Symbolic Differentiation; Quotation
+
+`07: xx`: And so a lot of what we're goingto be doing today is worrying about syntax
+
+- 通过嵌入规则(不同的rules)来进行 **Symbolic Differentiation**
+- 简单提到了 Quotation
+
+### 4A: Pattern Matching and Rule-based Substitution
+
+- Part 1:
+  - 通过Pattern (match) -> skeleton(instantiation) 来使3B中第一的`deriv`更清晰一些。
+    - write those rules in the computer's language -- at the moment, in a Lisp-- we're going to bring the computer to the level of us. (把Lisp提升到和我们一个level)
+- Part 2: matching and instantiation
+- Part 3: 理解control structure，which rule should be used to the exp.
+
+### 4B: Generic Operators
+
 
 

@@ -74,4 +74,7 @@
 | artillery              |         大炮          |
 | contrived              |     设法做成,勉强做到了      |
 | sledgehammer           |     长柄大锤, 有力武器      |
-| megabucks              |     一大笔钱      |
+| megabucks              |        一大笔钱         |
+| interfere              |         干涉          |
+| edict                  |         法令，命令     |
+
