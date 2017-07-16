@@ -333,3 +333,37 @@ The manager has been automated out of existenceand is replaced by a procedure ca
 ![4B_Data_Direct举例](./png/4B_Data_Direct举例.png)
 
 这叫做 `data-directed programming`
+
+### Part 3
+
+![4B_Part3_Start](./png/4B_Part3_Start.png)
+
+```lisp
+;;; Rational number arithmetic
+
+(define (+rat x y)
+  (make-rat (+ (* (numer x) (denom y))
+               (* (denom x) (numer y)))
+            (* (denom x) (denom y))))
+
+(define (-rat x y) ...)
+
+(define (*rat x y) ...)
+
+(define (/rat x y) ...)
+```
+
+```lisp
+;;; installing rational numbers in the
+;;; generic arithmetic system
+
+(define (make-rat x y)
+  ; That's the only thing we have to do different, make it a typed data object.
+  (attach-type 'rational (cons x y)))
+
+(put 'rational 'add +rat)
+(put 'rational 'sub -rat)
+(put 'rational 'nul *rat)
+(put 'rational 'div /rat)
+```
+
