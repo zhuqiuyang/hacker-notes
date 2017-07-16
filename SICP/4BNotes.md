@@ -244,3 +244,92 @@ Martha changes:
 ```
 
 So there's a system. Has three parts. There's sort of George, and Martha, and the manager.
+
+
+
+### Part 2
+
+回顾: We just looked at a strategy for implementing generic operators. That strategy has a name: it'scalled dispatch type.
+
+提出问题: The problem that I actually want to focus on is what happens when you bring somebody new intothe system. 
+
+Harry has a new type of complex number, 
+
+So the inflexibility in the system, the place where work has to happen to accommodate change, is in the manager. That's pretty annoying.
+
+So it's really annoying that the bottleneck in this system, the thing that's preventing flexibility and change, is completely in the bureaucracy.
+
+![4B_Table](./png/4B_Table.png)
+
+Let's assume, again using data abstraction, that we have some kind of data structure that's a table.
+
+```lisp
+(DEFINE PUT KEY1 KEY2 VALUE)
+
+(DEFINE GET KEY1 KEY2)
+```
+
+```lisp
+;;; Installing the rectangular
+;;; operations in the table
+
+;;; what's geoge has to do
+(put 'rectangular 'real-part
+     real-part-rectangular)
+
+(put 'rectangular 'imag-part
+     imag-part-rectangular)
+
+(put 'rectangular 'magnitude
+     magnitude-rectangular)
+
+(put 'rectangular 'angle
+     angle-rectangular)
+```
+
+```lisp
+;;; Installng the polar
+;;; operations in the table
+
+(put 'polar 'real-part real-part-polar)
+
+(put 'polar 'imag-part imag-part-polar)
+
+(put 'polar 'magnitude magnitude-polar)
+
+(put 'polar 'angle angle-polar)
+```
+
+Everyone who makes a representation has the responsibility for setting up a column in the table.
+
+
+
+The manager has been automated out of existenceand is replaced by a procedure called operate.
+
+```lisp
+(DEFINE (OPERATE OP OBJ)
+        (LET ((PROC (GET (TYPE OBJ) OP)))
+             (IF (NOT (NULL? PROC))
+                 (PROC (CONTENTS OBJ))
+                 (ERROR "undefined OP"))))
+```
+
+```lisp
+;;; Defining the selectors using operate
+
+(define (real-part obj)
+  (operate 'real-part obj))
+
+(define (imag-part obj)
+  (operate 'imag-part obj))
+
+(define (magnitude obj)
+  (operate 'magnitude obj))
+
+(define (angle obj)
+  (operate 'angle obj))
+```
+
+![4B_Data_Direct举例](./png/4B_Data_Direct举例.png)
+
+这叫做 `data-directed programming`
