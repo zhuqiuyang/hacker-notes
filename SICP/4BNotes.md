@@ -367,3 +367,66 @@ The manager has been automated out of existenceand is replaced by a procedure ca
 (put 'rational 'div /rat)
 ```
 
+Well how does the whole thing work? Eg: 
+
+```lisp
+(DEFINE (ADD X Y)
+        (OPERATE-2 'ADD X Y))
+```
+
+```lisp
+(define (operate-2 op arg1 arg2)
+  (if
+   (eq? (type arg1) (type arg2))
+   (let ((proc (get (type arg1) op)))
+        (if (not (null? proc))
+            (proc (contents arg1)
+                  (contents arg2))
+            (error
+             *Op undefined on type*)))
+   (error *Args not same type*)))
+```
+
+Question: We just built the complex number package before. How do we embed that complex number package in this generic system?
+
+```lisp
+;;; installing complex numbers
+
+(define (make-complex z)
+  (attach-type 'complex z))
+
+(define (+complex z1 z2)
+  (make-complex (+c z1 z2)))
+
+(put 'complex 'add +complex)
+
+similarly for -complex *complex /complex
+```
+
+How do we install ordinary numbers?
+
+```lisp
+;;; installing ordinary numbers
+
+(define (make-number n)
+  (attach-type 'number n))
+
+(define (+number x y)
+  (make-number (+ x y)))
+
+(put 'number 'add +number)
+
+similarly for -number *number /number
+```
+
+Eg:
+
+`(3+4i)*(2+6i)`; `MUL` is generic operator.
+
+```lisp
+; (3+4i)
+
+(list 'complex 'rectangular 3 4)
+```
+
+> And the length of the chain is sort of the number of levels that you're going to be going up in this table. And what a type tells you, every time you have a vertical barrier in this table, where there's some ambiguity about where you should go down to the next level, (type链, 每当遇到一个垂直的barrier时, type告诉你如何 go down.)
