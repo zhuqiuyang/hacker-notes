@@ -501,3 +501,21 @@ add two term-list:
 #### Interesting Thing: when we add two polynomials, generic operation happen
 
 > We reduced adding polynomials, not to sort of plus, but to the generic add. 
+
+![4B_interesting](./png/4B_interesting.png)
+
+So this is sort of an infinite or maybe a recursive tower of types that we've built up.
+
+`(3x+7)/(x*x + 1)` is a general rational object, whose numerator and denomiator are polynomials
+
+```lisp
+;;; Rational number arithmetic
+;;; ...
+; replace these particular pluses and stars by the generic operator. 
+(define (+rat x y)
+  (make-rat
+   (ADD (MUL (numer x) (denom y))
+        (MUL (denom x) (numer y)))
+   (MUL (denom x) (denom y))))
+```
+
