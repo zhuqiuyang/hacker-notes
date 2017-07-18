@@ -77,5 +77,9 @@
 | megabucks              |        一大笔钱         |
 | interfere              |         干涉          |
 | edict                  |        法令，命令        |
-| coefficient            |        系数(Math)       |
-| order                  |        指数(Math)       |
+| coefficient            |      系数(Math)       |
+| order                  |      指数(Math)       |
+| poke                   |          戳          |
+| plausible              |      貌似合理的        |
+| from scratch           |      从零开始         |
+

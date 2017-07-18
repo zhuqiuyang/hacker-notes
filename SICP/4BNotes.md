@@ -514,8 +514,16 @@ So this is sort of an infinite or maybe a recursive tower of types that we've bu
 ; replace these particular pluses and stars by the generic operator. 
 (define (+rat x y)
   (make-rat
+   ; + * -> ADD MUL
    (ADD (MUL (numer x) (denom y))
         (MUL (denom x) (numer y)))
    (MUL (denom x) (denom y))))
 ```
 
+another e.g.: two matrix
+
+![4B_matrix](./png/4B_matrix.png)
+
+ We built a system that has **decentralized control**.
+
+> So when you come into and no one's poking around saying, gee, are you in the official list of people who can be added? Rather you say, well go off and add yourself how your parts like to be added.
