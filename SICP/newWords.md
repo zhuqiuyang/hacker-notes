@@ -76,5 +76,6 @@
 | sledgehammer           |     长柄大锤, 有力武器      |
 | megabucks              |        一大笔钱         |
 | interfere              |         干涉          |
-| edict                  |         法令，命令     |
-
+| edict                  |        法令，命令        |
+| coefficient            |        系数(Math)       |
+| order                  |        指数(Math)       |

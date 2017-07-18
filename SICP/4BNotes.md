@@ -430,3 +430,74 @@ Eg:
 ```
 
 > And the length of the chain is sort of the number of levels that you're going to be going up in this table. And what a type tells you, every time you have a vertical barrier in this table, where there's some ambiguity about where you should go down to the next level, (type链, 每当遇到一个垂直的barrier时, type告诉你如何 go down.)
+
+#### Might do arithmetic on polynomials.
+
+```lisp
+; x15 + 2x7 + 5
+
+(POLYNOMIAL X <term-list>)
+((5 1) (7 2) (0 5))
+```
+
+```lisp
+;;; Installing polynomials
+
+(define (make-polynomial var term-list)
+  (attach-type 'polynomial
+               (cons var term-list)))
+
+(define (+poly p1 p2)
+  (if (same-var? (var p1) (var p2))
+      (make-polynomial
+       (var p1)
+       (+terms (term-list p1)
+               (term-list p2)))
+      (error *Polys not in same var*)))
+
+(put 'polynomial +add +poly)
+```
+
+add two term-list:
+
+```lisp
+(define (+terms L1 L2)
+  (cond 
+    ((empty-termlist? L1) L2)
+    ((empty-termlist? L2) L1)
+    (else
+     (let ((t1 (first-term L1))
+           (t2 (first-term L2)))
+          (cond
+            ((> (order t1) (order t2))
+             ...)
+            ((< (order t1 (order t2))
+             ...)
+             ;; t1 == t2
+            (else ...))))))
+  )
+
+((> (order t1) (order t2))
+ (adjoin-term
+  t1
+  (+terms (rest-terms L1) L2)))
+
+((< (order t1) (order t2))
+ (adjoin-term
+  t2
+  (+terms L1 (rest-terms L2))))
+; And I'm using here a whole bunch of procedures I haven't defined, like a adjoin-term, and rest-terms, and selectors that get order.
+; 指数相等
+(else
+ (adjoin-term
+  (make-term (order t1)
+             ; ADD is the only one interesting idea
+             (ADD (coeff t1)
+                  (coeff t2)))
+  (+terms (rest-terms L1)
+          (rest-terms L2))))
+```
+
+#### Interesting Thing: when we add two polynomials, generic operation happen
+
+> We reduced adding polynomials, not to sort of plus, but to the generic add. 
