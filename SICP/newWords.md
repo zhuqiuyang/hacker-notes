@@ -80,6 +80,8 @@
 | coefficient            |      系数(Math)       |
 | order                  |      指数(Math)       |
 | poke                   |          戳          |
-| plausible              |      貌似合理的        |
-| from scratch           |      从零开始         |
+| plausible              |        貌似合理的        |
+| from scratch           |        从零开始         |
+| coercion               |         胁迫          |
+| sparse                 |         简朴的         |
 

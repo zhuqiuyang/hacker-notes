@@ -4,7 +4,7 @@ Hal Abelson
 
 ### Part 1 
 
-先提到Date abstraction.
+先提到Data abstraction.
 
 Somehow in designing a system, you not only want these **horizontal barriers**(分离 Use & Representation), but you also want some kind of **vertical barrier** to keep George and Martha (实现Representation的两个人) separate.
 
@@ -304,7 +304,7 @@ Everyone who makes a representation has the responsibility for setting up a colu
 
 
 
-The manager has been automated out of existenceand is replaced by a procedure called operate.
+The manager has been automated out of existenceand is **replaced by** a procedure called `operate`.
 
 ```lisp
 (DEFINE (OPERATE OP OBJ)
@@ -526,4 +526,17 @@ another e.g.: two matrix
 
  We built a system that has **decentralized control**.
 
-> So when you come into and no one's poking around saying, gee, are you in the official list of people who can be added? Rather you say, well go off and add yourself how your parts like to be added.
+> What's really going on here? What's really going on is **getting rid of** this manager who's sitting there poking his nose into who everybody's business is. We built a system that has **decentralized control**. So when you come into and no one's poking around saying, gee, are you in the official list of people who can be added? Rather you say, well go off and **add yourself** how your parts like to be added. And the result of that is you can get this very, very, very complex hierarchy where a lot of things just get done and rooted to the right place automatically.
+
+Marix 加法可以使用 Generic `ADD`, So 可以对Complex number/ Rational number进行操作.(个人理解)
+
+QA:
+
+**coercion** e.g.(complex number to a rational number. )
+
+```markdown
+(3 + 4i) + (5/7)
+```
+
+
+

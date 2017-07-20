@@ -121,5 +121,16 @@
 
 ### 4B: Generic Operators
 
+- Part 1:looked at a strategy for implementing generic operators.
+  - And the idea is that you break your system into a bunch of pieces. There's George and Martha, who are making representations,
+  - and then there's the manager. Looks at the types on the data and then dispatches them to the right person.
+- Part 2: looked at **data-directed programming** as a way of implementing a system that does **arithmetic** on **complex numbers**.
+- Part 3: embedding this in some more complex system.
+  - 前面只实现了 complex 的 `+c -c`
+  - 把complex 的操作添加到 **generic operator**中.
+  - 添加 ordinary numbers
+  - 添加 polynomials
+  - 添加 rational objects
+
 
 
