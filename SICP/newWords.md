@@ -84,4 +84,4 @@
 | from scratch           |        从零开始         |
 | coercion               |         胁迫          |
 | sparse                 |         简朴的         |
-
+| factorial              |         阶乘         |
