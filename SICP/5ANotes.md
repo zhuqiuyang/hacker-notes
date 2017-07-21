@@ -119,7 +119,7 @@ Supposing we write down the functional version,functional meaning in the old sty
 
 Seems like essentially the same program, but there are some ways of making errors here that didn't exist until today.
 
-So, as I said, **first** we need a new model of computation, and **second**, we have to be damn goodreason for doing this kind of ugly thing.
+So, as I said, **first** we need a new model of computation, and **second**, we have to be damn good reason for doing this kind of ugly thing.
 
 QA:
 
@@ -140,4 +140,43 @@ QA:
  e2)
 ; var1 , var 分别传入 e1 , e2
 ```
+
+### Part 2 : environment model
+
+ environment model (当存在assignment, 不再是substitution model)
+
+names:
+
+#### Bound variable
+
+(terminology 术语) (用术语表达这个词的意义)
+
+```markdown
+We say that a variable , `V`, Is *bound in an expression*, `E`,if the meaning if `E` is unchanged by uniform replacement of a variable, `W`, not occuring in `E`, for every occurring of `V` In `E`.
+```
+
+
+
+```markdown
+∀x ∃y P(x, y)
+This variable, x, and this variable, y, are bound, because the meaning of this expression does not depend upon the particular letters I used to describe x and y.
+```
+
+```lisp
+(lambda (y) ((lambda (x) (* x y)) 3))
+; the same procedure
+(lambda (y) ((lambda (z) (* z y)) 3))
+```
+
+#### Free variable
+
+```lisp
+; y is not bound.
+(lambda (x) (* x y))
+
+; * is free variable
+(lambda (x) ((lambda (y) (* x y)) 3))
+```
+
+#### scope
 

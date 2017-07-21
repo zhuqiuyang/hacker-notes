@@ -86,3 +86,4 @@
 | sparse                 |         简朴的         |
 | factorial              |         阶乘          |
 | exclamation point      |         感叹号         |
+| terminology            |         术语          |
