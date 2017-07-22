@@ -180,3 +180,40 @@ This variable, x, and this variable, y, are bound, because the meaning of this e
 
 #### scope
 
+(terimnology)(获得bound variable的唯一方式就是lambda表达式)
+
+```markdown
+If `x` is a bound variable in e,then there is a lambda expression where it is bound. So the only way you can get a bound variable ultimately is by `lambda expression`.
+```
+
+And it turns out, we could always arrange things so you don't need any defines. And we'll see that in a while. It's a very magical thing. So **define** really can **go away**. The really, only thing that makes names is lambda. That's its job. And what's so amazing about a lot of things is you can compute with only **lambda**.(可以不需要`define`)
+
+- bound variable list(lambda声明变量的地方)
+
+a lambda expression has a place where it declares a variable. We call it the formal parameter list or the bound variable list.
+
+- scope(其他声明部分, 是defined variable的scope)
+
+In addition, those parts of the expression where the variable is defined, which was declared by some declaration, is called the **scope** of that variable.
+
+> OK, well, now we have enough terminology to begin to understand how to make a new model for computation, because the key thing going on here is that we destroyed the substitution model.
+
+渐渐进入关键内容
+
+#### environments![5A_env](./png/5A_env.png)
+
+An **environment** is a way of **doing substitutions virtually**. It represents a place where something is stored which is the substitutions that you haven't done. It's a place where everything accumulates, where the names of the variables are associated with the values they have such that when you say, what dose this name mean, you look it up in an environment.
+
+So an **environment** is a function, or a table, or something like that. But it's a structured sort of table. It's **made out of** things called **frames**. Frames are pieces of environment, and they are chained together,
+
+```markdown
+如上图:
+frame one, x and y are bound.
+frame two, z is bound, and x is bound,and y is bound.
+从A看, x is 7, frame two 中的 x **shadow**了 frame one 中的x.
+```
+
+The environment model of procedure application can be summarized by two rules:
+
+- A procedure object is applied to a set of arguments by constructing a frame, binding the formal parameters of the procedure to the arguments of the call, and then evaluating the body of the procedure in the context of the new environment constructed. The new frame has as its enclosing environment the environment part of the procedure object being applied.
+- A procedure is created by evaluating a λ-expression relative to a given environment. The resulting procedure object is a pair consisting of the text of the λ-expression and a pointer to the environment in which the procedure was created.
