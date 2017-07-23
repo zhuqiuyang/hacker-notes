@@ -268,3 +268,73 @@ use those counters
 Some of my state variables, a very few of them, therefore,are coupled to yours. If you were to suddenly yell very loud, my blood pressure would go up.
 
 #### Action and Identidy
+
+```markdown
+We say that an **aciton**, `A`. had an effect on an object, `X`.(or equivalently, that X was changed by A).if some property, P. which was true of X before A because false of X after A.
+
+We say that two ocjects, X and Y, are the same if any action which has an effect on X has the same effect on Y.
+```
+
+简言之:
+
+Action: 能使对象的某一属性改变, 在Action发生前后.
+
+Identity: 同一Action对两个Object影响一致.
+
+The **modularity** of the world can give us the modularity in our programming. So we invent things called **object-oriented programming** and things like that to provide us with that power.
+
+Eg:
+
+```lisp
+;;; Cesaro's method for estimating Pi:
+;;;   Prob(gcd(n1,n2)=1) = 6/(Pi*Pi)
+
+(define (estimate-pi n)
+  (sqrt (/ 6 (monte-carlo n cesaro))))
+
+(define (cesaro)
+  (= (gcd (rand) (rand)) 1))
+
+; trials is the number 做几次实验
+(define (monte-carlo trials experiment)
+  (define (iter remaining passed)
+    (cond ((= remaining 0)
+           (/ passed trials))
+      ((experiment)
+       ; 实验成功
+       (iter (-1+ remaining)
+             (1+ passed)))
+      ; 未成功
+      (else
+       (iter (-1+ remaining)
+             passd))))
+  (iter trials 0))
+
+
+;random number generator
+(define rand
+  (let ((x random-init))
+       (lambda ()
+               ; Knuth's book.(高德纳)
+               (set! x (rand-update x))
+               x)))
+```
+
+Supposing, I didn't want to useassignments. Supposing, I wanted to write this program without assignments. What problemswould I have?
+
+![5A_3_leak](./png/5A_3_leak.png)
+
+> You see what's happened here is that the state of the random number generator is no longer confined to the insides of the random number generator. It has **leaked out**. It has leaked out into my procedure that does the Monte Carlo experiment. But what's worse than that, is it's also,because it was contained inside my experiment itself, Cesaro, it leaked out of that too. 
+
+Wouldn't it be nice if assignment was a good thing and maybe it's worth it, but I'm not sure.
+
+```lisp
+
+"Things are seldom what they see, Skim milk masquerades as cream..."
+Gilber and Sullivan
+(H.M.S Pinafore)
+```
+
+QA:
+
+No ques.
