@@ -87,3 +87,7 @@
 | factorial              |         阶乘          |
 | exclamation point      |         感叹号         |
 | terminology            |         术语          |
+| quantum mechanics      |         量子力学       |
+| optical                |         光学的        |
+| chalk                  |         粉笔          |
+

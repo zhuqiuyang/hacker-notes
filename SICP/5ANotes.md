@@ -215,7 +215,7 @@ frame two, z is bound, and x is bound,and y is bound.
 
 ![5A_procedure](./png/5A_procedure.png)
 
-a **procedure object**. It's a composite object consisting of **a piece of code** and a **environment structure**. (一个procedure对象由两部分组成)
+a **procedure object**. It's a composite object consisting of **a piece of code** and a **environment structure**. (一个procedure对象由两部分组成, code和其所被定义时的env, 这时env中会有一个symbol (name)指向这个procedure object) !!!
 
 #### evaluation new rules
 
@@ -223,3 +223,48 @@ The environment model of procedure application can be summarized by two rules:
 
 - A procedure object is applied to a set of arguments by constructing a frame, binding the formal parameters of the procedure to the arguments of the **call**, and then evaluating the body of the procedure in the context of the new environment constructed. The new frame has as its enclosing environment the environment part of the procedure object being applied.
 - A procedure is created by evaluating a λ-expression relative to a given environment. The resulting procedure object is a pair consisting of the text of the λ-expression and a pointer to the environment in which the procedure was created.
+
+QA:
+
+- the **environment** is that linked **chain of frames**
+
+### Part 3 (47:20)
+
+Why introduce assignment? 
+
+with some very interesting programs that have assignment. Understand something special about them that makes them somewhat valuable.
+
+#### Eg: make-count
+
+```lisp
+(DEFINE MAKE-COUNTER
+        (lambda (N)
+                (lambda()
+                       (SET! N (1+ N))
+                       N)))
+
+(DEFINE C1 (MAKE-COUNTER 0))
+(DEFINE C2 (MAKE-COUNTER 10))
+```
+
+![5A_3_COUNTER](./png/5A_3_COUNTER.png)
+
+use those counters
+
+```lisp
+=> (C1)
+1
+=> (C2)
+11
+=> (C1)
+2
+=> (C2)
+12
+; So what I have are computational objects.
+```
+
+比喻: 两个人(procedure)各自的state分开的, 但也有一些相互影响.
+
+Some of my state variables, a very few of them, therefore,are coupled to yours. If you were to suddenly yell very loud, my blood pressure would go up.
+
+#### Action and Identidy
