@@ -324,6 +324,34 @@ Supposing, I didn't want to useassignments. Supposing, I wanted to write this pr
 
 ![5A_3_leak](./png/5A_3_leak.png)
 
+```lisp
+; http://sarabander.github.io/sicp/html/index.xhtml
+; 3.1.2
+(define (estimate-pi trials)
+  (sqrt (/ 6 (random-gcd-test trials 
+                              random-init))))
+
+(define (random-gcd-test trials initial-x)
+  (define (iter trials-remaining 
+                trials-passed 
+                x)
+    (let ((x1 (rand-update x)))
+      (let ((x2 (rand-update x1)))
+        (cond ((= trials-remaining 0)
+               (/ trials-passed trials))
+              ((= (gcd x1 x2) 1)
+               (iter (- trials-remaining 1)
+                     (+ trials-passed 1)
+                     x2))
+              (else
+               (iter (- trials-remaining 1)
+                     trials-passed
+                     x2))))))
+  (iter trials 0 initial-x))
+```
+
+
+
 > You see what's happened here is that the state of the random number generator is no longer confined to the insides of the random number generator. It has **leaked out**. It has leaked out into my procedure that does the Monte Carlo experiment. But what's worse than that, is it's also,because it was contained inside my experiment itself, Cesaro, it leaked out of that too. 
 
 Wouldn't it be nice if assignment was a good thing and maybe it's worth it, but I'm not sure.
@@ -334,6 +362,10 @@ Wouldn't it be nice if assignment was a good thing and maybe it's worth it, but 
 Gilber and Sullivan
 (H.M.S Pinafore)
 ```
+
+- sicp book: 3.1.3
+
+In contrast to functional programming, programming that makes extensive use of assignment is known as *imperative programming*
 
 QA:
 
