@@ -133,4 +133,15 @@
   - 添加 rational objects
 
 
+### 5A: Assignment, State & Side Effect
+
+- Part 1: Assignment
+  - 举了`fact`(阶乘的例子),functional version & imperative version
+- Part 2: Env Model
+  - procedure object: `body code` & `env defined`
+  - evaluation new rules
+- Part 3: Action & Identity
+  - why introduce assignment?
+  - 举了`Cesaro Method` use `Monte Carlo` 来计算Pi.
+
 

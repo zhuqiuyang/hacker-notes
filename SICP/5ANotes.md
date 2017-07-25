@@ -2,7 +2,7 @@
 
 Gerald Jay Sussman
 
-### Part 1
+### Part 1: Assignment
 
 We're going to add an assignment statement.
 
@@ -117,7 +117,7 @@ Supposing we write down the functional version,functional meaning in the old sty
 
 #### 比较两种实现:
 
-Seems like essentially the same program, but there are some ways of making errors here that didn't exist until today.
+Seems like essentially the same program, but there are some ways of making errors here that didn't exist until today. (调整了两个 `SET!`的顺序, 意义将会完全不同)
 
 So, as I said, **first** we need a new model of computation, and **second**, we have to be damn good reason for doing this kind of ugly thing.
 
@@ -141,7 +141,7 @@ QA:
 ; var1 , var 分别传入 e1 , e2
 ```
 
-### Part 2 : environment model
+### Part 2 : Environment model
 
  environment model (当存在assignment, 不再是substitution model)
 
@@ -228,7 +228,7 @@ QA:
 
 - the **environment** is that linked **chain of frames**
 
-### Part 3 (47:20)
+### Part 3 (47:20) Action & Identity
 
 Why introduce assignment? 
 
