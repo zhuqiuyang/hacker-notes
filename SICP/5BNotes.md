@@ -2,11 +2,11 @@
 
 Gerald Jay Sussman
 
-### Part 1
+### Part 1 event-driven simulation (digital circuit)
 
 引子:
 
-And what I want to make is a correspondence betweenthe objects in the world and the objects in the computer,
+And what I want to make is a correspondence between the objects in the world and the objects in the computer,
 
 modularity
 
@@ -199,4 +199,43 @@ The probe tells the wire that, whenever its signal changes value, it should **pr
      (display "  New-value = ")
      (display (get-signal wire)))))
 ```
+
+#### half-adder example
+
+```lisp
+(half-adder input-1 input-2 sum carry)
+ok
+
+(set-signal! input-1 1)
+done
+
+(propagate)
+sum 8  New-value = 1
+done
+
+(set-signal! input-2 1)
+done
+
+(propagate)
+carry 11  New-value = 1
+sum 16  New-value = 0
+done
+```
+
+And how you might organize it to have nice **hierarchical structure** allowing you to build abstract boxes that you can instantiate. But I haven't told you any of the details about how this agenda and things like that work. That we'll do **next**. And that's going to involve change and **mutation of data** and things like that.
+
+### Part 2 Agenda
+
+Right now I want to show you a way of organizing time, which is an agenda or priority queue,
+
+*agenda*, that contains a schedule of things to do. The following operations are defined for agendas:
+
+- `(make-agenda)` returns a new empty agenda.
+- `(empty-agenda? ⟨agenda⟩)` is true if the specified agenda is empty.
+- `(first-agenda-item ⟨agenda⟩)` returns the first item on the agenda.
+- `(remove-first-agenda-item! ⟨agenda⟩)` modifies the agenda by removing the first item.
+- `(add-to-agenda! ⟨time⟩ ⟨action⟩ ⟨agenda⟩)` modifies the agenda by adding the given action procedure to be run at the specified time.
+- `(current-time ⟨agenda⟩)` returns the current simulation time.
+
+
 
