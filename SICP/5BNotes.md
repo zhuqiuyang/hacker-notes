@@ -115,3 +115,88 @@ Now supposing I were to try to say what's the computational model.
 
 #### Computational Model
 
+```lisp
+; wire
+(define (make-wire)
+  (let ((signal-value 0) 
+        (action-procedures '()))
+    (define (set-my-signal! new-value)
+      (if (not (= signal-value new-value))
+          (begin (set! signal-value new-value)
+                 (call-each 
+                  action-procedures))
+          'done))
+    (define (accept-action-procedure! proc)
+      (set! action-procedures 
+            (cons proc action-procedures))
+      (proc))
+    (define (dispatch m)
+      (cond ((eq? m 'get-signal) 
+             signal-value)
+            ((eq? m 'set-signal!) 
+             set-my-signal!)
+            ((eq? m 'add-action!) 
+             accept-action-procedure!)
+            (else (error "Unknown operation: 
+                          WIRE" m))))
+    dispatch))
+```
+
+The local procedure `set-my-signal!` tests whether the new signal value changes the signal on the wire. If so, it runs each of the action procedures, using the following procedure `call-each`, which calls each of the items in a list of no-argument procedures: (如果value更新, 发起通知)
+
+```lisp
+(define (call-each procedures)
+  (if (null? procedures)
+      'done
+      (begin ((car procedures))
+             (call-each (cdr procedures)))))
+
+(define (get-signal wire)
+  (wire 'get-signal))
+
+(define (set-signal! wire new-value)
+  ((wire 'set-signal!) new-value))
+
+(define (add-action! wire action-procedure)
+  ((wire 'add-action!) action-procedure))
+```
+
+The **wire** is the **dispatch** returned by creating the wire. It's a **procedure**.
+
+- delay
+
+```lisp
+(define (after-delay delay action)
+  (add-to-agenda! 
+   (+ delay (current-time the-agenda))
+   action
+   the-agenda))
+
+; `propagate`, which is the way things run. 
+(define (propagate)
+  (if (empty-agenda? the-agenda)
+      'done
+      (let ((first-item 
+             (first-agenda-item the-agenda)))
+        (first-item)
+        (remove-first-agenda-item! the-agenda)
+        (propagate))))
+```
+
+##### A sample simulation
+
+The probe tells the wire that, whenever its signal changes value, it should **print** the **new signal value**, together with the **current time** and a **name** that identifies the wire:
+
+```lisp
+(define (probe name wire)
+  (add-action! 
+   wire
+   (lambda ()
+     (newline)
+     (display name)
+     (display " ")
+     (display (current-time the-agenda))
+     (display "  New-value = ")
+     (display (get-signal wire)))))
+```
+
