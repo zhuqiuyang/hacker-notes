@@ -91,3 +91,4 @@
 | optical                |            光学的             |
 | chalk                  |             粉笔             |
 | isomorphic             | 同构的(identity in structure) |
+| rear                   |            后部              |

@@ -238,4 +238,48 @@ Right now I want to show you a way of organizing time, which is an agenda or pri
 - `(current-time ⟨agenda⟩)` returns the current simulation time.
 
 
+#### implementing the agenda
 
+agenda data structure:
+
+The agenda is made up of *time segments*. Each time segment is a pair consisting of a number (the time) and a queue(that holds the procedures that are scheduled to be run during that time segment.)![5B_2_Agenda](./png/5B_2_Agenda.png)
+
+#### queue
+
+primitive and operation
+
+```lisp
+; one constructor:
+(make-queue) => <new queue>
+
+; two selectors:
+(empty-queue? ⟨queue⟩)
+(front-queue ⟨queue⟩)
+
+; two mutators:
+(insert-queue! ⟨queue⟩ ⟨item⟩)
+(delete-queue! ⟨queue⟩)
+```
+
+![5B_2_queue](./png/5B_2_queue.png)
+
+有一个`rear pointer`方便在queue后增加元素, without chase down from beginning.
+
+```lisp
+; 改变一个pair中 car pointer 的指向.
+(SET-CAR! <pair> <value>)
+(SET-CDR! <pair> <value>)
+```
+
+### Part 3:
+
+original axioms about `CONS`:
+
+```lisp
+∀x,y (car (cons x y)) = x
+     (cdr (cons x y)) = y
+```
+
+cons是两个元素, 得出来的结果 是一样的吗?
+
+#### identity:
