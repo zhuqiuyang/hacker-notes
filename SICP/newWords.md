@@ -91,4 +91,11 @@
 | optical                |            光学的             |
 | chalk                  |             粉笔             |
 | isomorphic             | 同构的(identity in structure) |
-| rear                   |            后部              |
+| rear                   |             后部             |
+| inadvertent            |          粗心的, 无意的          |
+
+Other:
+
+- `camel nose`: 比喻轻诺的举动可能导致严重的后果. `let the camel's nose into the tent, the rest of him follows`
+- ​
+

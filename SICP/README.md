@@ -145,3 +145,18 @@
   - 举了`Cesaro Method` use `Monte Carlo` 来计算Pi.
 
 
+### 5B: Computational Objects
+
+- Part 1: event-driven simulation (digital circuit)
+  - `And what I want to make is a correspondence between the objects in the world and the objects in the computer,`
+- Part 2: Agenda
+  - implement agenda
+  - queue
+    - set-car!
+    - set-cdr!
+- Part 3: Identity & Share
+  - 重定义了`CONS`举例
+    - set-car! & set-cdr!
+
+
+

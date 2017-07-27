@@ -282,4 +282,80 @@ original axioms about `CONS`:
 
 cons是两个元素, 得出来的结果 是一样的吗?
 
-#### identity:
+#### identity & share:
+
+```lisp
+(define a (cons 1 2))
+(define b (cons a a))
+; (cons 1 2) 有三个pointer, a ,(car b) , (cdr b)
+(set-car! (car b) 3)
+=>(car b)
+3
+=>(cdar b)
+3
+```
+
+#### Definition of CONS
+
+ I'm going to show you even a more horrible thing, a definition of CONS in terms of nothing but air, hot air.
+
+```lisp
+(DEFINE (CONS X Y)
+        (lambda(M) (M X Y)))
+;This [? idea ?] was invented by Alonzo Church, who was the greatest programmer of the 20th century, 
+
+(DEFINE (CAR X)
+        (X (lambda(A D) A)))
+
+(DEFINE (CDR X)
+        (X (lambda(A D) D)))
+```
+
+example:
+
+```lisp
+(car (cons 35 47))
+(car (lambda(M) (M 35 47)))
+((lambda(M)(M 35 47))(lambda(A D) A))
+((lambda(A D) A) 35 47)
+35
+; So I don't need any data at all, not even numbers. This is Alonso Church's `hack`.
+```
+
+### "Lambda Calculus" Mutable Data
+
+I'm going to change the definition of CONS
+
+```lisp
+(define (cons x y)
+  (lambda (m)
+          (m x
+             y
+             ; permission 传给 m
+             (lambda (n) (set! x n))
+             (lambda (n) (set! y n))
+             )))
+; cons 返回一个接受4个parameter的procedure
+
+(define (car x)
+  (x (lambda (a d sa sd) a)))
+
+(define (cdr x)
+  (x (lambda (a d sa sd) d)))
+
+; exciting part
+(define (set-car! x y)
+  ; 我理解错了, sa是一个procedure
+  ; (x (lambda (a d sa sd) (set! sa y))))
+  (x (lambda (a d sa sd) (sa y)))
+
+(define (set-cdr! x y)
+  (x (lambda (a d sa sd) (sd y))))
+```
+
+这里有一个bug, 当调用`car`(或者其他任一个operation时), 原来的 cons组成的pair就失效了.
+
+QA: (这堂课只有Part 3有QA)
+
+- 个人理解 `cons`返回的new pair (a procedure), 把设置其内部属性的方法(set 方法), 暴露给了传入的Procedure的 第3、4个参数。
+
