@@ -93,6 +93,8 @@
 | isomorphic             | 同构的(identity in structure) |
 | rear                   |             后部             |
 | inadvertent            |          粗心的, 无意的          |
+| splay                  |           叉开               |
+
 
 Other:
 
