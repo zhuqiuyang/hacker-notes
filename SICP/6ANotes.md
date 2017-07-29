@@ -198,3 +198,33 @@ QA:
 
 ### Part 2:
 
+#### flatten (*tableau* in 2nd book)
+
+So I've got a stream. And each element of the stream is itself a stream.
+
+```lisp
+(DEFINE (FLATTERN ST-OF-ST)
+        (ACCUMULATE (APPEND-STREAMS
+                     THE-EMPTY-STREAM
+                     ST-OF-ST)))
+
+; s is a stream of element
+; f is a function for each element in stream
+(DEFINE (FLAT-MAP F S)
+        ; Each time I apply f to an element of s, I get a stream.
+        (FLATTEN (MAP F S)))
+```
+
+#### Integer Pairs with Prime Sum
+
+Given an integer *n*, find all pairs of integer *0 < j < i <= n* such as *i+j* is prime.
+
+```markdown
+n = 6
+i    j    i+j
+-------------
+2    1    3
+3    2    5
+4    1    5
+```
+
