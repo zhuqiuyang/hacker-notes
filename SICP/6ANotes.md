@@ -102,3 +102,99 @@ why don't you just pretend that streams really are just a terminology for lists.
        (map-stream proc (tail s)))))
 ```
 
+filter box:
+
+```lisp
+; predicate
+(define (filter pred s)
+  (cond
+    ((empty-stream? s) the-empty-stream)
+    ((pred (head s))
+     (cons-stream (head s)
+                  (filter pred
+                          (tail s))))
+    (else (filter pred (tail s)))))
+```
+
+accumulate
+
+```lisp
+(define (accumulate combiner init-val s)
+  (if (empty-stream? s)
+      init-val
+      (combiner (head s)
+                (accumulate combiner
+                            init-val
+                            (tail s)))))
+```
+
+enumerate:
+
+```lisp
+(define (enumerate-tree tree)
+  (if (leaf-node? tree)
+      (cons-stream tree
+                   the-empty-stream)
+      (append-streams
+       (enumerate-tree
+        (left-branch tree))
+       (enumerate-tree
+        (right-branch tree)))))
+```
+
+append-stream:
+
+```lisp
+(define (append-streams s1 s2)
+  (if (empty-stream? s1)
+      s2
+      (cons-stream
+       (head s1)
+       (append-streams (tail s1)
+                       s2))))
+```
+
+enumerate interval
+
+```lisp
+(define (enum-interval low high)
+  (if (> low high)
+      the-empty-streams
+      (cons-stream
+       low
+       (enum-interval (1+ low) high))))
+```
+
+用Stream来表示之前original procedure for summing the odd squares in a tree.
+
+```lisp
+(define (sum-odd-squares tree)
+  (accumulate
+   +
+   0
+   (map
+    square
+    (filter odd
+            (enumerate-tree tree)))))
+```
+
+fibs
+
+```lisp
+(define (odd-fibs n)
+  (accumulate
+   cons
+   '()
+   (filter
+    odd
+    (map fib (enum-interval 1 n)))))
+```
+
+the **advantage** of this stream processing is: we're establishing **conventional interfaces** that allow us to glue things together.
+
+And as an example of that, Richard Waters, who was at MIT when he was a graduate student, as part of his thesis research went and analyzed a large chunk of the IBM scientific subroutine library, and discovered that about **60%** of the programs in it could be expressed exactly in terms using **no more than what we've put here--map, filter, and accumulate**.
+
+QA:
+
+### Part 2:
+
