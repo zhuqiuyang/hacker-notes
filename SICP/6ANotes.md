@@ -56,16 +56,9 @@ example:
 
 So if I was talking like a signal processing engineer, what I might say is that the first procedure enumerates the leaves of a tree.
 
-```markdown
+![6A_1_signal](./png/6A_1_signal.png)
 
-      +------------------+   +-------------+   +------------+   +------------------------------+
-      | enumerate leaves |-->| filter odd? |-->| map square |-->| accumulate + starting from 0 |
-      +------------------+   +-------------+   +------------+   +------------------------------+
 
-      +---------------+   +---------+   +-------------+   +----------------------------------+
-      | enum interval |-->| map fib |-->| filter odd? |-->| accumulate cons starting from () |
-      +---------------+   +---------+   +-------------+   +----------------------------------+
-```
 
 #### 问题根源: 
 
@@ -198,7 +191,7 @@ QA:
 
 ### Part 2:
 
-#### flatten (*tableau* in 2nd book)
+#### flatten (在2nd 2.2.3节)
 
 So I've got a stream. And each element of the stream is itself a stream.
 
@@ -227,4 +220,55 @@ i    j    i+j
 3    2    5
 4    1    5
 ```
+
+```lisp
+(flatmap
+ (lambda (i)
+         (map
+          (lambda (j) (list i j))
+          (enum-interval 1 (-1+ i))))
+ (enum-interval 1 n))
+```
+
+
+
+```lisp
+(filter
+ (lambda (p)
+         ; i is the first thing in the list
+         ; j is second. (j 表达有误? cdr p ?)
+         ; 老师写的是正确的, p 这里是一个list.
+         (prime? (+ (car p) (cadr p))))
+ (flatmap ...))
+```
+
+```lisp
+(define (prime-sum-pairs n)
+  (map
+   (lambda (p)
+           ; i、j、i+j
+           (list (car p)
+                 (cadr p)
+                 (+ (car p) (cadr p))))
+   ; 上一个框
+   (filter ...)))
+```
+
+总结: So there's an example which illustrates the general point that **nested loops** in this procedure startlooking like compositions of flatmaps of flatmaps of flatmaps of maps and things.
+
+- 不足: Of course, it's pretty awful to keep writing these flatmaps of flatmaps of flatmaps. Prime-sum-pairs you saw looked **fairly complicated**,
+- 改进: syntactic sugar that's called **collect**.
+
+用collect的写法:
+
+```lisp
+(define (prime-sum-pairs n)
+  (collect
+   (list i j (+ i j))
+   ((i (enum-interval 1 n))
+    (j (enum-interval 1 (-1+ i))))
+   (prime? (+ i j))))
+```
+
+#### eight-queens 问题
 
