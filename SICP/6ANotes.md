@@ -272,3 +272,67 @@ i    j    i+j
 
 #### eight-queens 问题
 
+![6A_2_Eight_Queen](./png/6A_2_Eight_Queen.png)
+
+(没有两个在同行,行列,或者对角线)
+
+**backtracking** computer algorithms:
+
+在一个节点搜索所有可能, 如果没有, 放弃, 回到上一层继续搜索.
+
+AI Back-tracking Search
+
+Why is it complicated? Its because somehow this program is too inordinately concerned with time.It's too much-- I try this one, and I try this one, and I go back to the last possibility. And that's a complicated thing. If I stop worrying about time so much, then there's a much **simpler way** to describe this.It says, let's imagine that I have in my hands the tree down to k minus 1 levels.
+
+So instead of thinking about this tree as generated step by step, suppose I had it all there. And to extend it from level k minus 1 to level k, I just need to extend each thing in all possible waysand only keep the ones that are safe. And that will give me the tree to level k. And that's a **recursive** strategy for solving the eight queens problem.
+
+(与之前搜索不同的是, 假设整个tree我们已经拥有了, 然后逐层下降, 筛选出safe的可能.运用recursive的方式.)
+
+```lisp
+(define (queens size)
+  (define (fill-cols k)
+    (if
+     (= k 0)
+     (singleton empty-board)
+     (collect ...)))
+  (fill-cols size))
+```
+
+40:44
+
+```lisp
+(collect
+ (adjoin-position try-row
+                  k
+                  rest-queens)
+ ((rest-queens (fill-cols (-1+ k)))
+  (try-row (enum-interval 1 size)))
+ (safe? try-row k rest-queens))
+```
+
+When you're done, you have a stream. And the elements of that streamare all possible ways of solving that problem.
+
+#### 重点: Change View!
+
+We've changed our view. Remember, that's where we started today. We've changed our view ofwhat it is we're trying to model. we stop modeling things that evolve in time and have steps andhave state. And instead, we're trying to model this **global thing** like the whole flight of the chalk,rather than its state at each instant. Any questions?
+
+QA: 
+
+- And it seems that if you have a large enough area to search, that the second is going to become impossible.
+  - 答案是后面课程的内容.
+
+### Part 3:
+
+Can it possibly be that computer scientists are so obtuse that they don't notice that if you'd merely did this thing, then you can get this great programming elegance?
+
+```lisp
+;;; find the second prime between
+;;; 10,000 and 1,000,000
+
+(car (cdr 
+      (filter 
+       prime?
+       (enumerate-interval 10000 1000000))))
+```
+
+The trick is how to make it. We want to arrange for a stream to be a **data structure** that computes itself **incrementally**, an on-demand data structure.(实现stream, 一种按需增加的数据)
