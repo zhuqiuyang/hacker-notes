@@ -386,3 +386,9 @@ and I don't have to re-compute each tail every time I get the next tail.So there
 ```
 (memo-proc (lambda () ⟨exp⟩))
 ```
+QA:
+
+But the point is, once I've found the tail of the stream, to get the tail of the tail, I shouldn'thave had to **re-compute** the first tail. See, and if I didn't use memo-proc, that re-computationwould have been done.
+
+![6A_3QA_Stream](./png/6A_3QA_Stream.png)
+
