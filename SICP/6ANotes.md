@@ -336,3 +336,53 @@ Can it possibly be that computer scientists are so obtuse that they don't notice
 ```
 
 The trick is how to make it. We want to arrange for a stream to be a **data structure** that computes itself **incrementally**, an on-demand data structure.(实现stream, 一种按需增加的数据)
+
+```lisp
+(cons-stream x y)
+; abbreviation for:
+(cons x (delay y))
+(head s) -> (car s)
+(tail s) -> (force (cdr s))
+```
+
+#### promise
+
+What delay does is take an expression and produce a **promise** to compute that expression when you ask for it.
+
+```lisp
+(head (tail (filter prime? (E-I 10,000 1,000,000))))
+; (E-I 10000 1000000) -> (CONS 10000 (DELAY (E-I 10001 1000000)))
+```
+
+#### delay & force
+
+```lisp
+(delay <exp>) ; abbreviation for (lambda () exp)
+
+(force p) = (p) ; just run it.
+```
+
+And the thing that delay did for us wasto de-couple the apparent order of events in our programs from the actual order of events that happened in the machine. That's really what **delay** is doing.
+
+We **de-couple** the **apparent order** of events in our programs from the **actual order** of events inthe computer.
+
+
+
+and I don't have to re-compute each tail every time I get the next tail.So there's one little hack to slightly change what delay is `memo-proce`
+
+```lisp
+(define (memo-proc proc)
+  (let ((already-run? false) (result false))
+    (lambda ()
+      (if (not already-run?)
+          (begin (set! result (proc))
+                 (set! already-run? true)
+                 result)
+          result))))
+```
+
+`Delay` is then defined so that `(delay ⟨exp⟩)` is equivalent to
+
+```
+(memo-proc (lambda () ⟨exp⟩))
+```
