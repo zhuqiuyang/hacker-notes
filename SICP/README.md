@@ -172,6 +172,14 @@
 
 - Part 3: **Streams Are Delayed Lists**
 
+  > Streams are a clever idea that allows one to use sequence manipulations without incurring the costs of manipulating sequences as lists.
+  >
+  > (避免了List Huge时, 还没消费到, 就需要提前计算的问题.)
+  >
+  > With streams we can achieve the best of both worlds.
+  >
+  > On the surface, streams are just lists with different names for the procedures that manipulate them. (2nd 3.5.1)
+
   - Promise, delay, force
 
   > We **de-couple** the **apparent order** of events in our programs from the **actual order** of events inthe computer.
