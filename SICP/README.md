@@ -159,4 +159,22 @@
     - set-car! & set-cdr!
 
 
+### 6A: Stream, Part 1:
+
+- Part 1: 提出**Stream Process**
+  - change View
+  - 举了 `acc` `odd-tree`和`odd-fib`的例子
+
+- Part 2: Nest Loop
+  - 介绍了 ` 1≤j<i≤n`, such that `i+j`is prime 的例子
+    - 引出了flatmap和 collect(语法糖)
+    - 并用collect 解决了 `8 Queen`问题.
+
+- Part 3: **Streams Are Delayed Lists**
+
+  - Promise, delay, force
+
+  > We **de-couple** the **apparent order** of events in our programs from the **actual order** of events inthe computer.
+
+  - memo-proc (消除re-compute)
 

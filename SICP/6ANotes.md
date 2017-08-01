@@ -191,9 +191,15 @@ QA:
 
 ### Part 2:
 
-#### flatten (在2nd 2.2.3节)
+#### Nest Stream (在2nd 2.2.3节)
 
-So I've got a stream. And each element of the stream is itself a stream.
+We have a stream which contains streams:
+
+```lisp
+{{1, 2, 3, ...}, {10, 20 30, ...}, ... }
+```
+
+We can use our new primitives to flatten this stream of streams:
 
 ```lisp
 (DEFINE (FLATTERN ST-OF-ST)
@@ -206,6 +212,13 @@ So I've got a stream. And each element of the stream is itself a stream.
 (DEFINE (FLAT-MAP F S)
         ; Each time I apply f to an element of s, I get a stream.
         (FLATTEN (MAP F S)))
+```
+
+2nd `flatmap`定义:
+
+```lisp
+(define (flatmap proc seq)
+  (accumulate append nil (map proc seq)))
 ```
 
 #### Integer Pairs with Prime Sum
@@ -221,6 +234,8 @@ i    j    i+j
 4    1    5
 ```
 
+所有的`(i,j)`序列组合:
+
 ```lisp
 (flatmap
  (lambda (i)
@@ -230,7 +245,7 @@ i    j    i+j
  (enum-interval 1 n))
 ```
 
-
+Filter: Whose sum is prime?
 
 ```lisp
 (filter
@@ -241,6 +256,8 @@ i    j    i+j
          (prime? (+ (car p) (cadr p))))
  (flatmap ...))
 ```
+
+完成的程序(精简版):
 
 ```lisp
 (define (prime-sum-pairs n)
@@ -254,7 +271,24 @@ i    j    i+j
    (filter ...)))
 ```
 
-总结: So there's an example which illustrates the general point that **nested loops** in this procedure startlooking like compositions of flatmaps of flatmaps of flatmaps of maps and things.
+完成的程序(2nd):
+
+```lisp
+(define (prime-sum-pairs n)
+  (map make-pair-sum
+       (filter 
+        prime-sum?
+        (flatmap
+         (lambda (i)
+           (map (lambda (j) 
+                  (list i j))
+                (enumerate-interval 
+                 1 
+                 (- i 1))))
+         (enumerate-interval 1 n)))))
+```
+
+总结: So there's an example which illustrates the general point that **nested loops** in this procedure start looking like compositions of flatmaps of flatmaps of flatmaps of maps and things.
 
 - 不足: Of course, it's pretty awful to keep writing these flatmaps of flatmaps of flatmaps. Prime-sum-pairs you saw looked **fairly complicated**,
 - 改进: syntactic sugar that's called **collect**.
@@ -365,8 +399,6 @@ What delay does is take an expression and produce a **promise** to compute that 
 And the thing that delay did for us wasto de-couple the apparent order of events in our programs from the actual order of events that happened in the machine. That's really what **delay** is doing.
 
 We **de-couple** the **apparent order** of events in our programs from the **actual order** of events inthe computer.
-
-
 
 and I don't have to re-compute each tail every time I get the next tail.So there's one little hack to slightly change what delay is `memo-proce`
 
