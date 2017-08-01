@@ -186,3 +186,7 @@
 
   - memo-proc (消除re-compute)
 
+
+补充:
+
+在Lisp中, `sequence`is constructed by nested `cons` operations, is called `list`.
