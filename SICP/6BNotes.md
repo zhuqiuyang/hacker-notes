@@ -89,5 +89,42 @@ QA: No Ques.
 
 ### Part 2:
 
+There's another way to think about stream processing, and that's to focus not on programs that sort of **process** these elements as you walk down the stream, but on things that kind of process the streams **all at once**.
 
+```lisp
+(define (add-streams s1 s2)
+  (cond ((empty-stream? s1) s2)
+        ((empty-stream? s2) s1)
+        (else
+          (cons-stream
+            (+ (head s1) (head s2))
+            (add-streams (tail s1) (tail s2))))))
+
+(define (scale-stream c s)
+  (map-stream (lambda (x) (* x c)) s))
+```
+
+So given those two, let me show you what I mean by programs that operate on streams all at once.
+
+```lisp
+(deifne ones (cons-stream 1 ones))
+
+(define integers
+  (cons-stream 1
+               (add-streams integers ones)))
+```
+
+See, notice that it works because of **delay**.(能这么定义是因为delay)
+
+```lisp
+(define ones (cons 1 (delay ones)))
+```
+
+at the point I do this definition, `ones` isn't defined. Having run the `definition` now, ones is defined.(delay 运行时 `ones`已经被定义了)
+
+
+
+OK, let me draw a picture of that integers thing because it still may be seems a little bit **shaky**
+
+![6B_2_integral](./png/6B_2_integral.png)
 

@@ -97,6 +97,7 @@
 | prime                  |             素数             |
 | diagonal               |            对角的             |
 | obtuse                 |            愚钝的             |
+| sneaky                 |            暗中的             |
 
 
 
