@@ -52,8 +52,6 @@ print stream:
 
 
 
-
-
 #### sieve of Eratosthenes
 
 For a look at a more exciting infinite stream, we can generalize the `no-sevens` example to construct the infinite stream of prime numbers, using a method known as the *sieve of Eratosthenes*.
@@ -103,6 +101,10 @@ There's another way to think about stream processing, and that's to focus not on
 (define (scale-stream c s)
   (map-stream (lambda (x) (* x c)) s))
 ```
+
+#### Defining streams implicitly
+
+integers above 是通过 "generating" procedure 显式定义的.
 
 So given those two, let me show you what I mean by programs that operate on streams all at once.
 
