@@ -280,3 +280,13 @@ e.g.:
 ; x ---> 3 , after fun run
 ```
 
+But it's very confusing for a very deep reason, which is that the whole idea ofputting in delays is that you throw away **time**.
+
+what is it that you'retrying to model and how do you look at the world.
+
+purely **functional language** is one that just doesn't have anyside effects.The price is you **give up** assignment. 
+
+So remember Jerry's random number generator. We wanted to package that stated **modularly**.
+
+banking system, **message-processing** view. Also can use **stream** view.
+
