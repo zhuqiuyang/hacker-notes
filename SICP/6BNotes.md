@@ -85,7 +85,7 @@ not only is the stream infinite, but the **signal processor** is also **infinite
 
 QA: No Ques.
 
-### Part 2:
+### Part 2: implicitly Infinite Stream and Delayed Evaluation(*)
 
 There's another way to think about stream processing, and that's to focus not on programs that sort of **process** these elements as you walk down the stream, but on things that kind of process the streams **all at once**.
 
@@ -124,9 +124,159 @@ See, notice that it works because of **delay**.(能这么定义是因为delay)
 
 at the point I do this definition, `ones` isn't defined. Having run the `definition` now, ones is defined.(delay 运行时 `ones`已经被定义了)
 
+the “implicit style” definition of the stream of integers
+
+```lisp
+(define (integral s initial-value dt)
+  (define int
+    (cons-stream 
+     initial-value
+     (add-streams (scale-stream dt s)
+                  int)))
+  int)
+```
+
 
 
 OK, let me draw a picture of that integers thing because it still may be seems a little bit **shaky**
 
 ![6B_2_integral](./png/6B_2_integral.png)
+
+#### Fib
+
+```lisp
+(define fibs
+  (cons-stream 0
+    (cons-stream 1
+      (add-stream fibs (tail fibs)))))
+```
+
+How does that work? (`tail`is `stream-cdr`)
+
+![6B_2_Fibs](./png/6B_2_Fibs.png)
+
+Instead of thinking that recursive procedures, we have **recursively defined** data objects.
+
+there's no difference really between procedures and data
+
+#### Streams and Delayed Evaluation (重点)
+
+课程里使用`y'=y*y, y(0)=1`举例, 即此处`f(y)=y*y`
+
+![6B_2_Equal](./png/6B_2_Equal.png)
+
+尝试写出上图对应的procedure:
+
+```lisp
+(define (solve f y0 dt)
+  (define y (integral dy y0 dt))
+  (define dy (stream-map f y))
+  y)
+```
+
+思考: why `ones` work?
+
+See, if I say this is cons-stream of 1 onto something without knowing anything about something, I know that the stream starts off with 1. That's why it was sensible to build somethinglike cons-stream.
+
+Anthor version of `integral` (expect the integrand stream to be a *delayed argument*.)
+
+```lisp
+(define (integral delay-s
+                  initial-value
+                  dt)
+  (define int
+    (cons-stream
+     initial-value
+     (let ((s (force delay-s)))
+          (add-streams (scale-stream dt s)
+                       int))))
+  int)
+```
+
+所以上述 `solve` procedure 可以写成:
+
+```lisp
+(define (solve f y0 dt)
+  (define y (integral (delay dy) y0 dt))
+  (define dy (stream-map f y))
+  y)
+```
+
+### Part 3:
+
+#### 回顾
+
+Well, just before the break, I'm not sure if you noticed it, but something nasty started to happen.We've been going along with the streams and divorcing **time** in the programs from time in the computers, and all that divorcing got hidden inside the streams. And then at the very end, we saw that sometimes in order to really take advantage of this method, you have to pull out other delays. You have to write some **explicit delays** that are not hidden inside that cons-stream.
+
+#### 提出问题 (所有的args都变成promise)
+
+but if you have some very complicated system with all kinds of self-loops, it becomes very, very **difficult** to see where you need those delays. And if you leave them out by **mistake**, it becomes very, very difficult to see why the thing maybe isn't working.
+
+We could change the language so that **all procedures** acted like cons-stream, so that every procedure automatically has an **implicit delay** around its **arguments**. 
+
+`Normal-order Evaluation` VS. `Applicativ-order`
+
+And remember the **substitution model** for `applicative order`.
+
+- It says when you go and evaluate a combination, you find the values of all the pieces.
+
+**Normal order**:
+
+- just put a promise to compute them there.
+- **never** really simplify anything **until** you get down to a primitive operator.
+
+why don't we do that? Because if we did, we'd get all the advantages of delayed evaluationwith none of the mess.
+
+- that would make cons the same as cons-stream
+- We wouldn't need streams of all because lists would automatically be streams. (不在需要stream, 以为已经都是stream)
+
+`Miranda` language
+
+#### 这么做是有代价的:
+
+But there's a price.
+
+Remember whatwe're trying to do. We're trying to think about **programming** as **a way to specify processes**. And if we give up too much time, our language becomes **more elegant**, but it becomes a little bit **less expressive**.There are certain distinctions that we can't draw.
+
+1. for example:
+
+```lisp
+(define (factorial n)
+  (define (iter product counter)
+    (if (> counter n)
+        product
+        (iter (* counter product)
+              (+ counter 1))))
+  (iter 1 1))
+```
+
+So one of the disadvantages is that you can't really express iteration.
+
+people who are trying to write real operating systems in these languages are running into exactly these types of problems.
+
+ And one of the research questions in these kinds of languages are figuring out the right compiler technology to get rid of the so-called **dragging tails**. It's not simple.(类似于js的`callback hell`, `promise`太长导致的问题.)
+
+2. side effects just don't mix.
+
+e.g.:
+
+```lisp
+(define x 0)
+
+(define (id n)
+  (set! x n)
+  n)
+
+(define (inc a) (1+ a))
+```
+
+```lisp
+(define y (inc (id 3)))
+
+; x ---> 0 , because y is a promise not run. x is the init-value
+
+; y ---> 4 , loop up y ,cause the identity func to be run
+
+; x ---> 3 , after fun run
+```
 
