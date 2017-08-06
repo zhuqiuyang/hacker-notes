@@ -99,9 +99,9 @@
 | obtuse                 |            愚钝的             |
 | sneaky                 |            暗中的             |
 | contradiction          |             矛盾             |
-| congenial              |          意气相投的           |
+| congenial              |           意气相投的            |
 | deposit                |             存款             |
-
+| reverence              |             尊敬             |
 
 
 Other:
