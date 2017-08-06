@@ -100,6 +100,7 @@
 | sneaky                 |            暗中的             |
 | contradiction          |             矛盾             |
 | congenial              |          意气相投的           |
+| deposit                |             存款             |
 
 
 

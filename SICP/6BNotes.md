@@ -290,3 +290,31 @@ So remember Jerry's random number generator. We wanted to package that stated **
 
 banking system, **message-processing** view. Also can use **stream** view.
 
+```lisp
+(define (make-deposit-account
+         balance deposit-stream)
+  (cons-stream
+   balance
+   (make-deposit-account
+    (+ balance (head deposit-stream))
+    (tail deposit-stream))))
+```
+
+So there's sort of a very typical **message-passing**, object-oriented thing that's done without side effects at all. There are very many things you can do this way.
+
+
+
+Can everybody go over to purely **functional languages**? Well, we don't know, but there seem to be places where purely functional programming **breaks down**.
+
+fair merge
+
+![6B_3_Merge](./png/6B_3_Merge.png)
+
+So one of the other active researcher areas in **functional languages** is inventing little things like **fair merge** and maybe some others,which will take the places where I used to need side effects and objects and sort of hide them away in some very well-defined modules of the system so that *all the problems of assignment don't sort of leak out all over the system but are captured in some fairly well-understood things.*
+
+
+
+More generally, I think what you're seeing is that we're running across what I think is a very basic problem in computer science, which is `how to define languages that somehow can talk aboutdelayed evaluation`, but also be able to `reflect this view that there are objects in the world`.
+
+
+

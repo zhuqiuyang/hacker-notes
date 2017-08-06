@@ -190,3 +190,21 @@
 补充:
 
 在Lisp中, `sequence`is constructed by nested `cons` operations, is called `list`.
+
+### 6B: Stream, Part 2:
+
+- Part 1: Inifine Stream
+
+- Part 2: implicitly Stream and Delayed Evaluation
+
+  - `ones`
+  - all at once
+
+- Part 3:
+
+  - Normal Order and its price
+
+
+  - 用bank-account 举例:
+    - message-passing
+    - purely function language
