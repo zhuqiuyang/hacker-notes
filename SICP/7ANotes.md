@@ -27,16 +27,6 @@ From this perspective, our evaluator is seen to be a *universal machine*.
 
 ```lisp
 (define eval
-  (lambda (exp env)
-          (cond ((number? exp) exp)
-            ((symbol? exp) (lookup exp env))
-            ((eq? (car exp) 'quote) (cadr exp))
-            ((eq? (car exp) 'lambda) (list 'CLOSURE (cdr exp) env))
-            ; ...
-            )
-          ))
-
-(define eval
   (lambda (exp env)                            ;; env is a dictionary mapping symbols to values
     (cond
       ;; SPECIAL FORMS
@@ -47,7 +37,7 @@ From this perspective, our evaluator is seen to be a *universal machine*.
       ;; 'foo == (quote foo) -> foo
       ((eq? (car exp) 'quote) (cadr exp))
       ;; (lambda x) (+ x y) -> (closure ((x) (+ x y)) env)  bound variables + body + env
-      ((eq? (car exp) 'lambda) (list 'close (cdr exp) env))
+      ((eq? (car exp) 'lambda) (list 'CLOSURE (cdr exp) env))
       ;; (cond (p1 e1) (p2 e2) ...) ->
       ((eq? (car exp) 'cond) (evcond (cdr exp) env))
       ;; (+ x 3) -> default, general application
@@ -86,3 +76,37 @@ to **come up with** a procedure and the arguments **rather** the operator symbol
 ```
 
 `BIND` will be interesting later.
+
+#### Evlist
+
+When `eval` processes a procedure application, it uses `list-of-values`to produce the list of arguments to which the procedure is to be applied. `List-of-values` takes as an argument the operands of the combination. It evaluates each operand and returns a list of the corresponding values:(2nd)
+
+```
+(define (list-of-values exps env)
+  (if (no-operands? exps)
+      '()
+      (cons (eval (first-operand exps) env)
+            (list-of-values 
+             (rest-operands exps) 
+             env))))
+```
+
+#### Conditionals
+
+```lisp
+(define evcond
+  (lambda (clauses env)
+          (cond ((eq? clauses '()) '())
+            ;;each clause is a list. And so the predicate part is the CAAR of the clauses.
+            ((eq? (caar clauses) 'ELSE)
+             ; So this is the first clause, the second element of it,
+             (eval (cadar clauses) env))
+            ; first clauses is false, do the next.
+            ((false? (eval (caar clauses) env))
+             (evcond (cdr clauses) env))
+            ; true
+            (else
+             (eval (cadar clauses) env))
+            )))
+```
+
