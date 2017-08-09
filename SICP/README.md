@@ -205,6 +205,10 @@
   - Normal Order and its price
 
 
-  - 用bank-account 举例:
+- 用bank-account 举例:
     - message-passing
     - purely function language
+
+### 7A: Metacircular Evaluator
+
+An evaluator that is written in the same language that it evaluates is said to be *metacircular*.

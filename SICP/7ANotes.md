@@ -97,7 +97,8 @@ When `eval` processes a procedure application, it uses `list-of-values`to produc
 (define evcond
   (lambda (clauses env)
           (cond ((eq? clauses '()) '())
-            ;;each clause is a list. And so the predicate part is the CAAR of the clauses.
+            ; clauses eg: ((p1 e1) (p2 e2))
+            ; each clause is a list. And so the predicate part is the CAAR of the clauses.
             ((eq? (caar clauses) 'ELSE)
              ; So this is the first clause, the second element of it,
              (eval (cadar clauses) env))
