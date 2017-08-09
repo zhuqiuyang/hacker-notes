@@ -110,3 +110,73 @@ When `eval` processes a procedure application, it uses `list-of-values`to produc
             )))
 ```
 
+#### bind
+
+> So given an existing environment structure, I'm going to make a new environment structure by consing a new frame onto the existing environment structure,where the new frame consists of the result of pairing up the variables, which are the bound variables of the procedure I'm applying, to the values which are the arguments that were passed that procedure.
+
+```lisp
+(define bind
+  (lambda (vars vals env)
+          (cons (pair-up vars vals)
+                env)))
+```
+
+pair-up
+
+> This is just making a list, adding a new element to our list of frames, which is an environment structure, to make a new environment. Where pair-up is very simple. 
+
+```lisp
+(define pair-up
+  ; Pair-up is nothing morethan if I have a list of variables and a list of values, well, 
+  (lambda (vars vals)
+          (cond
+            ((eq? vars '())
+             ; if I run out of variables and if I run out of values, everything's OK. Otherwise, I've given too many arguments.
+             (cond ((eq? vals '()) '())
+               ; too many arguments
+               (else (error TMA))))
+            ; If I've not run out of variables, but I've run out of values, that I have too few arguments.
+            ((eq? vals '()) (error TFA))
+            (else
+             (cons (cons (car vars)
+                         (car vals))
+                   (pair-up (cdr vars)
+                            (cdr vals)))))))
+```
+
+#### lookup
+
+```lisp
+(define lookup
+  (lambda (sym env)
+          ; If I have to look up a symbol in an environment, well, if the environment is empty, then I've got an unbound variable.
+          (cond ((eq? env '()) (error UBV))
+            ; Otherwise, what I'm going to do is usea special pair list lookup procedure, which we'll have very shortly, of the symbol in the first frame of the environment.
+            (else
+             ((lambda (vcell)
+                      (cond ((eq? vcell '())
+                             (lookup sym
+                                     (cdr env)))
+                        (else (cdr vcell))))
+              					; So I lookup the symbol in the first frame. That becomes the value cell here. (`vcell`)
+                                (assq sym (car env)))))))
+```
+
+
+
+#### assq
+
+ASSQ takes a symbol and a list of pairs.
+
+```lisp
+(define assq
+  (lambda (sym alist)
+          (cond ((eq? alist '()) '())
+            ; 应该是 CAAR, 老师说的
+            ((eq? sym (car alist))
+             (car alist))
+            (else
+             (assq sym (cdr alist))))))
+```
+
+> Well, in any case, you're pretty much seeing the whole thing now. It's a very beautiful thing, eventhough it's written in an ugly style, being the kernel of every language. I suggest that we just--let's look at it for a while.
