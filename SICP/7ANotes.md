@@ -184,3 +184,24 @@ ASSQ takes a symbol and a list of pairs.
 
 #### Part 2:
 
+So the particular problem I'd like to look at is it an interesting one.
+
+```lisp
+; The combination thus has this as the operator and this is the operands. 
+(eval '(((lambda (x) (lambda y) (+ x y))) 3) 4) e0)
+
+(apply (eval ))
+; ...
+; 老师借助这个例子讲解了eval/apply的过程
+```
+
+I wanted to go through this so you would see, essentially, one important ingredient, which is what's being passed around, and who owns what, and what his job is.
+
+![7A_2_Eval&Apply](./png/7A_2_Eval&Apply.png)
+
+---
+
+(55:48)
+
+### Part 3:
+
