@@ -102,6 +102,8 @@
 | congenial              |           意气相投的            |
 | deposit                |             存款             |
 | reverence              |             尊敬             |
+| impunity               |         免于处罚,有恃无恐的    |
+
 
 
 Other:

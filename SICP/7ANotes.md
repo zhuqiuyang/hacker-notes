@@ -181,3 +181,6 @@ ASSQ takes a symbol and a list of pairs.
 ```
 
 > Well, in any case, you're pretty much seeing the whole thing now. It's a very beautiful thing, eventhough it's written in an ugly style, being the kernel of every language. I suggest that we just--let's look at it for a while.
+
+#### Part 2:
+
