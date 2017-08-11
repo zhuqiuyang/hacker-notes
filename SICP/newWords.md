@@ -102,8 +102,10 @@
 | congenial              |           意气相投的            |
 | deposit                |             存款             |
 | reverence              |             尊敬             |
-| impunity               |         免于处罚,有恃无恐的     |
+| impunity               |         免于处罚,有恃无恐的         |
 | ingredient             |             因素             |
+| vacuous                |         空洞的,无意义的        |
+
 
 
 

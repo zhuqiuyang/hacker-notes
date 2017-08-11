@@ -205,3 +205,21 @@ I wanted to go through this so you would see, essentially, one important ingredi
 
 ### Part 3:
 
+Let's see, at this point, you should be getting the feeling, what's this nonsense this Sussman character is feeding me?(无意义的?)
+
+Well, I'm going to do now, is I'm going to try to convince you that both this mean something, and,as a aside, I'm going to show you why you don't need definitions. Just turns out that that sort of falls out, why definitions are not essential in a mathematical sense for doing all the things weneed to do for computing.
+
+```lisp
+(define expt
+  (lambda (x n)
+          (cond ((= n 0) 1)
+            (else
+             (* x (expt x (- n 1)))))))
+```
+
+Why does this self referential definitionmake any sense?
+
+![7A_3_Solution](./png/7A_3_Solution.png)
+
+inifinite solution/ no solutions / unique solution.
+
