@@ -217,9 +217,73 @@ Well, I'm going to do now, is I'm going to try to convince you that both this me
              (* x (expt x (- n 1)))))))
 ```
 
+> I can't tell, looking at this form, whether or not there's a single, unique solution for EXPT, aninfinite number of solutions, or no solutions. It's got to be how it counts and things like that, the details. And it's harder in programming than linear algebra. There aren't too many theorems about it in programming.
+
 Why does this self referential definitionmake any sense?
 
 ![7A_3_Solution](./png/7A_3_Solution.png)
 
 inifinite solution/ no solutions / unique solution.
+
+#### rewrite
+
+```markdown
+   |<-T->|
+x = 3 - y
+y = x - 1
+<x, y> = T<x, y>
+
+So the solution is a fixed point of T.
+```
+
+
+
+> Here f is a procedure, which if I had a solution to that equation, if I had a good exponentiation procedure, and I applied f to that procedure, then the result would be a good exponentiation procedure.
+
+```lisp
+F = (lambda(g)
+           (lambda(x n)
+                  (cond ((= n 0) 1)
+                    (else
+                     (* x
+                        (g x (- n 1)))))))
+```
+
+`EXPT` is a fixed point of `F`.
+
+```lisp
+E0 = 1
+
+E1 = (lambda (x n)
+             (cond ((= n 0) 1)
+               (else
+                (* x (E0 x (- n 1))))))
+
+E2 = (lambda (x n)
+             (cond ((= n 0) 1)
+               (else
+                (* x (E1 x (- n 1))))))
+
+E3 = (lambda (x n)
+             (cond ((= n 0) 1)
+               (else
+                (* x (E2 x (- n 1))))))
+```
+
+
+
+e1 is a procedure which exponentiate things to the 0th power.
+
+e2 is good for both power 0 and one.
+
+
+
+And so I will assert for you, **without proof**, because the proof is horribly difficult. And that's the sort of thing that people called denotational semanticists do.This great idea was invented by Scott and Strachey. They're very famous mathematician types whoinvented the interpretation for these programs that we have that I'm talking to you about rightnow. And they proved, by topology that there is such a fixed point in the cases that we want.
+
+```markdown
+expt = Lim En
+       n -> ∞
+
+expt = (F (F (F (F ... (F ⊥)...))))
+```
 
