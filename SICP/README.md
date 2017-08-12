@@ -217,3 +217,7 @@ An evaluator that is written in the same language that it evaluates is said to b
   - write `eval` and `apply`
 - Part 2:
   - Use a simple example 展示了eval&apply的每一个步骤. (最后给出 eval&apply loop)
+- Part 3:
+  - Fixed point
+  - Y operator
+  - Lisp is the Fixed point of process

@@ -251,14 +251,22 @@ F = (lambda(g)
 
 `EXPT` is a fixed point of `F`.
 
+> By iterating a function, whose fixed point I'm searching for, it is sometimes the case that that function will **converge** in producing the fixed point. (不断的区逼近不动点?)
+
 ```lisp
+; e0 over here is the procedure which does nothing at all. It's the procedure which produces an error for any arguments you give it.
+; e0 does nothing!
 E0 = 1
 
+; e1 is a procedure which exponentiate things to the 0th power.
+; e1 只在n等于0时等于expt ?
 E1 = (lambda (x n)
              (cond ((= n 0) 1)
                (else
                 (* x (E0 x (- n 1))))))
 
+; e2 is good for both power 0 and one.
+; e2 只在n等于0时等于expt ?
 E2 = (lambda (x n)
              (cond ((= n 0) 1)
                (else
@@ -272,18 +280,87 @@ E3 = (lambda (x n)
 
 
 
-e1 is a procedure which exponentiate things to the 0th power.
-
-e2 is good for both power 0 and one.
-
-
-
-And so I will assert for you, **without proof**, because the proof is horribly difficult. And that's the sort of thing that people called denotational semanticists do.This great idea was invented by Scott and Strachey. They're very famous mathematician types whoinvented the interpretation for these programs that we have that I'm talking to you about rightnow. And they proved, by topology that there is such a fixed point in the cases that we want.
+And so I will assert for you, **without proof**, because the proof is horribly difficult. And that's the sort of thing that people called **denotational semanticists** do.This great idea was invented by Scott and Strachey. They're very famous mathematician types who invented the interpretation for these programs that we have that I'm talking to you about rightnow. And they proved, by topology that there is such a fixed point in the cases that we want.
 
 ```markdown
+; 极限存在即是expt ?
 expt = Lim En
        n -> ∞
 
+; ⊥ means anything at all, because e0 always produces an error.
 expt = (F (F (F (F ... (F ⊥)...))))
 ```
 
+#### Y
+
+Now I want to tell you about a particular operator which is constructed by a perturbation from this infinite loop. I'll call it y.
+
+This is called Curry's Paradoxical Combinator of y after a fellow by the name of Curry
+
+```lisp
+Y = (lambda(f)
+           ((lambda(x) (f (x x)))
+            (lambda(x) (f (x x)))))
+```
+
+```lisp
+(Y F) = ((lambda(x) (F (x x)))
+         (lambda(x) (F (x x))))
+      = (F (
+            (lambda(x) (F (x x)))
+            (lambda(x) (F (x x)))
+            ))
+; So by applying y to F, I make an infinite series of F's.
+
+(Y F) = (F (Y F))
+```
+
+### Shake!
+
+>So **y** is a **magical thing** which, when applied to some function, produces the object which is the **fixed point** of that function, if it exists, and if this all works. Because, indeed, if I take y of F and put it into F, I get y of F out.
+
+`(Y F)`就是`F`的不动点!
+
+#### 总结(精华)
+
+Now I want you to think this in terms of the `eval-apply` interpreter for a bit.
+
+> But **what Lisp is** is the **fixed point of the process** which says, if I knew what Lisp was and substituted it in for eval, and apply, and so on, on the right hand sides of all those recursion equations, then if it was a real good Lisp, is a real one, then the left hand side would also be Lisp. So I made sense of that **definition**. Now whether or not there's an answer isn't so obvious. I can't attack that.
+
+Now these arguments that I'm giving you now are quite dangerous.
+
+Now here's an argument that you all believe. And I want to make sure you realize that I could be bullshitting you.
+
+```markdown
+             DANGER
+u      = 1 + 1/2 + 1/4 + 1/8 + ···
+u - 1  = 1/2 + 1/4 + 1/8 + ···
+2(u-1) = 1 + 1/2 + 1/4 + 1/8 + ···
+2(u-1) = u
+Thus u = 2
+is a true conclusion.
+
+But
+v      = 1 + 2 + 4 + 8 + ···
+v - 1  = 2 + 4 + 8 + ···
+(v-1)/2= 1 + 2 + 4 + 8 + ···
+(v-1)/2=v
+Thus u = -1
+is a false conclusion.
+```
+
+
+
+So when you play with **limits**, arguments that may work in one case they may not work in someother case. You have to be very careful. **The arguments have to be well formed**.(极限存在才有意义?)
+
+And you understand what that might mean. So, I suppose, it's almost about time for you to **merit** being made a member of the grand recursive order of **lambda calculus hackers**.
+
+![7A_3_schlogo](./png/7A_3_schlogo.png)
+
+This is the badge.
+
+QA:
+
+Two Ques
+
+You can look in a book by Joe Stoy. It's a great book-- Stoy. It's called, *The* *Scott-Strachey**Method* *of* *Denotational* *Semantics*, and it's by Joe Stoy, MIT Press. And he works out all this ingreat detail, enough to horrify you. But it really is readable.
