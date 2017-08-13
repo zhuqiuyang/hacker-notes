@@ -47,3 +47,29 @@ this (**dot**) happens to be a syntax that's used in the Lisp reader for represe
 (lambda (x) ...) = list
 ```
 
+How do we interpret it?
+
+> `pair up` is making a list, `adding a new element to our list of frames`.(7A)
+
+```lisp
+(define pair-up
+  (lambda (vars vals)
+          (cond
+            ((eq? vars '())
+             (cond ((eq? vals '()) '())
+               (else (error TMA))))
+            ; have a symbolic tail
+            ((symbol? vars)
+             (cons (cons vars vals) '()))
+            ((eq? vals '()) (error TFA))
+            (else
+             (cons (cons (car vars)
+                         (car vals))
+                   (pair-up (cdr vars)
+                            (cdr vals)))))))
+```
+
+The variables are a symbol-- interesting case-- then, what I should do is say, oh yes, this is the special case that I have a **symbolic tail**.
+
+### Part 2:
+

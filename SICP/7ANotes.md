@@ -113,7 +113,7 @@ When `eval` processes a procedure application, it uses `list-of-values`to produc
 
 #### bind
 
-> So given an existing environment structure, I'm going to make a new environment structure by consing a new frame onto the existing environment structure,where the new frame consists of the result of pairing up the variables, which are the bound variables of the procedure I'm applying, to the values which are the arguments that were passed that procedure.
+> So given an **existing environment** structure, I'm going to make a **new environment** structure by consing a new frame onto the existing environment structure,where the new frame consists of the result of pairing up the variables, which are the bound variables of the procedure I'm applying, to the values which are the arguments that were passed that procedure.
 
 ```lisp
 (define bind
@@ -124,7 +124,7 @@ When `eval` processes a procedure application, it uses `list-of-values`to produc
 
 pair-up
 
-> This is just making a list, adding a new element to our list of frames, which is an environment structure, to make a new environment. Where pair-up is very simple. 
+> This is just **making a list**, `adding a new element to our list of frames`, which is an environment structure, to make a new environment. Where pair-up is very simple. 
 
 ```lisp
 (define pair-up
