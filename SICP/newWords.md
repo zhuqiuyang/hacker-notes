@@ -41,7 +41,7 @@
 | derivative             |            导数的             |
 | differential equations |            微分方程            |
 | identical              |            相同的             |
-| perturbation           |           不安, 搅动          |
+| perturbation           |           不安, 搅动           |
 | HP-35                  |     惠普-35(世界第一部手持计算器)      |
 | theorem                |             定理             |
 | converge               |          相交, 趋于一致          |
@@ -102,10 +102,10 @@
 | congenial              |           意气相投的            |
 | deposit                |             存款             |
 | reverence              |             尊敬             |
-| impunity               |         免于处罚,有恃无恐的         |
+| impunity               |         免于处罚,有恃无恐的    |
 | ingredient             |             因素             |
-| vacuous                |          空洞的,无意义的          |
-
+| vacuous                |          空洞的,无意义的       |
+| unambiguous            |          不含糊, 态度明确的    |
 
 
 
