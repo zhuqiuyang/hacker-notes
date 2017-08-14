@@ -71,5 +71,62 @@ How do we interpret it?
 
 The variables are a symbol-- interesting case-- then, what I should do is say, oh yes, this is the special case that I have a **symbolic tail**.
 
-### Part 2:
+### Part 2:Dynamic bind of variable
+
+Now, I'm going to tell you about a rather more substantial variation,one that's a famous variation that many early Lisps had. It's called **dynamic binding of variables**.
+
+
+
+I'm not going to tell what it is yet, I'm going to show you why you might want it.
+
+```lisp
+(define sum
+  (lambda (term a next b)
+    (cond ((a > b) 0)
+            (+ (term a)
+               ;pass along (直传)
+               (sum term (next a) next b)))))
+```
+
+Now, when I use this sum procedure, I can use it, for example, like this.
+
+```lisp
+(define sum-powers
+  (lambda (a b n)
+          (sum (lambda(x) (expt x N))
+               a
+               1+
+               b)))
+```
+
+
+
+```lisp
+(define product-powers
+  (lambda (a b n)
+          (product (lambda(x) (expt x N))
+               a
+               1+
+               b)))
+```
+
+These look the same.Why am I writing this code so many times?
+
+```lisp
+(define sum-powers
+  (lambda(a b n)
+         (sum nth-power a 1+ b)))
+```
+
+```lisp
+(define product-powers
+  (lambda(a b n)
+         (product nth-power a 1+ b)))
+```
+
+nth-power
+
+```lisp
+(define nth-power)
+```
 
