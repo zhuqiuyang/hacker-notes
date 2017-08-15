@@ -127,6 +127,64 @@ These look the same.Why am I writing this code so many times?
 nth-power
 
 ```lisp
-(define nth-power)
+(define nth-power
+  (lambda(x)
+         (expt x n)))
 ```
 
+```markdown
+; Variation 2: A famous "bug."
+
+Dynamic binding -- a free variable in a procedure has its value defined in the chain of callers, rather than where the procedure is defined.
+
+Easy to implement -- but ....
+```
+
+从caller chain(调用链)中需找(类似于js中的`arrow function`?)
+
+In fact, the very **first Lisps** that had any interpretations of the free variables at all, had **dynamic binding interpretations** for the free variables. **APL** has dynamic binding interpretation for the freevariables, not lexical or static binding. So, of course, the change is in eval. And it's really in two places.
+
+```lisp
+(define eval
+  (lambda (exp env)
+          (cond
+            ((number? exp) exp)
+            ((symbol? exp) (lookup exp env))
+            ((eq? (car exp) 'quote) (cadr exp))
+            ((eq? (car exp) 'lambda) exp)           ;!
+            ((eq? (car exp) 'cond)
+             (evcond (cdr exp) env))
+            (else
+             (apply (eval (car exp) env)
+                    (evlist (cdr exp) env)
+                    env)))))                        ;!
+```
+
+First of all, one thing we see, is that things become a little simpler.
+
+1. we see that the clausefor a lambda expression, which is the way a procedure is defined, does not make up a thingwhich has a type closure and a attached environment structure. It's just the expression itself.And we'll decompose that some other way somewhere else.(lambda 表达式不需要attach 到env了)
+
+2. The other thing we see is the **applicator** must be able to get the **environment of the caller**.
+
+   So all I have to do is pass that environment to the applicator, to apply.
+
+```lisp
+(define apply
+  (lambda (proc args env)                ; !
+          (cond
+            ((primitive? proc)           ; magic
+             (apply-primop proc args))
+            ((eq? (car proc) 'lambda)
+             ;; proc = (lambda bvrs body)
+             (eval (caddr proc)          ; body
+                   (bind (cadr proc)     ; bvrs
+                     args
+                     env)))              ; env !
+            else...)))
+```
+
+The reason why the first Lisps were implemented this way, is the sort of the obvious, accidental implementation.
+
+Unfortunately that causes some **serious problems**.
+
+The most important, serious problem in using dynamic binding is there's a **modularity crisis** that's involved it.
