@@ -188,3 +188,30 @@ The reason why the first Lisps were implemented this way, is the sort of the obv
 Unfortunately that causes some **serious problems**.
 
 The most important, serious problem in using dynamic binding is there's a **modularity crisis** that's involved it.
+
+If two people are working together on some big system, then an important thing to want is thatthe names used by each one don't interfere with the names of the other.
+
+Eg:
+
+放弃之前的定义, 重新定义.
+
+```lisp
+(define pgen
+  (lambda(N)
+         (lambda (x) (expt x N))))
+
+(define sum-power
+  (lambda(a b N)
+         (sum (pgen N) a 1+ b)))
+
+(define product-powers
+  (lambda(a b N)
+         (product (pgen N) a 1+ b)))
+```
+
+QA:
+
+The thing is that returning procedures as values cover all of those problems. And so it's the simplest mechanism that gives you the best modularity, gives you all of the known modularity mechanisms.
+
+### Part 3:
+
