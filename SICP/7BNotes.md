@@ -229,3 +229,44 @@ ALGOL 60 had two different ways of calling a procedure. The arguments could be p
 
 We're going to add the feature of, **by name parameters**, if you will, or delayed parameters. Because, in fact, the default in our Lisp system is by the value of a pointer. A pointer is copied, but the data structure it points at is not.
 
+define a reverse of if
+
+```lisp
+(define (unless p c a)
+  (cond ((not p) c)
+    (else a)))
+
+(unless (= 1 0) 2 (/ 1 0))
+=> (cond ((not (= 1 0)) 2)
+    (else (/ 1 0))))
+; But here's a case where the substitutions don't work. I don't get the wrong answer. I get no answer. I get an error. (因为 (/ 1 0) 部分是传值, 提前执行了)
+```
+
+I want them to be **delayed automatically**( c & b). Idon't want them to be **evaluated** at the time I call.
+
+```lisp
+(define (unless P (name C) (name A))
+  (cond ((not P) C)
+    (else A)))
+```
+
+对于interpreter 来说, 这变复杂了
+
+ The problem here is that our interpreter,
+
+I don't want to **evaluate the operands** to produce the arguments **until** after I examined the procedure to see what the procedure's declarations look like.
+
+```lisp
+(define eval
+  (lambda (exp env)
+          (cond
+            ((number? exp) exp)
+            ; ...
+            (else
+             (apply (undelay (eval (car exp)
+                                   env))
+                    (cdr exp)
+                    env)))))
+```
+
+if I delay a procedure-- I'm sorry-- delay an argument to a procedure, I'm going to have to **attach** and environment to it.
