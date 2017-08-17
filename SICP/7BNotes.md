@@ -215,3 +215,17 @@ The thing is that returning procedures as values cover all of those problems. An
 
 ### Part 3:
 
+#### 回顾Stream
+
+it was the responsibility of the caller and the callee to both agree that an argument was **delayed**, and the callee must **force** the argument if it needs the answer.
+
+That turns out, of course, to be a fairly bad thing, it works all right with streams. But as a general thing, what you want is an **idea** to `have a locus, a decision, a design decision in general, to have a place where it's made, explicitly, and notated in a clear way.` And so it's **not a very good** idea tohave to have an agreement, between the person who writes a procedure and the person whocalls it, about such details as, maybe, the arguments of evaluation, the order of evaluation.
+
+####  args passed by name or by value (按名传参, 按值传参)
+
+ALGOL 60 had two different ways of calling a procedure. The arguments could be passed by name or by value. And what that meant was that a name argument was delayed. That when you passed an argument by name, that its value would only be obtained if you accessed that argument.
+
+增加pass by name
+
+We're going to add the feature of, **by name parameters**, if you will, or delayed parameters. Because, in fact, the default in our Lisp system is by the value of a pointer. A pointer is copied, but the data structure it points at is not.
+
