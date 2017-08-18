@@ -265,8 +265,43 @@ I don't want to **evaluate the operands** to produce the arguments **until** aft
             (else
              (apply (undelay (eval (car exp)
                                    env))
+                    ; I may have to attach that environment to those operands.
                     (cdr exp)
                     env)))))
 ```
 
 if I delay a procedure-- I'm sorry-- delay an argument to a procedure, I'm going to have to **attach** and environment to it.
+
+```lisp
+(define apply
+  (lambda (proc ops env)                ; !
+          (cond
+            ((primitive? proc)           ; magic
+             (apply-primop proc 
+                           (evlist ops env)))
+            ((eq? (car proc) 'closure)
+             ;; proc = (CLOSURE (bvrs body) env)
+             ; compound is little interesting
+             (eval (cadadr proc)          ; body
+                   ; strip off the declarations to get the names of the variables, vnames
+                   (bind (vnames (caadr proc))     ; bvrs
+                     (gevlist (caadr proc)
+                              ops
+                              env)
+                     (caddr proc))))              ; env
+            else error-unknown-procdures))))
+
+```
+
+So we have two different kinds of evlist now. We have evlist and gevlist.**Gevlist** is going to **wrap delays** around some things and force others, evaluate others.And **evlist** going to do some **forcing** of things.
+
+```lisp
+(define evlist
+  (lambda (l env)
+          (cond
+            ((eq? l '()) '())
+            (else
+             (cons (undelay (eval (car l) env))
+                   (evlist (cdr l) env))))))
+```
+
