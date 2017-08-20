@@ -209,7 +209,7 @@
     - message-passing
     - purely function language
 
-### 7A: Metacircular Evaluator
+### 7A: Metacircular Evaluator, Part 1
 
 An evaluator that is written in the same language that it evaluates is said to be *metacircular*.
 
@@ -221,3 +221,10 @@ An evaluator that is written in the same language that it evaluates is said to b
   - Fixed point
   - Y operator
   - Lisp is the Fixed point of process
+
+### 7A: Metacircular Evaluator, Part 2
+
+- Part 1: Indefinite numbers of arguments(参数数量不固定)
+- Part 2: Dynamic bind of variable(参数动态绑定)
+- Part 3: Pass args by name(按名传参)
+

@@ -290,7 +290,6 @@ if I delay a procedure-- I'm sorry-- delay an argument to a procedure, I'm going
                               env)
                      (caddr proc))))              ; env
             else error-unknown-procdures))))
-
 ```
 
 So we have two different kinds of evlist now. We have evlist and gevlist.**Gevlist** is going to **wrap delays** around some things and force others, evaluate others.And **evlist** going to do some **forcing** of things.
@@ -304,4 +303,70 @@ So we have two different kinds of evlist now. We have evlist and gevlist.**Gevli
              (cons (undelay (eval (car l) env))
                    (evlist (cdr l) env))))))
 ```
+
+```lisp
+(define gevlist
+  (lambda (vars exps env)
+          (cond
+            ((eq? exps '()) '())
+            ((symbol? (car vars))            ;applicative order, just we have before
+             (cons (eval (car exps) env)
+                   (gevlist (cdr vars)
+                            (cdr exps)
+                            env)))
+            ; a name parameter
+            ((eq? (caar vars) 'name)
+             (cons (make-delay (car exps) env)
+                   (gevlist (cdr vars)
+                            (cdr exps)
+                            env)))
+            (else error-unknown-declaration))))
+```
+
+
+
+```lisp
+(define evcond
+  (lambda (clauses env)
+          (cond
+            ((eq? clauses '()) '())     ; arbitrary
+            ((eq? (caar clauses) 'else)
+             (eval (cadar clauses) env))
+            ((false? (undelay
+                      (eval (caar clauses)
+                            env)))
+             (evcond (cdr clauses) env))
+            (else
+             (eval (cadar clauses) env)))))
+
+(define false?
+  (lambda (x) (eq? x nil)))
+```
+
+how you make delay?
+
+**delays** are **data structures** which contain an expression, anenvironment, and a type on them.
+
+And it says they're a **thunk**. That comes from ALGOL language, and it's claimed to be the sound of something being pushed on a stack.
+
+```lisp
+(define make-delay
+  (lambda (exp env)
+          (cons 'thunk (cons exp env))))
+
+(define (undelay v)
+  (cond ((pair? v)
+         (cond ((eq? (car v) 'thunk)
+                (undelay
+                 (eval (cadr thunk)
+                       (cddr thunk))))
+           (else v)))
+    ))
+```
+
+QA:
+
+1. Vesko is asking if it's ever reasonable to call a primitive procedure by name?
+   - The answer is, yes. There's one particular case where it's reasonable, actually two.
+   - That's why the lambda calculus definition, the Alonzo Church definition of CAR, CDR, and cons makes sense.
 
