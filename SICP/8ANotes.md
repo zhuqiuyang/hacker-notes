@@ -19,7 +19,7 @@ Instead of that, we'll spend today building a really different language, a langu
 two levels simultaneously.:
 
 -  On the one hand, I'm going to show you what this language looks like, and on the other hand, I'll show you how it's implemented. 
-- And we'll build an implementation in LISP and see how that works.
+-  And we'll build an implementation in LISP and see how that works.
 
 And you should be drawing lessons on two levels.
 
@@ -34,3 +34,59 @@ And you should be drawing lessons on two levels.
 > To explain that, let's go back to the very first idea that we talked about in this course, and that was the idea of the distinction between the **declarative** knowledge of mathematics-- the definition of a square root as a mathematical truth-- and the idea that computer science talks about the **how to** knowledge-- contrast that definition of square root with a program to compute a square root.
 
 Well, wouldn't it be great if you could somehow bridge this **gap** and make a programming language which sort of did things, but you talked about it in terms of truth, in declarative terms?
+
+given our language some sort of facts:
+
+```markdown
+SON-OF    ADAM     ABEL
+SON-OF    ABEL     CAIN
+SON-OF    CAIN     ENOCH
+SON-OF    ENOCH    IRAD
+```
+
+Those are different questions being run by different traditional procedures all based on the same fact.
+
+And that's going to be the **essence** of the power of this programming style, that one piece of **declarative** knowledge can be used as the **basis** for a lot of different kinds of **how-to** knowledge
+
+give it some rules of inference:
+
+```markdown
+IF (SON-OF ?x ?y) AND
+(SON-OF ?y ?z)
+THEN (GRANDSON ?x ?z)
+```
+
+A Concrete Example:(Here's a procedure that merges two sorted lists)
+
+```lisp
+(define (merge x y)
+  (cond
+    ((null? x) y)
+    ((null? y) x)
+    (else
+     (let ((a (car x)) (b (car y)))
+          (if (< a b)
+              (cons a
+                    (merge (cdr x) y))
+              (cons b
+                    (merge x (cdr y))))))))
+```
+
+Let's forget about the program and look at the logic on which that procedure is based.
+
+```lisp
+(let ((a (car x)) (b (car y)))
+     (if (< a b)
+         (cons a (merge (cdr x) y))
+
+If
+   (CDR-X and Y merge-to-form Z)
+and
+   A < (car Y)
+then
+   ((cons A CDR-X) and Y
+                   merge-to-form (cons A Z))
+
+         ))
+```
+
