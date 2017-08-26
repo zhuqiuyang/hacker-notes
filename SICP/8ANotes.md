@@ -79,8 +79,10 @@ Let's forget about the program and look at the logic on which that procedure is 
      (if (< a b)
          (cons a (merge (cdr x) y))
 
+; if you know that some list, that we'll call `cdr of x`, and `y merged to form z`
 If
    (CDR-X and Y merge-to-form Z)
+; you know that `a` is less than the `first thing in y`
 and
    A < (car Y)
 then
@@ -88,5 +90,35 @@ then
                    merge-to-form (cons A Z))
 
          ))
+
+;Another clause
+If (X and CDR-Y merge-to-form Z)
+and B < (car X)
+then (X and (cons B CDR-Y)
+        merge-to-form (cons B Z))
+
+For all X, (X and () merge-to-form X)
+
+For all Y, (() and Y merge-to-form Y)
 ```
+
+OK, so there's a piece of procedure and the logic on which it's based.And notice a big difference:
+
+- **procedure** looked like this: it said there was a **box**-- and all the things we've been doing have the characteristic we have boxes and things going in and things going out
+- These **rules** talk about a **relation**.
+
+The answer is a function of x and y, and here what I have is a relation between three things. 
+
+we could use exactly those same logic rules to answer a lot of different questions.
+
+
+
+#### Logic Programming
+
+- The first is, we're not going to be computing functions. We're not going to be talking about things that take input and output. We're going to be talking about relations.
+- And the second issue is that since we're talking about relations, these relations don't necessarily have one answer.
+
+And people who do **logic programming** say that-- they have this little phrase-- they say the point of logic programming is that you use logic to express `what is true`, you use logic to check whether something is true, and you use logic to find out what is true. The best known logic programming language, as you probably know, is called **Prolog**.
+
+### Part 2:
 

@@ -108,7 +108,7 @@
 | unambiguous            |                不含糊, 态度明确的                |
 | ambiguity              |                    歧义                    |
 | kluge                  | (贬义)a machine, system, or program that has been badly put together. |
-
+| catechism              | [基督教的] 教理问答             |
 
 Other:
 
