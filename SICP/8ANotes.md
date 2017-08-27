@@ -155,3 +155,123 @@ Means of Abstraction (how do you abstract the compound pieces so you can use the
 
 only one primitive, and the primitive in this language is called a `query`.
 
+```lisp
+(job ?x (computer programmer))
+
+matches
+
+(job (Hacker Alyssa P)
+     (computer programmer))
+```
+
+```lisp
+(job ?x (computer ?type))
+
+matches
+
+(job (Bitdiddle Ben) (computer wizard))
+(job (Hacker Alyssa P) (computer programmer))
+(job (Tweakit Lem E) (computer technician))
+```
+
+
+
+```lisp
+(job ?x (computer ?type))
+
+doesn't match
+
+;Lewis's job description here has `three` symbols, so it doesn't match.
+(job (Reasoner Louis)
+     (computer programmer trainee))
+```
+
+
+
+```lisp
+; THE REST, is something that I'll call `type`.
+(job ?x (computer . ?type))
+
+matches
+
+(job (Reasoner Louis)
+     (computer programmer trainee))
+```
+
+#### Means of combination (Compound queries) `And Not Or Lisp-value`
+
+Let's look at some compound queries in this language.
+
+```lisp
+(and (job ?x (computer . ?y))
+     (address ?x ?y))
+
+; List all people who work in the computer division, together with their supervisor.
+```
+
+
+
+```lisp
+(and (salary ?person ?amount)
+     (lisp-value > ?amount 30000))
+
+; List all people whose salary is greater than $30,000
+```
+
+And `LISP value` here is a little piece of **interface** that interfaces the query language to the underlying LISP. And what the `LISP value` allows you to do is call any LISP predicate inside a query.
+
+```lisp
+(and
+  (job ?x (computer . ?y))
+  (not (and (supervisor ?x ?z)
+            (job ?z (computer . ?w)))))
+
+; List all people who work in the computer division, who do not have a supervisor who works in the computer division
+```
+
+
+
+#### Means of abstraction (Rule)
+
+```lisp
+(rule
+ (bigshot ?x ?dept)
+ (and
+  (job ?x (?dept . ?y))
+  (not (and (supervisor ?x ?z)
+            (job ?z (?dept . ?w))))))
+; bigshot: 有权势的人
+; 一个部门的最高领导.(没有人是他的supervisor)
+```
+
+The general form of a rule is
+
+```lisp
+(rule ⟨conclusion⟩ ⟨body⟩)
+```
+
+回顾下之前定义的rule:
+
+```lisp
+(rule (merge-to-form () ?y ?y))
+
+(rule (merge-to-form ?y () ?y))
+
+; The rule has no body, means always true.
+```
+
+Then we had another rule, which said if you know how shorter things merge:
+
+```lisp
+(rule
+    (merge-to-form
+        (?a . ?x) (?b . ?y) (?b . ?z))
+    (and (merge-to-form (?a . ?x) ?y ?z)
+         (lisp-value > ?a ?b)))
+```
+
+Let's break now, and then we'll talk about how it's actually implemented.
+
+QA:
+
+But the answer to your question is, yes, by dragging in a lot more power from LISP value, you lose some of the principal power of logic programming. That's a trade-off that you have to make.
