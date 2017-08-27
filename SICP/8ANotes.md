@@ -122,3 +122,36 @@ And people who do **logic programming** say that-- they have this little phrase-
 
 ### Part 2:
 
+- 回顾: The first thing you might notice, when I put up that little biblical database, is that it's nice to be able to ask this language questions in relation to some collection of facts.
+- Next: So let's start off and make a little collection of facts.
+
+```lisp
+(job (Bitdiddle Ben) (computer wizard))
+
+(salary (Bitdiddle Ben) 40000)
+
+(supervisor (Bitdiddle Ben)
+            (Warbucks))
+
+(address (Bitdiddle Ben)
+         (Slunerville (Ridge Road) 10))
+```
+
+...
+
+Let me just write up here, for probably the last time, what I said is the very most important thing you should get out of this course, and that is, when somebody tells you about a language, 
+
+老师在次强调我们应该学习到
+
+```markdown
+Primitive
+
+Means of Combination (how do you put the primitives together)
+
+Means of Abstraction (how do you abstract the compound pieces so you can use them as pieces to make something more complicated?)
+```
+
+#### Primitive 
+
+only one primitive, and the primitive in this language is called a `query`.
+
