@@ -49,3 +49,22 @@ If dict = { y: a} => Fail
 input stream of frames is `previous restrictions`
 
 empty framesays try matching all ways - - query against something inthe database subject to no previous restrictions.
+
+Well, **why** is that so complicated? You probably can think of a lot simpler ways to arrange this match for a primitive query rather than having all of these streams floating around.
+
+The **answer** is this thing extends elegantly to implementthe means of combination.
+
+e.g.:
+
+```lisp
+AND can be implement just connect one out-stream to another input stream.
+```
+
+#### And query
+
+![8B_1_And](./png/8B_1_And.png)
+
+#### Or query:
+
+![8B_1_Or](./png/8B_1_Or.png)
+
