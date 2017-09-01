@@ -68,3 +68,21 @@ AND can be implement just connect one out-stream to another input stream.
 
 ![8B_1_Or](./png/8B_1_Or.png)
 
+#### Not:
+
+From the stream-of-frames viewpoint, the `not` of some query acts as a filter that removes all frames for which the query can be satisfied. 
+
+The major point to notice here, and it's a major point we've looked at before, is this idea of **closure**. The things that we build as a means of combination have the same overall structure asthe primitive things that we're combining.
+
+QA:
+
+1. Where does the dictionary come from?
+
+   > The dictionary comes initially from what you type in. So when you start this up,the first thing it does is set up this whole structure. It puts in one `empty dictionary`. And if all youhave is one primitive query, then what will come out is a bunch of `dictionaries` with things filled in.
+
+2. It appears that the AND performs some redundant searches of the database.
+
+> This one is meant to be--was mainly meant to be very simple so you can see how they fit together.  (老师只是展示了实现方式.)
+
+### Part 2:
+
