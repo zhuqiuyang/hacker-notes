@@ -167,3 +167,40 @@ Evaluate the rule body relative to and environment(` what's the dictionary after
 Evaludate the procedure body relative to an enviroment formed by binding the procedure parameters to the arguments.
 ```
 
+
+
+Let me just mention one tiny technical problem.
+
+```lisp
+(boss ?y computer)
+So if I really only did literally what I said, we'd get some variable conflict problems.
+```
+
+Notice that problem is exactly a problem we've run into before. It is precisely the need for local variables in a language.
+
+```lisp
+Need for Local Variables
+
+(define (square x)
+  (* x x))
+
+(define (sum-squares x y)
+  (+ (square x) (square y)))
+```
+
+
+
+QA:
+
+1. I'm wondering if you're arguing that all languages end up coming down to this you can apply a rule or apply a procedure or some kind of apply?
+
+   > And then if you say this part can have parts which I have to unwind, you've got to have something like this cycle.
+
+   > This language again really is different because there's nothing like procedures on the outside.When you go below the surface and you see the implementation, of course, it starts looking thesame.
+
+2. 三四个问题
+
+
+
+### Part 3:
+
