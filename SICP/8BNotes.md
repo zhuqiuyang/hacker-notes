@@ -84,5 +84,86 @@ QA:
 
 > This one is meant to be--was mainly meant to be very simple so you can see how they fit together.  (老师只是展示了实现方式.)
 
-### Part 2:
+### Part 2: Rules
+
+ the means of abstraction in this language are rules. 
+
+```lisp
+(rule (boss ?z ?d)
+      (and (job ?x (?d . ?y))
+           (supervisor ?x ?z)))
+```
+
+z(person) 是 d (department) 的boss
+
+
+
+Well, that's really all there is, except for two technical points: 
+
+1. `(Boss ?who COMPUTER)`
+
+And a **unifier** is a slight generalization of a pattern matcher. What a **unifier** does is take two patterns and say what's the most general thing you can substitute for the variables in those two patterns to make them satisfy the pattern simultaneously? Let me give you an example.
+
+```lisp
+unify                 (?x ?x)
+
+with             ((a ?y c) (a b ?z))
+
+                      ?x : (a b c)
+                      ?y : b
+                      ?z : c
+```
+
+or more complicate:
+
+```lisp
+unify                 (?x ?x)
+
+with             ((?a a ?w) (b ?v ?z))
+
+                      ?y : b
+                      ?v : a
+                      ?w : ?z
+                      ?x : (b a ?w)
+```
+
+A **unifier** is basically a very simple modification of a **pattern matcher**.
+
+And the, quote, deduction that you see is just the fact that there's this recursion, which is unwinding the matches bit by bit.
+
+There are cases where a unifier might have to be clever. Let me show you one more. 
+
+```lisp
+unify                 (?x ?x)
+
+with             (?y (a . ?y))
+
+                      ?x : ?y
+                      ?y : (a a a ...) ; y is the infinite list of a's
+```
+
+ In some sense, in order to do that unification, I have to solve the **fixed-point** equation cons of a to y is equal to y.
+
+```lisp
+(cons 'a y) = y
+(f y) = y
+```
+
+#### No magic!
+
+So how does the logic language handle that? The answer is it doesn't. It just punts. And there's a little check in the unifier, which says, oh, is this one of the hard cases which when I go to match things would involve solving a fixed-point equation?
+
+And in this case, I will **throw up** my hands. And if that check were not in there, what would happen? In most cases is that the unifier would just go into an infinite loop. And other **logic programming** languages work like that. So there's really no magic. The easy case is done in amatcher. The hard case is not done at all. And that's about the state of this technology.
+
+
+
+Let me just say again formally how rules work now that I talked about unifiers. So the official definition is that to apply a rule.
+
+```lisp
+                     To Apply a Rule
+Evaluate the rule body relative to and environment(` what's the dictionary after all? It's a bunch of meanings for symbols. That's what we've been calling frames or environments.`) formed by unifying the rule conclusion wih the given query.
+
+                     To Apply a procedure
+Evaludate the procedure body relative to an enviroment formed by binding the procedure parameters to the arguments.
+```
 
