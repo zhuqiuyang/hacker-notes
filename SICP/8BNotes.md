@@ -204,3 +204,113 @@ QA:
 
 ### Part 3:
 
+We've just seen how the logic language works and how rules work. Now, let's turn to a more profound question.
+
+AND and OR andNOT and the logical implication of rules are not really the AND and OR and NOT and logical implication of logic. Let me give you an example of that.
+
+```lisp
+(AND P Q)
+(AND Q P)
+```
+
+
+
+```
+(rule (outranked-by ?staff-person ?boss)
+      (or (supervisor ?staff-person ?boss)
+          (and (supervisor ?staff-person 
+                           ?middle-manager)
+               (outranked-by ?middle-manager 
+                             ?boss))))
+```
+
+
+
+After answering, the system goes into an **infinite loop**. Explain why.
+
+(这条规则和and的第一条query描述的是同一个问题)
+
+```
+(rule (outranked-by ?staff-person ?boss)
+  (or (supervisor ?staff-person ?boss)
+      (and (outranked-by ?middle-manager
+                         ?boss)
+           (supervisor ?staff-person 
+                       ?middle-manager))))
+```
+
+
+
+#### order
+
+And there are similar things having to do with the **order** in which you enter rules. The order inwhich it happens to look at rules in the database may vastly change the efficiency with which it gets out answers or,
+
+
+
+There's an actual deeper problem when we start comparing, seriously comparing this logicl anguage with real classical logic. So let's sort of review real classical logic.
+
+```lisp
+All humans are mortal
+
+All Greeks are human
+
+Socrates is a Greek
+
+;;So: Therefore, Socrates is mortal
+```
+
+```lisp
+(Greek Socrates) (Greek Plato)
+(Greek Zeus) (god Zeus)
+
+; 凡人; 会犯错的
+(rule (mortal ?x) (human ?x)) 
+(rule (fallible ?x) (human ?x)) ;All humans are fallible
+
+(rule (human ?x)
+      (and (Greek ?x) (not (god ?x))))
+
+; the address of any Greek god is Mount Olympus.
+(rule (address ?x Olympus)
+      (and (Greek ?x) (god ?x)))
+
+(rule (perfect ?x)
+      (and (not (mortal ?x)) (not (fallible ?x))))
+```
+
+ask for the address of all the perfect beings: 
+
+```lisp
+; give us Mout Olympus
+(AND (ADDRESS ?x ?y)
+     (PERFECT ?x))
+
+; give us Nothing
+(AND (PERFECT ?x)
+     (ADDRESS ?x ?y))
+```
+
+This is not an infinite loop question. This is adifferent answer question.
+
+原因是: NOT isn't generating anything. NOT's only throwing out things.(我们实现NOT的方式).
+
+How to Fix it:
+
+Why are you just doing all your NOT stuff at the beginning? The right way to implementNOT is to realize that when you have conditions like NOT, you should generate all your answersfirst, and then with each of these dictionaries pass along until at the very end I'll do filtering. (最后执行filter)
+
+#### However, there's a more profound problem:
+
+which is which one of these is the right answer? Is itMount Olympus or is it nothing? 
+
+```lisp
+(Zeus (NOT mortal)) ; 可以推断出?
+```
+
+What NOT needs in this language is not NOT. It's not the NOT of logic. What NOT needs in this language is not deducible from things in the database as opposed to not true.(这个语言中的`Not`不是Logic中的NOT,  而是代表从database中无法推断出.) Subtle but big.
+
+> NOT means not deducible from the things you've told me.
+
+#### closed world assumption:
+
+In aworld where you're identifying not deducible with, in fact, not true, this is called the closed world assumption.
+
