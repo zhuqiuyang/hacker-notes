@@ -314,3 +314,11 @@ What NOT needs in this language is not NOT. It's not the NOT of logic. What NOT 
 
 In aworld where you're identifying not deducible with, in fact, not true, this is called the closed world assumption.
 
+If I don't know anything about x, the x isn't true. That's very dangerous.
+
+#### 总结
+
+And probably one of the very most interesting research questions going on now in languages is **how** do you somehow make a real logic language? And secondly, how do you **bridge the gap** from this world of logic and relations to the worlds of more traditional languages and somehow combine the power of both.
+
+QA:
+
