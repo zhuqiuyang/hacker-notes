@@ -229,7 +229,7 @@ An evaluator that is written in the same language that it evaluates is said to b
 - Part 3: Pass args by name(按名传参)
 
 
-### 8A: Logic Programming
+### 8A: Logic Programming - Part 1
 
 - Part 1:
   - 介绍Logic Programming
@@ -238,3 +238,15 @@ An evaluator that is written in the same language that it evaluates is said to b
   - Primitive: query
   - Means of combinaion: `and or not lisp-value`
   - Means of abstracton: `rule`
+
+### 8B: Logic Programming - Part 2
+
+- Part 1:
+  - Implement(based on pattern match): Primitive query, and , or
+- Part 2:
+  - the means of abstraction in this language are rules.
+  - unifier
+  - Apply a rule & Apply a procedure(对比)
+- Part 3:
+  - Problem: `Not` is `Logic Not`, Close World Assumption
+
