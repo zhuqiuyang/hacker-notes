@@ -28,3 +28,46 @@ One of the important things for designing a computer, which I think most designe
 #### 2. controller
 
 ![9A_1_GCD_Controller](./png/9A_1_GCD_Controller.png)
+
+```lisp
+(define-machine GCD
+  (resgister a b t)
+  (controller
+   main (assign a (read))
+        (assign b (read))
+   loop (branch (zero? (fetch b)) DONE)
+        (assign t (ramainder (fetch a) (fetch b))) ;; assign is the name of button
+        (assign a (fetch b))
+        (assign b (fetcht t))
+        (goto loop)
+   done (perform (print (fetch a)))
+   (gcd main)))
+```
+
+
+
+#### Run it 
+
+A is 30, B is 42:
+
+Start : T is 30, A is 42, B is 30
+
+T is 12, A is 30, B is 12
+
+T is 6, A is 12, B is 6
+
+T is 0, A is 6 , B is 0 (DONE!)
+
+![9A_1_gcd_machine](./png/9A_1_gcd_machine.png)
+
+
+
+```lisp
+(define remainder n d
+  (if (< n d)
+      n
+      (remainder (- n d) d)))
+```
+
+![9A_1_gcd_machine2](./png/9A_1_gcd_machine2.png)
+
