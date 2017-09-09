@@ -71,3 +71,24 @@ T is 0, A is 6 , B is 0 (DONE!)
 
 ![9A_1_gcd_machine2](./png/9A_1_gcd_machine2.png)
 
+
+
+### Part 2:
+
+#### Using a Stack to Implement Recursion
+
+Now you know how to make an iterative procedure, or a procedure that yields an iterative process, turn into a machine.
+
+I suppose the next thing we wantto do is worry about things that reveal recursive processes. So let's play with a simple factorialprocedure.
+
+```lisp
+(define (fact n)
+  (if (= n 1)
+      1
+      (* n (fact (- n 1)))))
+```
+
+And the way it' sgoing to work is that we're going to store in this place called the **stack** the information required after the inner machine runs to resume the operation of the outer machine.
+
+![9A_2_fact_machine](./png/9A_2_fact_machine.png)
+
