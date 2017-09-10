@@ -92,3 +92,32 @@ And the way it' sgoing to work is that we're going to store in this place called
 
 ![9A_2_fact_machine](./png/9A_2_fact_machine.png)
 
+But let's write the program now which represents the controller. I'm not going to write the define machine thing and the register list, because that's not very interesting. I'm just going to writedown the sequence of instructions that constitute the controller.
+
+```lisp
+(assign continue done)
+loop (brach (= 1 (fetch n)) base)
+     (save continue)
+     (save N)
+     (assign N (-1+ (fetch N)))
+     (assign continue aft) ; after-fact
+     (goto loop)
+AFT  (restore N)
+     (restore continue)
+     (assign val (* (fetch N) (fetch val)))
+     (goto (fetch continue))
+BASE (assign val (fetch N))
+     (goto (fetch continue))
+DONE
+```
+
+45:20 举例(N=3) 讲解流程.
+
+stack 存取了`DONE , 3, AFT, 2` (continue和N都存储在一个stack中)
+
+restore: 从stack中取出一个元素, 放入指定register中.
+
+Now there's a bit of discipline in using these things like stacks that we have to be careful of. Andwe'll see that in the next segment.
+
+### Part 3:
+
