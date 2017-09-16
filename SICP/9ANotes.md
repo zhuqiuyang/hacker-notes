@@ -4,7 +4,7 @@ Gerald Jay Sussman
 
 ### Part 1:
 
-And so what we'd like to do now is diverge from the plan of telling you how to organize bigprograms, and rather tell you something about the mechanisms by which these things can be made to work.
+And so what we'd like to do now is diverge from the plan of telling you how to organize big programs, and rather tell you something about the mechanisms by which these things can be made to work.
 
 
 
@@ -117,7 +117,63 @@ stack 存取了`DONE , 3, AFT, 2` (continue和N都存储在一个stack中)
 
 restore: 从stack中取出一个元素, 放入指定register中.
 
-Now there's a bit of discipline in using these things like stacks that we have to be careful of. Andwe'll see that in the next segment.
+Now there's a bit of discipline in using these things like stacks that we have to be careful of. And we'll see that in the next segment.
 
 ### Part 3:
 
+Well, let's see. What I've shown you now is how to do a simple iterative processand a simple recursive process. I just want to summarize the design of simple machines forspecific applications by showing you a little bit more complicated design, (回顾)
+
+that of a thing that does **doubly recursive Fibonacci**, because it will indicate to us, and we'll understand, a bit about `the conventions required for making stacks` operate correctly.(展望)
+
+#### Fib
+
+```lisp
+(define (fib n)
+  (if (< n 2)
+      n
+      (+ (fib (- n 1))
+         (fib (- n 2)))))
+```
+
+#### Fib Controller
+
+> This is not Lisp. This does not run. What I'm writing here does not run asa simple Lisp program. This is a representation of another language.
+>
+> The reason I'm using the syntax of parentheses and so on is because I tend to use a Lisp system to write an interpreter for this which allows me to simulate the machine I'm trying to build.
+
+```lisp
+  (assign continue Fib-Done)
+Fib-Loop   ;N contains arg.Continue is the recipient(接受者).
+  (branch (< (fetch n) 2) Immediate-Ans)
+  (save continue) ; pair1
+  (assign continue After-Fib-N-1)
+  (save n)
+  (assign n (- (fetch n) 1)) ; get ready to fib-n-1
+  (goto Fib-Loop)
+After-Fib-N-1
+  (restore n)
+  ; fix it later
+  ; (restore continue) ; unnecessary
+  (assign n (- (fetch n) 2))
+  ; (save continue) ; unnecessary
+  (assign continue after-fib-n-2)
+  (save val) ; pair2
+  (goto fib-loop)
+After-Fib-N-2
+  (assign n (fetch value)) ; fib(n-2)
+  (restore val) ; pair2
+  (restore continue) ; pair1
+  (assign val
+          (+ (fetch val) (fetch n)))
+  (goto (fetch continue))
+Immediate-Ans
+  (assign val (fetch n))
+  (goto (fetch continue))
+Fib-Done
+```
+
+> So that's a fairly complicated program. And the **reason** I wanted you see to that is because I want you to see the `particular flavors of stack discipline that I was obeying`. It was first of all, I don't want to take anything that I'm not going to need later. (不需要的不要存储)
+
+It's **crucial** to say exactly what you're going to need later. It's an important idea. 
+
+> And the responsibility of that is whoever saves something is the guy who restores it, because he needs it.And in such discipline, you can see what things are unnecessary, operations that are unimportant.

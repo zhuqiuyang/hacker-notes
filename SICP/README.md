@@ -250,3 +250,15 @@ An evaluator that is written in the same language that it evaluates is said to b
 - Part 3:
   - Problem: `Not` is `Logic Not`, Close World Assumption
 
+
+### 9A: Register Machines
+
+- Part 1:
+  - Simple register Machine (GCD)
+    - controller, datapath
+- Part 2:
+  - Simple Recursion Machine(factorial 阶乘)
+  - 讲解了一个完整的例子, Machine运行的过程.
+- Part 3:
+  - Complecated Recursion(Fib)
+  - Don't save unimportant thing (don't need later)
