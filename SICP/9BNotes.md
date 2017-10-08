@@ -160,3 +160,165 @@ here's a piece of the **meta-circular evaluator**. This is the one using abstrac
           "Unknown procedure type - APPLY" procedure))))
 ```
 
+#### The Eval/Apply cycle
+
+```markdown
+                           Eval
+    ---------------------------------------------------
+    |                                                 |
+    |                                                 v
+Expression                                        Procedure
+Enviroment                                        Arguments
+    ^                                                 |
+    |                                                 |
+    ---------------------------------------------------
+                          Apply
+```
+
+
+
+two big pieces of this evaluator correspond to eval and apply.
+
+Contract that `eval-dispatch` fulfills:
+
+- the `exp` register holds an expression to be evaluated
+- the `env` register holds the environment in which the expression is to be evaluated
+- the `continue` register holds a place to go next
+- the result will be left in the `val` register. Contents of all other registers may be destroyed
+
+Contract that `apply-dispatch` fulfills:
+
+- the `argl` register contains a list of arguments
+- the `fun` register contains a procedure to be applied
+- the *top of the stack* holds a place to go next
+- the result will be left in the `val` register. The stack will be popped. Contents of all other registers may be destroyed.
+
+### Part 2:
+
+#### Real example
+
+```markdown
+EXP: 1/x/ (+ x y)
+ENV: <E0> -> [x=3, y=4]
+FUN: 
+```
+
+
+
+25:54 (两位老师一起演示全过程)
+
+```lisp
+; EXP: (+ x y)
+EXP: +
+ENV: <E0>
+
+
+UNEV: (X Y)
+```
+
+
+
+## Evaluator (Partial)
+
+```lisp
+eval-dispatch
+  (branch (self-evaluating? (fetch exp)) ev-self-eval) ; eg: exp is 1
+  (branch (variable? (fetch exp)) ev-variable) ; eg: exp is x
+  ; ...
+
+; <... more special forms ...>
+  (branch (application? (fetch exp)) ev-application) ; eg: exp is (+ x y)
+  (goto unknown-expression-error)
+
+ev-self-eval
+  (assign val (fetch exp))
+  (goto (fetch continue))
+
+ev-variable
+  (assign val (lookup-variable-value (fetch env)))
+  (goto (fetch continue))
+
+ev-application
+  (assign unev (operands (fetch exp)))
+  (assign exp (operator (fetch exp)))  ; replace the expression by the operation to apply
+  (save continue)
+  (save env)
+  (save unev)
+  (assign continue eval-args)
+  (goto eval-dispatch)                 ; recursive call
+
+eval-args
+  (restore unev)
+  (restore env)
+  (assign fun (fetch val))
+  (save fun)
+  (assign argl '())
+  (goto eval-arg-loop)
+
+eval-arg-loop
+  (save argl)
+  (assign exp (first-operand (fetch unev)))
+  (branch (last-operand? (fetch unev)) eval-last-arg)
+  (save env)
+  (save unev)
+  (assign continue accumulate-arg)
+  (goto eval-dispatch)
+
+accumulate-arg
+  (restore unev)
+  (restore env)
+  (restore argl)
+  (assign argl (cons val) (fetch argl))
+  (assign unev (rest-operands (fetch unev)))
+  (goot eval-arg-loop)
+
+eval-last-arg
+  (assign continue accumulate-last-arg)
+  (goto eval-dispatch)
+
+accumulate-last-arg
+  (restore argl)
+  (assign argl (cons (fetch val) (fetch argl)))
+  (restore fun)
+  (goto apply-dispatch)
+```
+
+## Applicator
+
+```lisp
+apply-dispatch
+  (branch (primitive-proc? (fetch fun)) primitive-apply)
+  (branch (compound-proc? (fetch fun)) compound-apply)
+  (goto unknown-proc-type-error)
+
+primitive-apply
+  (assign val (apply-primitive-proc (fetch fun) (fetch argl)))
+  (restore continue)
+  (goto (fetch continue))
+
+compound-apply
+  (assign exp (procedure-body (fetch fun)))
+  (assign env (make-bindings (fetch fun) (fetch argl)))
+  (restore continue)     ; this is where tail recursion happens
+  (goto eval-dispatch)
+```
+
+
+
+ This whole thing, we used a stack and the evaluator was recursive.
+
+> The reason that you need recursion in the evaluator is because the evaluation process, itself, is recursive, all right? 
+>
+> It's notbecause the procedure that you might be evaluating in LISP is a recursive procedure.
+>
+> So that's an important thing that people get confused about a lot.
+
+QA:
+
+2.  Why is it that the order of the arguments in the arg list got reversed?
+   - just a convention.
+
+
+
+### Part 3:
+
