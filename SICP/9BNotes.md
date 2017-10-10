@@ -322,3 +322,4 @@ QA:
 
 ### Part 3:
 
+That's the thing we haven't seen, really. We haven't seen any compound procedures where applying a procedure reduces to evaluating the body of the procedure.
