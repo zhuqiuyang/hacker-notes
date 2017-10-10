@@ -323,3 +323,14 @@ QA:
 ### Part 3:
 
 That's the thing we haven't seen, really. We haven't seen any compound procedures where applying a procedure reduces to evaluating the body of the procedure.
+
+```lisp
+(DEFINE (F A B)
+        (+ A B))
+;;
+(F X Y)
+
+E0: [ X=3, y=4, F=procedure, Args: a b , body: + a b]
+```
+
+apply-dispatch
