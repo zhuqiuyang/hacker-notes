@@ -150,6 +150,7 @@ here's a piece of the **meta-circular evaluator**. This is the one using abstrac
          (apply-primitive-procedure procedure arguments))
         ((compound-procedure? procedure)
          (eval-sequence
+           ;Compound-apply said we're going to evaluate the body of the procedure in some new environment. (part 3 41:59)
            (procedure-body procedure)
            (extend-environment
              (procedure-parameters procedure)
@@ -334,3 +335,55 @@ E0: [ X=3, y=4, F=procedure, Args: a b , body: + a b]
 ```
 
 apply-dispatch
+
+## Applicator
+
+```lisp
+; apply-dispatch
+  (branch (primitive-proc? (fetch fun)) primitive-apply)
+  (branch (compound-proc? (fetch fun)) compound-apply)
+  (goto unknown-proc-type-error)
+
+; primitive-apply
+  (assign val (apply-primitive-proc (fetch fun) (fetch argl)))
+  (restore continue)
+  (goto (fetch continue))
+
+; compound-apply
+  (assign exp (procedure-body (fetch fun)))
+  (assign env (make-bindings (fetch fun) (fetch argl)))
+  (restore continue)     ; this is where tail recursion happens
+  (goto eval-dispatch)
+```
+
+
+
+#### Reduction (F A B) => (+ A B) in E1
+
+> And, at each point, there'll be no accumulated stuff on the stack because eachone's a real reduction
+
+举例对比 an iterative procedure
+
+```lisp
+(define (fact-iter n)
+  (define (iter product counter)
+    (if (> counter n)
+        product
+        (iter (* counter product)
+              (+ counter 1))))
+  (iter 1 1))
+
+; no storage needed
+(fact-iter 5)
+(iter 1 1 5)
+(iter 1 2 5)
+```
+
+
+
+Eg:
+
+```markdown
+EXP: (FACT-ITER 5)
+```
+
