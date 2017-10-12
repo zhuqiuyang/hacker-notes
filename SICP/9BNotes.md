@@ -384,6 +384,7 @@ apply-dispatch
 Eg:
 
 ```markdown
-EXP: (FACT-ITER 5)
+EXP: (FACT-ITER 5) => (ITER 1 1 N) => (ITER 1 1) => (ITER (* COUNTER PROD) (+ COUNTER 1))
+ENV: E1 => E2 [PROD, COUNTER]
 ```
 

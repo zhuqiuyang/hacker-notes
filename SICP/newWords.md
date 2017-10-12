@@ -109,7 +109,8 @@
 | ambiguity              |                    歧义                    |
 | kluge                  | (贬义)a machine, system, or program that has been badly put together. |
 | catechism              |               [基督教的] 教理问答                |
-| biblical               |            圣经的             |
+| biblical               |                   圣经的                    |
+| queasy                 |                不安的, 恶心的                    |
 
 Other:
 
