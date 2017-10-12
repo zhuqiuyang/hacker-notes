@@ -379,12 +379,91 @@ apply-dispatch
 (iter 1 2 5)
 ```
 
-
-
 Eg:
 
 ```markdown
 EXP: (FACT-ITER 5) => (ITER 1 1 N) => (ITER 1 1) => (ITER (* COUNTER PROD) (+ COUNTER 1))
 ENV: E1 => E2 [PROD, COUNTER]
 ```
+
+> Now, you might ask well, is there **build up** (增长) in principle in these environment frames? And the answer is yeah, you have to make these new environment frames, but you don't have to hang onto them when you're done. They can be garbage collected, or the space can be reused automatically.
+
+
+
+### Part 4
+
+Let me contrast the iterative procedure just so you'll see where space does build up with a recursive procedure, so you can see the difference.
+
+Let's look at the evaluation of recursive factorial:
+
+```lisp
+(define (fact-rec n)
+  (if (= n 0)
+      1
+      (* n (fact-rec (- n 1)))))
+;  So, here's fact-recursive, or standard factorial definition. We said this one is still a recursive procedure, but this is actually a recursive process.
+
+(FACT-REC 5)
+(* 5 (FACT-REC 4))
+(* 5 (* 4 (FACT-REC 3)))
+```
+
+. And now, let's actually see that chain of stuff build up and where it is in themachine, OK?
+
+
+
+```markdown
+EXP: (FACT-REC 5) => (* N (FACT-REC (- N 1)))
+ENV: E0, E1 [N = 5]
+
+Evaluation of (* n (fact-rec (- n 1)))
+
+Ready to evaluate operator
+
+EXP: *
+ENV: E1
+CONTINUE: eval-args
+
+STACK: (n (fact-rec (- n 1)))     <UNEV>
+       E1                         <ENV>
+       done                       <CONTINUE>
+       
+       
+Ready to evaluate second operand
+
+EXP: (fact-rec (- n 1))
+ENV: E1
+CONTINUE: accumulate-last-arg
+
+STACK: (5)                 <ARGL>
+       <primitive-*>       <FUN>
+       done                <CONTINUE>
+       
+Second call to fact-rec
+
+EXP: (fact-rec n)
+ENV: E2 [new N = 4]
+CONTINUE: accumulate-last-arg
+
+STACK:   (5)                 <ARGL>
+         <primitive-*>       <FUN>
+         done                <CONTINUE>
+              
+Third call to fact-rec
+
+EXP: (fact-rec n)
+ENV: E3 [new N = 3]
+CONTINUE: accumulate-last-arg
+
+STACK:   (4)                 <ARGL>
+         <primitive-*>       <FUN>
+         accumulate-last-arg <CONTINUE>
+         (5)                 <ARGL>
+         <primitive-*>       <FUN>
+         done                <CONTINUE>
+```
+
+We're about to call eval-dispatch **again**,except we haven't really reduced it because there's stuff **on the stack** now.
+
+
 
