@@ -465,5 +465,27 @@ STACK:   (4)                 <ARGL>
 
 We're about to call eval-dispatch **again**,except we haven't really reduced it because there's stuff **on the stack** now.
 
+So, you see, the **substitution model** is not such a lie. That really is, in some sense, what's sitting right on the stack. OK.
 
+结论:
+
+> Well, the basic reason it's managing to do that is the **evaluator** is set up to `save only what it needs later`.
+
+#### tail recursive
+
+> it's the restore of continue. It's saying when I go off to evaluate the procedure body, I should tell eval to come back to the place where that original evaluation was supposed to come back to.
+
+If I wanted to build a non-tail recursive evaluator, for some strange reason, all I would need to dois, instead of restoring continue at this point, (替换成label: `Where to comeback after you've finished applying the procedure.`, restore意味着提前返回, 因为再次返回这里什么也不用做.)
+
+#### compound apply
+
+```lisp
+; compound-apply
+  (assign exp (procedure-body (fetch fun)))
+  (assign env (make-bindings (fetch fun) (fetch argl)))
+  (restore continue)     ; this is where tail recursion happens
+  (goto eval-dispatch)
+```
+
+> the only difference from the old one is that, instead of going offto eval directly, it takes the whole body of the procedure, which, in this case, is a sequence of expressions, and goes off to eval-sequence.
 
