@@ -489,3 +489,29 @@ If I wanted to build a non-tail recursive evaluator, for some strange reason, al
 
 > the only difference from the old one is that, instead of going offto eval directly, it takes the whole body of the procedure, which, in this case, is a sequence of expressions, and goes off to eval-sequence.
 
+#### eval-sequence
+
+- And eval-sequence is a little loop that, basically,does these evaluations one at a time. So it does an evaluation. Says oh, when I come back, I'd better come back here to do the next one. 
+- And, when I'm all done, when I want to get the last expression, I just restore my continue and go off to eval-dispatch.
+- And, again, if you wanted for some reason to **break tail recursion** in this evaluator, all you need to do is not handle the last expression, especially.
+- And, for some reason, a lot of LISP evaluators tended to work that way. And the only consequence of that is that iterative procedures built up stack. 
+- And it's not clear why that happened.
+
+#### Summarize
+
+- And the main idea is that we have this universal evaluator program, the **meta-circular evaluator**. If we translate that into LISP, then we have all of LISP. And that's all we did.
+- The second point is that the magic's gone away. There should be no more magic in this whole system. (In principle, it sould all be very clear except, maybe, for how **list structured memory** works, and we'll see that later. 之后会介绍)
+- The third point is that all this **tail recursion** came from the discipline of eval being very careful to save only what it needs next time.
+
+a chip (evaluator) overall structure (1:06:30)
+
+- register array
+- data paths
+- finite state controller
+- external memory, ...
+
+QA:
+
+1. no magic
+2. Tail recursion is not going to change the **time complexity** of anything because, in some sense, it's the same algorithm that's going on. What it's doing is really making this thing run as an iteration, right?
+
