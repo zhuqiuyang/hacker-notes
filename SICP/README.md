@@ -262,3 +262,26 @@ An evaluator that is written in the same language that it evaluates is said to b
 - Part 3:
   - Complecated Recursion(Fib)
   - Don't save unimportant thing (don't need later)
+
+### Explicit-control Evaluator
+
+- Part 1:
+  - 指出: 把Meta-circular evaluator 转换成 register machine, 这样所有lisp都将被translate.
+  - two instance
+    - `fact-rec` take space grows
+    - `fact-iter` doesn't take space
+  - eval/apply => `eval-dispatch`/`apply-dispatch` fulfills
+- Part 2:  举例分析 `eval-dispatch` (Jerry and Gee 共同演绎)
+- Part 3:
+  - `apply-dispatch`
+  - `fact-iter`  real reduction: stack not builds up.
+- Part 4:
+  - `fact-rec ` recursive procedure that stack builds up
+  - tail recursive
+  - compound-apply
+  - eval-sequence
+  - Summarize:
+    - **Meta-circular Evaluator**
+    - List Structured Memory (之后介绍)
+    - Tail Recursion
+

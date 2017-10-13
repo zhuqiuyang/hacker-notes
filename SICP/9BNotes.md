@@ -27,7 +27,7 @@ All right, how are we going to do this? We already have all the ingredients.
 
 > all we have to do is take the particular procedures that are the **meta-circular evaluator** and hand-translate them for a register machine.(把Meta-circular evaluator 转换成 register machine, 这样所有lisp都将被translate.)
 
-that's going to be our final most explicit model of LISP in this cours
+that's going to be our final most explicit model of LISP in this course:
 
 #### Instance
 
@@ -118,7 +118,7 @@ UNEV, temporary register for expressions
 
 
 
-here's a piece of the **meta-circular evaluator**. This is the one using abstract syntax that's in the book. It's a little bit different from the one that Jerry shows you. And the main thing to remember about the evaluator is that it's doing some sort of case analysis on the **kinds of expressions**: so if it's either self-evaluated, or quoted, orwhatever else. And then, in the **general case** where the expression it's looking at is anapplication, there's some tricky recursions going on.
+here's a piece of the **meta-circular evaluator**. This is the one using abstract syntax that's in the book. It's a little bit different from the one that Jerry shows you. And the main thing to remember about the evaluator is that it's doing some sort of case analysis on the **kinds of expressions**: so if it's either self-evaluated, or quoted, or whatever else. And then, in the **general case** where the expression it's looking at is an application, there's some tricky recursions going on.
 
 ```lisp
 (define (eval exp env)
@@ -199,7 +199,7 @@ Contract that `apply-dispatch` fulfills:
 #### Real example
 
 ```markdown
-EXP: 1/x/ (+ x y)
+EXP: 1, x , (+ x y)
 ENV: <E0> -> [x=3, y=4]
 FUN: 
 ```
@@ -360,7 +360,7 @@ apply-dispatch
 
 #### Reduction (F A B) => (+ A B) in E1
 
-> And, at each point, there'll be no accumulated stuff on the stack because eachone's a real reduction
+> And, at each point, there'll be no accumulated stuff on the stack because each one's a real reduction
 
 举例对比 an iterative procedure
 
@@ -388,8 +388,6 @@ ENV: E1 => E2 [PROD, COUNTER]
 
 > Now, you might ask well, is there **build up** (增长) in principle in these environment frames? And the answer is yeah, you have to make these new environment frames, but you don't have to hang onto them when you're done. They can be garbage collected, or the space can be reused automatically.
 
-
-
 ### Part 4
 
 Let me contrast the iterative procedure just so you'll see where space does build up with a recursive procedure, so you can see the difference.
@@ -408,9 +406,7 @@ Let's look at the evaluation of recursive factorial:
 (* 5 (* 4 (FACT-REC 3)))
 ```
 
-. And now, let's actually see that chain of stuff build up and where it is in themachine, OK?
-
-
+. And now, let's actually see that chain of stuff build up and where it is in the machine, OK?
 
 ```markdown
 EXP: (FACT-REC 5) => (* N (FACT-REC (- N 1)))
