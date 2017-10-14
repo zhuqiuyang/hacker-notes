@@ -47,3 +47,23 @@ Well, the idea of a compiler is very much like the idea of an interpreter or eva
 Well, the compiler essentially would like to walk over the code and produce the register operations that the evaluator would have done were it evaluating the thing. And that gives us a model for how to implement a **zeroth-order** compiler, a very bad **compiler** but essentially a compiler. A model for doing that is you **just take the evaluator, you run it over the code**, but instead of executing the actual operations, you just save them away. And that's your compiled code.
 
 Eg:
+
+```lisp
+; Register Operations in interpreting (F X)
+
+(assign unev (operands (fetch exp)))   ; unev is unevaluate?
+(assign exp (operator (fetch exp)))
+(save continue)
+(save env)
+(save unev)
+(assign continue eval-args)
+(assign val (lookup-val-val (fetch exp) (fetch ...)))
+(restore unev)
+(restore env)
+(assign fun (fetch val))
+(save fun)
+(assign argl '())
+(save argl)
+
+```
+
