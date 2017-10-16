@@ -110,7 +110,8 @@
 | kluge                  | (贬义)a machine, system, or program that has been badly put together. |
 | catechism              |               [基督教的] 教理问答                |
 | biblical               |                   圣经的                    |
-| queasy                 |                不安的, 恶心的                    |
+| queasy                 |                 不安的, 恶心的                 |
+| stash away             |                    藏匿                    |
 
 Other:
 

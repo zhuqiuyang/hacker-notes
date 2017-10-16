@@ -52,18 +52,51 @@ Eg:
 ; Register Operations in interpreting (F X)
 
 (assign unev (operands (fetch exp)))   ; unev is unevaluate?
-(assign exp (operator (fetch exp)))
+(assign exp (operator (fetch exp))) ; no need (13:25), F is above
 (save continue)
 (save env)
 (save unev)
 (assign continue eval-args)
-(assign val (lookup-val-val (fetch exp) (fetch ...)))
+(assign val (lookup-val-val (fetch exp) (fetch env)))
 (restore unev)
 (restore env)
 (assign fun (fetch val))
 (save fun)
 (assign argl '())
 (save argl)
-
 ```
+
+
+
+ There's only one little lie in that.
+
+> So you can't say which one the evaluator would have done. So all you do there is very simple. You compile both branches.
+
+```lisp
+(IF P A B)
+---
+<code for P - Result in VAL>
+Branch IF VAL is TRUE To Label1
+<code for B>
+GOTO NEXT-THING
+LABEL1 <code for A>
+      GOTO  NEXT-THING
+```
+
+So that's how you treat a conditional. You generate a little block like that.
+
+And other than that,this **zeroth-order compiler** is the same as the **evaluator**. It's just stashing away the instructions instead of executing them.
+
+
+
+That seems pretty simple, but we've gained something by that. See, already that's going to be more efficient than the evaluator. Because, if you watch the evaluator run, it's not only generating the register operations we wrote down, it's also doing things to decide which ones to generate.
+
+> In other words,what the **evaluator's** doing is simultaneously analyzing the code to see what to do, and running these operations. And when you-- if you run the evaluator a million times, that analysis phase happens **a million times**, whereas in the **compiler**, it's happened **once**, and then you just have the register operations themselves.
+
+
+
+分析上述Register: 
+
+- you don't want unev and exp at all. those aren't registers of the actual machine that's supposed to run. Those are registers that have to do with arranging the thing that can simulate that machine.
+- So they're always going to hold expressions which, from the compiler's point of view, are justconstants, so can be put right into the code. So you can forget about all the operations worrying about exp and unev and just use those constants.
 
