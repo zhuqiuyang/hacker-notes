@@ -100,3 +100,27 @@ That seems pretty simple, but we've gained something by that. See, already that'
 - you don't want unev and exp at all. those aren't registers of the actual machine that's supposed to run. Those are registers that have to do with arranging the thing that can simulate that machine.
 - So they're always going to hold expressions which, from the compiler's point of view, are justconstants, so can be put right into the code. So you can forget about all the operations worrying about exp and unev and just use those constants.
 
+
+make those kinds of optimizations, get rid, get rid of worrying about exp and unev, and get rid of these irrelevant register assignments to continue, 
+
+```lisp
+(save env)
+(assign val
+        (lookup-var-val 'f (fetch env)))
+(restore env)
+(assign fun (fetch val))
+(save fun)
+(assign argl '())
+(save argl)
+(assign argl
+        (cons (fetch val) (fetch argl)))
+(restore fun)
+```
+
+分析:
+
+- `save env`Then it came back from eval dispatch, restored the environment.
+- But the actual thing that you ended up doing didn't trash the argument list. So there was no reason to save it. 
+- But the actual thing that you ended up doing didn't trash the argument list.
+
+the evaluator has to be maximally pessimistic
