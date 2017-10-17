@@ -123,4 +123,19 @@ make those kinds of optimizations, get rid, get rid of worrying about exp and un
 - But the actual thing that you ended up doing didn't trash the argument list. So there was no reason to save it. 
 - But the actual thing that you ended up doing didn't trash the argument list.
 
-the evaluator has to be maximally pessimistic
+the evaluator has to be maximally pessimistic(悲观的)
+
+But once you've done the analysis, the compiler is in a position to say, well, what actually did I need to save? And doesn't need to do any-- it doesn't need to be as careful as the evaluator,because it knows what it actually needs.
+
+```lisp
+; Eliminating unnecsssary stack operations
+
+(assign fun
+        (lookup-var-val 'f (fetch env)))
+(assign val
+        (lookup-var-val 'x (fetch env)))
+(assign argl (cons (fetch val) '()))
+
+computation proceeds at apply-dispatch
+```
+
