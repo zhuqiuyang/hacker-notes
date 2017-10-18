@@ -151,5 +151,26 @@ computation proceeds at apply-dispatch
 >
 >  And these-- so there are all the pairs of stack operations.(上图左侧)
 
-![10A_1_starting](./png/10A_1_ConstantStructure.png)
+![10A_1_starting](./png/10A_1_Constant1.png)
 
+> depending on how we set up the discipline of the--of calling other things that apply, we may or may not need to save continue. (最右侧的箭头)
+
+![10A_1_starting](./png/10A_1_Constant2.png)
+
+So in fact, all of the stack operations done by the evaluator turned out to be unnecessary or overly pessimistic. And the compiler is in a position to know that.
+
+#### more complicated e.g.:
+
+```lisp
+(F (G X) 1)
+```
+
+there are something like 16 pairs of register saves and restores as the evaluator walks through that:
+
+![10A_1_eg2](./png/10A_1_eg2.png)
+
+But if you say, well, what of those really were the business of the compiler as opposed to the evaluator, you get rid of a whole bunch.
+
+![10A_eg2_compiler](./png/10A_eg2_compiler.png)
+
+分析(24:40)
