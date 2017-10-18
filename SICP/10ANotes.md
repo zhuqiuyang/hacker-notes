@@ -139,3 +139,17 @@ But once you've done the analysis, the compiler is in a position to say, well, w
 computation proceeds at apply-dispatch
 ```
 
+ Let me just sort of summarize that in another way, just to show you in a little better picture.
+
+![10A_1_starting](./png/10A_1_starting.png)
+
+>  This is looking at all the saves and restores
+>
+> on the bottom here, the various places in the evaluator that were passed when the evaluation happened.
+>
+>  Arrow down means register saved. So the first thing that happened is the environment got saved.
+>
+>  And these-- so there are all the pairs of stack operations.(上图左侧)
+
+![10A_1_starting](./png/10A_1_ConstantStructure.png)
+
