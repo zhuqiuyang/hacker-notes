@@ -87,8 +87,6 @@ So that's how you treat a conditional. You generate a little block like that.
 
 And other than that,this **zeroth-order compiler** is the same as the **evaluator**. It's just stashing away the instructions instead of executing them.
 
-
-
 That seems pretty simple, but we've gained something by that. See, already that's going to be more efficient than the evaluator. Because, if you watch the evaluator run, it's not only generating the register operations we wrote down, it's also doing things to decide which ones to generate.
 
 > In other words,what the **evaluator's** doing is simultaneously analyzing the code to see what to do, and running these operations. And when you-- if you run the evaluator a million times, that analysis phase happens **a million times**, whereas in the **compiler**, it's happened **once**, and then you just have the register operations themselves.
@@ -145,7 +143,7 @@ computation proceeds at apply-dispatch
 
 >  This is looking at all the saves and restores
 >
-> on the bottom here, the various places in the evaluator that were passed when the evaluation happened.
+>  on the bottom here, the various places in the evaluator that were passed when the evaluation happened.
 >
 >  Arrow down means register saved. So the first thing that happened is the environment got saved.
 >
@@ -174,3 +172,39 @@ But if you say, well, what of those really were the business of the compiler as 
 ![10A_eg2_compiler](./png/10A_eg2_compiler.png)
 
 分析(24:40)
+
+So again, the general idea is that the reason the compiler can be better is that the interpreter doesn't know what it's about to encounter. It has to be maximally pessimistic in saving things to protect itself.
+
+And there are two reasons that something might not have to be saved.
+
+- one is that what you're protecting it against, in fact, didn't trash the register, like it was just a variable look-up. 
+- And the other one is,that the thing that you were saving it for might turn out not to actually need it.
+
+QA:
+
+1. So the way to think about it is, is maybe you build a chip which is the evaluator, and what the compiler might do is generate code for that chip. It just wouldn't use two of the registers.
+
+### Part 2:
+
+how compiler gets accomplished. And I'm going to give no details.
+
+eg:
+
+```lisp
+; Now, the-- what's the code that the compiler should generate?
+(OP A1 A2)
+
+{Compile op: Result in FUN} (Preserving ENV)
+
+{Comple A1: Result in VAL} (Pres ENV)
+(ASSIGN ARGL (CONS (FETCH VAL) '()))
+
+{Comple A2: Result in VAL} (Pres ARGL)
+(ASSIGN ARGL (CONS (FETCH VAL) (FETCH ARGL)))
+
+(GO-TO Apply-Dispatch)
+```
+
+- I'll compile the operator:  I'll compile some instructions that will compile the operator and end up with the result in the function register.
+
+what the compiler does is append a whole bunch of code sequences. See, what it's got in it is little primitive pieces of things, like how to look up a symbol, how to do a conditional. Those are all little pieces of things.
