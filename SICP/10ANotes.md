@@ -208,3 +208,56 @@ eg:
 - I'll compile the operator:  I'll compile some instructions that will compile the operator and end up with the result in the function register.
 
 what the compiler does is append a whole bunch of code sequences. See, what it's got in it is little primitive pieces of things, like how to look up a symbol, how to do a conditional. Those are all little pieces of things.
+
+So the basic means of combining things is to append two code sequences.
+
+- The idea is that it appends two code sequences, taking care to preserve a register:
+
+  ```lisp
+  (APPEND SEQ1 AND SEQ2 RESERVING REG)
+
+  IF SEQ2 needs REG
+  AND ESQ1 MODIFYING REG
+  (SAVE REG) ;the instructions that the compiler spits out are, save the register.
+
+  You generate this code:
+  (SAVE REG) 
+  <SEQ1>
+  (RESTORE REG)
+  (SEQ2)
+
+  ELse:
+  <SEQ1>
+  <SEQ2>
+  ```
+
+And you see, from this point of view, the difference between the interpreter and the compiler, in some sense, is that where the compiler has these preserving notes:
+
+`compiler` maybe I'll actually generate the saves and restores and maybe I won't.That's the **essential difference**.
+
+#### Those have little notations in there about what they need and what they modify.
+
+bottom-level data structures, A code sequence to the compiler lookslike this. It has the actual sequence of instructions.
+
+```markdown
+<sequence of inst; set of registers modified; set of regs needed>
+```
+
+So that's the information the compiler has that it draws on in order to be able to do this operation.
+
+So for example, a very primitive one, let's see. How about doing a register assignment.
+
+```markdown
+< (ASSIGN R1 (fetch R2)) ; {R1} ; {R2} >
+```
+
+And now, when it combines two sequences
+
+```markdown
+<S1; M1; N1> AND <S2; M2; N2>
+
+s1 follwed by s2
+m1 ∪ m2
+n1 ∪ [n2 - m1]
+```
+
