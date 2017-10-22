@@ -1,5 +1,7 @@
 ## 10A: Compilation
 
+Hal Abelson
+
 Last time, we took a look at an explicit control evaluator for Lisp, and that bridged the gap between all these high-level languages like Lisp and the query language and all of that stuff, bridged the gap between that and a conventional register machine.
 
 ### Part 1:
@@ -273,7 +275,7 @@ n1 ∪ [n2 - m1] (need)
 
 >  And probably one of the reasons that Lisp is slow with compared to languages like FORTRAN is that, if you look over history at the amount of effort that's gone into building Lisp compilers, it's no where near the amount of effort that's gone into FORTRAN compilers. And maybe that's something that will change over the next couple of years.
 >
-> (Lisp compiler 性能更好是需要更多的effort的投入.)
+>  (Lisp compiler 性能更好是需要更多的effort的投入.)
 
 QA:
 
