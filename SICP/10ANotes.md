@@ -257,7 +257,23 @@ And now, when it combines two sequences
 <S1; M1; N1> AND <S2; M2; N2>
 
 s1 follwed by s2
-m1 ∪ m2
-n1 ∪ [n2 - m1]
+m1 ∪ m2 (modified)
+n1 ∪ [n2 - m1] (need)
 ```
+
+#### Eg: (recursive factorial)
+
+ But it is a perfectly usable rudimentary compiler. Letme kind of show you what it does.
+
+```lisp
+(define (fact n)
+  (cond ((= n 0) 1)
+        (else (* n (fact (- n 1))))))
+```
+
+>  And probably one of the reasons that Lisp is slow with compared to languages like FORTRAN is that, if you look over history at the amount of effort that's gone into building Lisp compilers, it's no where near the amount of effort that's gone into FORTRAN compilers. And maybe that's something that will change over the next couple of years.
+>
+> (Lisp compiler 性能更好是需要更多的effort的投入.)
+
+QA:
 
