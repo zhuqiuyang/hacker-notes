@@ -112,6 +112,10 @@
 | biblical               |                   圣经的                    |
 | queasy                 |                 不安的, 恶心的                 |
 | stash away             |                    藏匿                    |
+| blithely               |                漫不经心的, 开心的                |
+| pigeonholes            |             文件格 (课程中用来描述内存)            |
+
+
 
 Other:
 
