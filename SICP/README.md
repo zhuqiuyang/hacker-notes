@@ -285,3 +285,15 @@ An evaluator that is written in the same language that it evaluates is said to b
     - List Structured Memory (之后介绍)
     - Tail Recursion
 
+
+### 10A: Compilation
+
+- Part 1:
+  - `0th` order compiler, eg: `(F X)`
+  - Optimization:  what actually did `compiler` need to save?
+  - eg 2: `(F (G X) 1)` 
+- Part 2: (how compiler gets accomplished, no details.)
+  - eg: `(OP A1 A2)`
+  - compiler has these preserving notes(*)
+  - eg: `(fact n)`
+
