@@ -36,7 +36,7 @@ So this is the traditional way of representing this kind of binary tree in a lin
 
 #### Vector
 
-Now of course in order to write that down I'm going to introduce some sort of a structure called a `vector`.
+Now of course in order to write that down I'm going to introduce some sort of a structure called a `vector`. (I don't think that name is the right word.)
 
 Machine code instructions like `assign` and `fetch` actually access these arrays.
 
@@ -60,5 +60,33 @@ Machine code instructions like `assign` and `fetch` actually access these arrays
 (perform (set-cdr! (fetch a) (fetch b)))
 ====>
 (perform (vector-set! (fetch the-cdrs) (fetch a) (fetch b)))
+```
+
+
+
+#### free list
+
+2nd:
+
+> We presume that there is a special register, `free`, that always holds a pair pointer containing the next available index, and that we can increment the index part of that pointer to find the next free location.
+
+eg: Here we have the free list starting in 6.
+
+```lisp
+; With freelist method of allocation
+
+(assign a (cons (fetch b) (fetch c)))
+===>
+
+(assign a (fetch free))
+(assign free
+        (vector-ref (fetch the cdrs)
+                    (fetch free)))
+(perform (vector-set! (fetch the-cars)
+                      (fetch a)
+                      (fetch b)))
+(perform (vector-set! (fetch the-cdrs)
+                      (fetch a)
+                      (fetch b)))
 ```
 
