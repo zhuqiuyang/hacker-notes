@@ -22,6 +22,20 @@ On the other hand, there are other ways of representing these things. We have be
 
 引出问题:
 
+```markdown
+2nd: To model computer memory, we use a new kind of data structure called a vector. (http://sarabander.github.io/sicp/html/5_002e3.xhtml#g_t5_002e3)
+
+In order to describe memory operations, we use two primitive Scheme procedures for manipulating vectors:
+
+- (vector-ref ⟨vector⟩ ⟨n⟩) returns the nthnth element of the vector.
+- (vector-set! ⟨vector⟩ ⟨n⟩ ⟨value⟩) sets the nthnth element of the vector to the designated value.
+
+We can use vectors to implement the basic pair structures required for a list-structured memory. Let us imagine that computer memory is divided into two vectors: the-cars and the-cdrs.
+
+to extending the notion of “pointer” to include information on data type.
+eg: A pointer to a number, such as n4, might consist of a type indicating numeric data together with the actual representation of the number 4.
+```
+
 Now the problem is how are we going to impose on this type of structure, this nice tree structure.
 
 So we're going to have to imagine imposing this complicated tree structure on our nice linear memory.
