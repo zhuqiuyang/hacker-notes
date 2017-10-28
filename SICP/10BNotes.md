@@ -204,3 +204,21 @@ sweep phase:
 
 > And I described to you what this sweep is like. I'm going to walk down from one end ofmemory or the other, I don't care where, scanning every cell that's in the memory. And as I scanthese cells, I'm going to link them together, if they are free, into the free list. And if they're notfree, I'm going to unmark them so the marks become zero.
 
+#### Minsky-Fenichel-Yochelson algorithm
+
+内存分为两块(fromSpace, toSpace)
+
+scan, copy.(copy后的是一块连续的空间)
+
+>  I believe no one has found a faster algorithm than that.
+
+QA:
+
+1. One thing you should realise is that garbage collectors have to be small.Not because they have to be fast, but because no one can debug a complicated garbage collector. A garbage collector, if it doesn't work, will trash your memory in such a way that you cannot figure out what the hell happened.
+
+### Part 3:
+
+
+
+
+
