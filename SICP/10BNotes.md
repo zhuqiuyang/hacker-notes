@@ -112,8 +112,6 @@ eg: Here we have the free list starting in 6.
 
  ### Part 2: Garbage
 
-
-
 e.g.: append two lists together
 
 > one way to do it is to reverse the first listonto the empty list and reverse that onto the second list.
