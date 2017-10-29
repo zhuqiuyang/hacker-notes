@@ -218,7 +218,69 @@ QA:
 
 ### Part 3:
 
+The answer is yes, there are things you can't compute.
+
+eg:(44:04)
+
+you'd like a program that would check that the thing you're going to do will work.
+
+```lisp
+; And what s does is it determines whether or not it's safe to run p on a.
+s[p, a] = 
+1. true: if p applied to a will converge to a value without an error
+2. false: if p of a loops forever or makes an error
+```
+
+提出问题:
+
+But the question is, can you write a procedure that compute the values of this function? Well let's assume that we can.
+
+1. 第一种证明方式:
 
 
 
+ Suppose that we have a procedure called "safe" that computes the value of s. Now I'm going to show you by several methods that you can't do this.
 
+通过悖论来证明?
+
+```
+(define diag1
+  (lambda (p)
+    (if (safe? p p)
+      (inf)
+      3)))
+
+(define inf
+  (lambda ()
+    ((lambda (x) (x x))
+      (lambda (x (x x))))))
+
+(diag1 diag1) => ?
+```
+
+if it's safe ot run `diag1` then it will go into an infinite loop which makes it, by definition, unsafe.
+
+if it's unsafe, the answer is `3`, so it's safe.
+
+Note: the `diag` name is a nod to [Cantor's diagonal argument](https://en.wikipedia.org/wiki/Cantor's_diagonal_argument). (历史原因: These are instances of a famous argument which was originally used by Cantor in the late part of the last century to provethat the real numbers were not countable, that there are too many real numbers to be countedby integers. )
+
+2. 第二种证明:
+
+```
+(define diag2
+  (lambda (p)
+    (if (safe? p p)
+      (other-than (p p))
+      false)))
+
+;; Always produces something else than its argument is
+(define other-than
+  lambda (x)
+    (if (= x 'A) 'B 'A))
+
+(diag2 diag2) => (other-than (diag2 diag2)) ?!?
+```
+
+QA:
+
+So I think that the standard top down design is a rather shallow business.
