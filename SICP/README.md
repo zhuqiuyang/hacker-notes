@@ -12,6 +12,10 @@
 >
 > There's not all that much difference between **what I can build** and **what I can imagine**
 
+Personal comment:
+
+> Analyse the essence about problem, then to solve it using *tools* (language, abstraction)
+
 #### Three Topic
 
 - black-box abstraction
