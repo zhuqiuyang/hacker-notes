@@ -14,7 +14,9 @@
 
 Personal comment:
 
-> Analyse the essence about problem, then to solve it using *tools* (language, abstraction)
+> 1. Analyse the essence about problem.
+> 2. Program is realize what you imagin.
+> 3. Should konw what you use will lead to.
 
 #### Three Topic
 
