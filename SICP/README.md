@@ -5,6 +5,12 @@
 > Don't confused of the essence of things what you are doing with the tools that you use.
 >
 > CS is about **how-to Imperative** knowledge. Formalize intuitions of process.
+>
+> Techniques that are controlling complexity are what this course is really about.
+>
+> The difference from other system, CS deal with idealized components.
+>
+> There's not all that much difference between **what I can build** and **what I can imagine**
 
 #### Three Topic
 
