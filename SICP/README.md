@@ -2,21 +2,31 @@
 
 ### 1A: Overview and Introduction to Lisp
 
-> Don't confused of the essence of things what you are doing with the tools that you use.
->
-> CS is about **how-to Imperative** knowledge. Formalize intuitions of process.
->
-> Techniques that are controlling complexity are what this course is really about.
->
-> The difference from other system, CS deal with idealized components.
->
-> There's not all that much difference between **what I can build** and **what I can imagine**
+- 提出问题:
 
-Personal comment:
+  > Don't confused of the essence of things what you are doing with the tools that you use.
+
+
+- CS:
+
+  > CS is about **how-to Imperative** knowledge. Formalize intuitions of process.
+  >
+  > Techniques that are controlling complexity are what this course is **really about**.
+  >
+  > The **difference** from other system, CS deal with idealized components.
+  >
+  > There's not all that much difference between **what I can build** and **what I can imagine**
+
+
+- Process & Procedure
+
+  > So procedures are the spells, if you like, that control these magical spirits that are the processes.
+
+Personal comment:(知己知彼)
 
 > 1. Analyse the essence about problem.
-> 2. Program is realize what you imagin.
-> 3. Should konw what you use will lead to.
+> 2. Program is realized by what you imagin.
+> 3. 我们的努力方向: Well, Lisp is the same way. We're going to state the rules in a few minutes, and it'll be very easy to see. But what's really **hard** is going to be the **implications** of those rules, how you exploit those rules to be a master programmer.
 
 #### Three Topic
 
