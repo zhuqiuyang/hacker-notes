@@ -303,3 +303,16 @@ An evaluator that is written in the same language that it evaluates is said to b
   - compiler has these preserving notes(*)
   - eg: `(fact n)`
 
+
+### 10B: Memory Allocation and Garbage Collection
+
+- Part 1: Vector
+
+  > To model computer memory, we use a new kind of data structure called a vector. 
+
+- Part 2: GC
+
+  - mark-sweep
+  - Minsky-Fenichel-Yochelson algorithm
+
+- Part 3: Not Everything can compute.
