@@ -11,7 +11,7 @@
 
   > CS is about **how-to Imperative** knowledge. Formalize intuitions of process.
   >
-  > Techniques that are controlling complexity are what this course is **really about**.
+  > Techniques that are **controlling complexity** are what this course is **really about**.
   >
   > The **difference** from other system, CS deal with idealized components.
   >
@@ -21,6 +21,8 @@
 - Process & Procedure
 
   > So procedures are the spells, if you like, that control these magical spirits that are the processes.
+  >
+  > a link between **procedures** we write and the **processes** that happen in the machine. (1A end)
 
 Personal comment:(知己知彼)
 
