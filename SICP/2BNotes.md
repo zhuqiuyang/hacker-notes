@@ -302,6 +302,6 @@ pairs
 ### Why did i terrify you in this way ?(震撼了)
 
 1. reinforce the idea of abstraction, 你确实可以do these things abstractly.
-2. blue the line between what's data and what's procedure.
+2. blur the line between what's data and what's procedure.
 
 > 在上个例子中,cons返回的其实是一个procedure。但我们却一直认为那是一个data.
