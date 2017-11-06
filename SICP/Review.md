@@ -1,3 +1,10 @@
+### 0 What we do:
+#### 0.1 OPEN_SOURCE
+#### 0.2 About
+control complexity
+#### 0.3 Learn what
+the link between procedure (we write) and process(run in machine).
+
 ### Eval & Apply (After 8B)
 
 Eval takes as arguments an expression and an environment.
