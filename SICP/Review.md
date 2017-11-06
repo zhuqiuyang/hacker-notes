@@ -5,6 +5,10 @@ control complexity
 #### 0.3 Learn what
 the link between procedure (we write) and process(run in machine).
 
+### 7A: Meta-Circular Evalutor
+>But what Lisp is is the fixed point of the process which says, if I knew what Lisp was and substituted it in for eval, and apply,
+Both side is Lisp. (理解正确?)
+
 ### Eval & Apply (After 8B)
 
 Eval takes as arguments an expression and an environment.
