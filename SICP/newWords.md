@@ -114,8 +114,9 @@
 | stash away             |                    藏匿                    |
 | blithely               |                漫不经心的, 开心的                |
 | pigeonholes            |             文件格 (课程中用来描述内存)              |
-| drum                   |               鼓              |
-| crud                   |               污垢              |
+| drum                   |                    鼓                     |
+| crud                   |                    污垢                    |
+| simultaneous           |                  同时的                   |
 
 
 
