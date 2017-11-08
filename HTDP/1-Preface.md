@@ -45,6 +45,13 @@ An interactive program development environment such as DrRacket simplifies the l
 > Without solid reading and comprehension skills, it is impossible to design programs that solve a reasonably complex problem.
 
 ### This Book and Its Parts
+The `purpose` of this book is to introduce readers without prior experience to the systematic design of programs.
+> The book consists of `six` parts separated by five intermezzos and is bookended by a Prologue and an Epilogue. While the major parts focus on program design, the intermezzos introduce supplementary concepts concerning programming mechanics and computing.
+
+![1-1](./img/1-1.png)
+
+
+
 ### The Differences
 ### Acknowledgments from the First Edition
 ### Acknowledgments
