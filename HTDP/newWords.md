@@ -1,2 +1,5 @@
 - tailor-made (定制的), tailor: 裁缝
 - spice (趣味, 调料)
+- ponder (仔细考虑)
+- depict (描画)
+- legitimate (合法的)
