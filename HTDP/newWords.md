@@ -3,3 +3,5 @@
 - ponder (仔细考虑)
 - depict (描画)
 - legitimate (合法的)
+- innard (内部结构)
+- succumb (屈服)
