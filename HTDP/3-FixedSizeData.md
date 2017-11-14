@@ -1,13 +1,39 @@
-1 Arithmetic
+#### 1.  Arithmetic
 The rest of this chapter introduces four forms of atomic data of BSL: numbers, strings, images, and Boolean values.
-The sections of this chapter introduce some of these functions, also called primitive operations or pre-defined operations.
+The sections of this chapter introduce some of these functions, also called `primitive operations` or pre-defined operations.
+
+
+
+Generally speaking, it is critical for a programmer to know how the chosen language calculates because ...
 
 1.1 The Arithmetic of Numbers
+
+- `e`:“Euler’s constant.”
+
 1.2 The Arithmetic of Strings
 1.3 Mixing It Up
 1.4 The Arithmetic of Images
-
-
 1.5 The Arithmetic of Booleans
 1.6 Mixing It Up with Booleans
-1.7 Predicates:   Know Thy Data
+1.7 Predicates:  Know Thy Data
+
+- `(sqrt -1)`: complex number
+- `number?`
+
+#### 2. Functions and Programs
+**programming** is concerned, **“arithmetic”** and **“algebra” **
+
+Specifically, the **algebra notions** needed are `variable`, `function definition`, `function application`, and `function composition`.
+
+2.1 Functions
+
+- Programs are **functions**.
+- programs consume **inputs** and **produce** outputs. 
+- programs work with **a variety of data**: numbers, strings, images, mixtures of all these, and so on. 
+- programs are **triggered** by events in the real world, and the outputs of programs affect the real world.
+- a program may **not consume** all of its input data at once
+
+2.2 Computing
+2.3 Composing Functions
+2.4 Global Constants
+2.5 Programs
