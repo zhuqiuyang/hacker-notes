@@ -5,3 +5,7 @@
 - legitimate (合法的)
 - innard (内部结构)
 - succumb (屈服)
+- monolithic (单一庞大的)
+- monopolisic (垄断的)
+- attendance (出席人数)
+- suffice (足够, 充分)

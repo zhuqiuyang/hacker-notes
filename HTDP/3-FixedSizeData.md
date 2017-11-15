@@ -34,6 +34,14 @@ Specifically, the **algebra notions** needed are `variable`, `function definitio
 - a program may **not consume** all of its input data at once
 
 2.2 Computing
+
+- stepper 调试
+- substitution model` ?
+
 2.3 Composing Functions
+
+- `main function` and `help function`
+- batch` 2.5会提及
+
 2.4 Global Constants
 2.5 Programs
