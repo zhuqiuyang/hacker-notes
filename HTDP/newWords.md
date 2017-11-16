@@ -9,3 +9,4 @@
 - monopolisic (垄断的)
 - attendance (出席人数)
 - suffice (足够, 充分)
+- staple (主要的)

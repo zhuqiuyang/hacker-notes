@@ -44,4 +44,21 @@ Specifically, the **algebra notions** needed are `variable`, `function definitio
 - batch` 2.5会提及
 
 2.4 Global Constants
+
+- UPPERCASE
+
 2.5 Programs
+
+From a coding perspective:
+
+- function & constant definition
+
+From the perspective of launching a program:
+
+- **Batch** program: consumes all of its inputs at once and computes its result.
+- **interactive** program: `event-driven,` eg : GUI
+
+##### big-bang ( 2htdp/universe)
+
+- keeps track of the state of the program.
+- `event-handler?`: a function that consumes the current state and a string that describes the key event and then returns a new state
