@@ -12,6 +12,9 @@ Whatever triggers a function application isn’t important, but do keep in mind 
 
 #### Many Ways to Compute
 #### One Program, Many Definitions
+
+- `magic number`: It is best to name such numbers in a definition.
+
 #### One More Definition
 #### You Are a Programmer Now
 
