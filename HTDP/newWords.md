@@ -10,3 +10,4 @@
 - attendance (出席人数)
 - suffice (足够, 充分)
 - staple (主要的)
+- plethora (过多)

@@ -62,3 +62,17 @@ From the perspective of launching a program:
 
 - keeps track of the state of the program.
 - `event-handler?`: a function that consumes the current state and a string that describes the key event and then returns a new state
+
+#### 3. How to design program
+
+A good program need good docs.
+
+3.1 Function Design
+
+##### Infomartion & Data
+
+All this **information** comes from a part of the real world—often called the program’s domain.
+
+For a program to process information, it must turn it into some form of **data** in the programming language
+
+(page 29 1117)
