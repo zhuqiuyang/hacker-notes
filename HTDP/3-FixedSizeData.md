@@ -75,4 +75,22 @@ All this **information** comes from a part of the real world—often called the 
 
 For a program to process information, it must turn it into some form of **data** in the programming language
 
-(page 29 1117)
+##### The Design Process
+
+1. Express how you wish to represent information as data
+2. signature: input & output , statement of purpose, function header: 
+3. give function examples.
+4. take inventory: template
+5. to code.
+6. test
+
+3.2 Finger Excise
+
+3.3 Domain knowledge:
+
+- external domain: domain expert.
+- library function
+
+3.4 From function to program
+
+- wish list
