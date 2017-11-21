@@ -94,3 +94,16 @@ For a program to process information, it must turn it into some form of **data**
 3.4 From function to program
 
 - wish list
+
+3.5 On testing
+
+```lisp
+(check-expect (render 50)
+              (place-image CAR 50 Y-CAR BACKGROUND))
+```
+
+3.6 Design World Program
+
+contant, event handler
+
+page 37

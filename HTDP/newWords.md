@@ -11,3 +11,8 @@
 - suffice (足够, 充分)
 - staple (主要的)
 - plethora (过多)
+- labor-intensive (劳动密集型的)
+- chore (家务活, 苦差) (形容测试)
+- intricate (错综复杂的)
+- retard (阻碍)
+- dub (把...称为)
