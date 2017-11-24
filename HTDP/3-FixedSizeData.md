@@ -104,6 +104,10 @@ For a program to process information, it must turn it into some form of **data**
 
 3.6 Design World Program
 
-contant, event handler
+Sample Problem: big-bang `move-car`
 
-page 37
+> Good programmers establish a **single point of control** for all aspects of their programs, not just the graphical constants.
+
+1. First, this book and its software strictly separate the data that a program tracks—the model—and the image that it shows—the view. 
+2. Second, the design recipes for programs and functions organize programs in the right way.
+
