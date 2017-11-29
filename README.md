@@ -1,6 +1,10 @@
 # notes
 Personal learning notes.
 
+述而不作, 信而好古.
+
+学而不思则罔, 思而不学则殆.
+
 ### 1. [How to Become A Hacker](http://www.catb.org/esr/faqs/hacker-howto.html) - Eric Steven Raymond
 
 > Not simply by accumulating languages — you need to learn how to think about programming problems in a general way, independent of any one language.
