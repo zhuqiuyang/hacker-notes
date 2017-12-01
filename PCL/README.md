@@ -11,3 +11,29 @@
 > Lisp, in addition to incorporating small changes that make particular programs easier to write
 
 http://www.norvig.com/java-lisp.html
+
+### 7. macros-standard-control-constructs
+http://www.gigamonkeys.com/book/macros-standard-control-constructs.html
+
+#### Do
+basic template:
+```lisp
+(do (variable-definition*)
+    (end-test-form result-form*)
+  statement*)
+```
+variable-define
+```lisp
+(var init-form step-form)
+```
+
+```lisp
+;;; 定义3个变量
+;;; 当 (= 10 n), 返回result为cur的值
+(do ((n 0 (1+ n))
+     (cur 0 next)
+     (next 1 (+ cur next)))
+    ((= 10 n) cur))
+```
+
+#### The Mighty LOOP
