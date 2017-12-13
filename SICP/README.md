@@ -287,7 +287,7 @@ An evaluator that is written in the same language that it evaluates is said to b
   - Complecated Recursion(Fib)
   - Don't save unimportant thing (don't need later)
 
-### Explicit-control Evaluator
+### 9B: Explicit-control Evaluator
 
 - Part 1:
   - 指出: 把Meta-circular evaluator 转换成 register machine, 这样所有lisp都将被translate.
