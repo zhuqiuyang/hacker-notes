@@ -50,3 +50,25 @@ Notice that the **evaluation rule** given above does not handle `definitions`. F
 Such exceptions to the general evaluation rule are called **special forms**.
 
 > Each special form has its own evaluation rule. The various kinds of expressions (each with its associated evaluation rule) constitute the syntax of the programming language. 
+
+## Compiler & interpreter
+compiler & interpreter 是两个相反的过程:
+- interpreter: 用machine code实现`evaluator`, up machine to high-level
+- compiler: source code -> machine code
+
+### 5.1 Designing Register Machines
+To design a register machine, we must design its **data paths** (registers and operations) and the **controller** that sequences these operations.
+
+### 5.4 The Explicit-Control Evaluator
+how the behavior of a Scheme `interpreter` can be described in terms of the procedures `eval` and `apply`.
+
+### 5.5 Comilation
+> http://sarabander.github.io/sicp/html/5_002e5.xhtml#g_t5_002e5
+
+The explicit-control evaluator of 5.4 is a register machine whose controller interprets Scheme programs.
+
+Two way gap High-level lang and register-machine language:
+- interpreter: The explicit-control evaluator illustrates the strategy of interpretation.
+- compiler: A compiler for a given source language and machine translates a source program into an equivalent program (called the object program) written in the machine’s native language. 
+
+Lisp interpreters are generally organized so that interpreted procedures and compiled procedures can call each other.
