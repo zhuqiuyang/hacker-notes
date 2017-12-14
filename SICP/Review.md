@@ -55,7 +55,8 @@ Such exceptions to the general evaluation rule are called **special forms**.
 > https://www.youtube.com/watch?v=1OukpDfsuXE
 compiler & interpreter Both **transform** `source` -> `machine code`, just in different *time*, because computer just know `machine code`:
 - interpreter(flexible): 运行时把`source` -> `machine code`,相当于up machine to high-level.
-- compiler(fast): source code -> machine code
+  - `inter` is between `source` and `machine`
+- compiler(fast): `source code` -> `machine code`
 
 Why?
 - some rules 确定的时间不一样:
