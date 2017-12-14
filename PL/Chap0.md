@@ -1,81 +1,103 @@
-A Potted History
-Introduction
+## Introduction
+### A Potted History
 Perl was originally written by Larry Wall while he was working at NASA's Jet Propulsion Labs. Larry is an Internet legend: Not only is he well-known for Perl, but as the author of the UNIX utilities rn, which was one of the original Usenet newsreaders, and patch, a tremendously useful utility that takes a list of differences between two files and allows you to turn one into the other. The word 'patch' used for this activity is now widespread.
+
 Perl started life as a 'glue' language, for the use of Larry and his officemates, allowing one to 'stick' different tools together by converting between their various data formats. It pulled together the best features of several languages: the powerful regular expressions from sed (the UNIX stream editor), the pattern-scanning language awk, and a few other languages and utilities. The syntax was further made up out of C, Pascal, Basic, UNIX shell languages, English and maybe a few other things along the way.
+
 Version 1 of Perl hit the world on December 18, 1987, and the language has been steadily developing since then, with contributions from innumerable people. Perl 2 expanded the regular expression support, while Perl 3 allowed Perl to deal with binary data. Perl 4 was released so that the Camel Book (see the Resources section at the end of this chapter) could refer to a new version of Perl.
+
 Perl 5 has seen some rather drastic changes in syntax and some pretty fantastic extensions to the language. Perl 5 is (more or less) backwardly compatible with previous versions of the language, but at the same time, makes a lot of the old code obsolete. Perl 4 code may still run, but Perl 4 style is definitely frowned upon these days.
+
 At the time of writing, the current stable release of Perl is 5.6, which is what this book will detail. That said, the maintainers of Perl are very careful to ensure that old code will run, perhaps all the way back to Perl 1 – changes and features that break existing programs are evaluated extremely seriously. Everything you see here will continue to function in the future.
+
 I say 'maintainers' because Larry no longer looks after Perl by himself – there is a group of 'porters' who maintain the language and produce new releases. The 'perl5-porters' mailing list is the main development list for the language, and you can see the discussions archived at http://www.xray.mpe.mpg.de/mailing-lists/perl5-porters/. For each release, one of the porters will carry the 'patch pumpkin' – the responsibility for putting together and releasing the next version of Perl.
 
-Introduction
  Where is Perl going in the future? Well, we expect Perl to develop steadily up the 5.x release series, adding more useful features and steadily deprecating more and more of the accumulated old- fashionedness, making it harder for people to justify the myth that Perl 4 is still alive and well.
-There is at least one existing project to rewrite Perl from scratch: Chip Salzenberg is heading up a team called the Topaz project, which aims to produce a faster, more efficient Perl. Topaz is being written in C++, rather than C, but hopes to remain compatible with Perl 5. At the moment, the Topaz team isn't planning to add any new features to the language, but I'm sure that as the project gains momentum, more features will be added. You might sometimes hear Topaz referred to as Perl 6, but it'll only really become Perl 6 if Larry likes it – the way things are going, Topaz won't be in common use for quite some time yet, and I expect that Perl 6 will be the natural development of the current Perl.
-Why Perl?
-Just like the Basic programming language, the name 'Perl' isn't really an acronym. People like making up acronyms though, and Larry has two favorite expansions. According to its creator, perl is the Practical Extraction and Report Language, or the Pathologically Eclectic Rubbish Lister. Either way, it doesn't really matter. Perl is a language for doing what you want to do.
-The Perl motto is 'There's More Than One Way To Do It', emphasizing both the flexibility of Perl and the fact that Perl is about getting the job done. We can say that one Perl program is faster, or more idiomatic, or more efficient than another, but if both do the same thing, Perl isn't going to judge which one is 'better'. It also means that you don't need to know every last little detail about the language in order to do what you want with it. You'll probably be able to achieve a lot of the tasks you might want to use Perl for after the first four or five chapters of this book.
-Perl has some very obvious strengths
-❑ It's very easy to learn, and learning a little Perl can get you a long way.
-❑ Perl was designed to be easy for humans to write, rather than easy for computers to understand. The syntax of the language is a lot more like a human language than the strict, rigid grammars and structures of other languages, so it doesn't impose a particular way of thinking upon you.
-❑ Perl is very portable; That means what it sounds like – you can pick up a Perl program and carry it around between computers. Perl is available for a huge variety of operating systems and computers, and properly written programs should run almost anywhere that Perl does without any change.
-❑ Perl talks text. It thinks about words and sentences, where other languages see the character at a time. It also thinks about files in terms of lines, not individual bytes. Its 'regular expressions' allow you to search for and transform text in innumerable ways with ease and speed.
-❑ Perl is what is termed a 'high-level language'. Some languages like C concern you with unnecessary, 'low-level' details about the computer's operation: making sure you have enough free memory, making sure all parts of your program are set up properly before you try to use them, and leaving you with strange and unfriendly errors if you don't do so. Perl cuts you free from all this.
-However, since Perl is so easy to learn and to use, especially for quick little administrative tasks, 'real' Perl users tend to write programs for small, specific jobs. In these cases, the code is meant to have a short lifespan and is for the programmer's eyes only. The problem is, these programs
-2
 
-Introduction
+There is at least one existing project to rewrite Perl from scratch: Chip Salzenberg is heading up a team called the Topaz project, which aims to produce a faster, more efficient Perl. Topaz is being written in C++, rather than C, but hopes to remain compatible with Perl 5. At the moment, the Topaz team isn't planning to add any new features to the language, but I'm sure that as the project gains momentum, more features will be added. You might sometimes hear Topaz referred to as Perl 6, but it'll only really become Perl 6 if Larry likes it – the way things are going, Topaz won't be in common use for quite some time yet, and I expect that Perl 6 will be the natural development of the current Perl.
+
+### Why Perl?
+Just like the Basic programming language, the name 'Perl' isn't really an acronym. People like making up acronyms though, and Larry has two favorite expansions. According to its creator, perl is the Practical Extraction and Report Language, or the Pathologically Eclectic Rubbish Lister. Either way, it doesn't really matter. Perl is a language for doing what you want to do.
+
+The Perl motto is 'There's More Than One Way To Do It', emphasizing both the flexibility of Perl and the fact that Perl is about getting the job done. We can say that one Perl program is faster, or more idiomatic, or more efficient than another, but if both do the same thing, Perl isn't going to judge which one is 'better'. It also means that you don't need to know every last little detail about the language in order to do what you want with it. You'll probably be able to achieve a lot of the tasks you might want to use Perl for after the first four or five chapters of this book.
+
+Perl has some very obvious strengths:
+- It's very easy to learn, and learning a little Perl can get you a long way.
+- Perl was designed to be easy for humans to write, rather than easy for computers to understand. The syntax of the language is a lot more like a human language than the strict, rigid grammars and structures of other languages, so it doesn't impose a particular way of thinking upon you.
+- Perl is very portable; That means what it sounds like – you can pick up a Perl program and carry it around between computers. Perl is available for a huge variety of operating systems and computers, and properly written programs should run almost anywhere that Perl does without any change.
+- Perl talks text. It thinks about words and sentences, where other languages see the character at a time. It also thinks about files in terms of lines, not individual bytes. Its 'regular expressions' allow you to search for and transform text in innumerable ways with ease and speed.
+- Perl is what is termed a 'high-level language'. Some languages like C concern you with unnecessary, 'low-level' details about the computer's operation: making sure you have enough free memory, making sure all parts of your program are set up properly before you try to use them, and leaving you with strange and unfriendly errors if you don't do so. Perl cuts you free from all this.
+However, since Perl is so easy to learn and to use, especially for quick little administrative tasks, 'real' Perl users tend to write programs for small, specific jobs. In these cases, the code is meant to have a short lifespan and is for the programmer's eyes only. The problem is, these programs
+
  may live a little longer than the programmer expects and be seen by other eyes too. The result is a cryptic one-liner that is incomprehensible to everyone but the original programmer. Because of the proliferation of these rather concise and confusing programs, Perl has developed a reputation for being arcane and unintelligible – one that I hope we can dispel during the course of this book.
+
 This reputation is unfair. It's possible to write code that is tortuous and difficult to follow in any programming language, and Perl was never meant to be difficult. In fact, Perl is one of the easiest languages to learn, especially given its scope and flexibility.
 Throughout this book you will learn how to avoid the stereotypical 'spaghetti code' and how to write programs that are both easy to write and easy to follow. Let's work to kill off this negative image.
-It's Free
+### It's Free
 Larry started (and indeed, continued) Perl with the strong belief that software should be free – freely available, freely modifiable, and freely distributable. Perl is developed and maintained by the porters, who are volunteers from the Perl user community, all of whom strive to make Perl as good as possible.
+
 This has a few nice side effects – the porters are working for love, rather than merely because it's their job, so they're motivated solely by their desire to see a better Perl. It also means Perl will continue to be free to use and distribute.
+
 This doesn't mean that Perl is part of the GNU suite of utilities. The GNU ("GNU's Not UNIX") project was set up to produce a freely usable, distributable, and modifiable version of the UNIX operating system and its tools. It now produces a lot of helpful, free utilities. Perl is included in distributions of GNU software, but Perl itself is not a product of the Free Software Foundation, the body that oversees GNU.
+
 While Perl can be distributed under the terms of the GNU Public License (which you can find at http://www.gnu.org/), it can also be distributed under the Artistic License (found either with the perl sources or at http://www.opensource.org/licenses/), which purports to give more freedom to users and more security to developers than the GPL. You may judge for yourself – we've included these licenses in Appendix G.
+
 Of course, those wanting to use Perl at work might be a little put off by this – managers like to pay money for things and have pieces of paper saying that they can get irate at someone if it all stops working. There's a question in the Perl FAQ (Frequently Asked Questions) about how to get a commercial version or support for Perl, and we'll see how you can find out the answer for yourself pretty soon.
-What Is Perl Used For?
+
+### What Is Perl Used For?
 Far and away the most popular use of Perl is for CGI programming – that is, dynamically generating web pages. A whole chapter is devoted to introducing CGI programming in Perl. Perl is the power behind some of the most popular sites on the web: Slashdot (http://www.slashdot.org/), Amazon (http://www.amazon.com/), and Deja (http://www.deja.com/), and many others besides are almost entirely Perl-driven. We'll also look at some of the more recent extensions to the Perl/CGI concept: PerlScript, mod_perl and HTML::Mason, which are becoming widely used.
-3
 
-Introduction
  Of course Perl is still widely used for its original purpose: extracting data from one source and translating it to another format. This covers everything from processing and summarizing system logs, through manipulating databases, reformatting text files, and simple search-and-replace operations, to something like alien, a program to port Linux software packages between different distributors' packaging formats. Perl even manages the data from the Human Genome Project, a task requiring massive amounts of data manipulation.
-For system administrators, Perl is certainly the 'Swiss Army chainsaw' that it claims to be. It's great for automating administration tasks, sending automatically generated mails and generally tidying up the system. It can process logs, report information on disk usage, produce reports on resource use and watch for security problems. There are also extensions that allow Perl to deal with the Windows registry and run as a Windows NT service, not to mention functions built into that allow it to manipulate UNIX passwd and group file entries.
-However, as you might expect, that's not all. Perl is becoming the de facto programming language of the Internet its networking capabilities have allowed it to be used to create clients, servers, and proxies for things such as IRC, WWW, FTP, and practically every other protocol you wish to think of. It's used to filter mail, automatically post news articles, mirror web sites, automate downloading and uploading, and so on. In fact, it's hard to find an area of the Internet in which Perl isn't used.
-Windows, UNIX, and Other Operating Systems
-Perl is one of the most portable, if not the most portable programming languages around. It can be compiled on over 70 operating systems, and you can get binary distributions for most common platforms. Over the course of the book, we'll be looking at programs that can run equally well on almost any operating system.
-When we're setting up Perl and running our examples, we'll concentrate particularly on UNIX and Windows. By UNIX, I mean any commercial or free UNIX-like implementation – Solaris, Linux, Net-, Free- and OpenBSD, HP/UX, A/IX, and so on. Perl's home platform is UNIX, and 90% of the world uses Windows. That said, the Perl language is the same for everyone. If you need help with your particular platform, you will probably be able to find a README file for it in the Perl source distribution. We'll see how to get hold of that in the next chapter.
-While we're talking about operating system specifics, we'll use the filename extension .plx for our examples. Traditionally, UNIX programs take no extension, and Windows files take a three-letter extension to indicate their type. .plx is used by ActiveState to indicate a Perl program. Since UNIX isn't fussy, we'll use that idiom. You may also see the extension .pl in use for Perl programs (and, in fact, I use it myself from time to time to remind me that a given program is in fact a Perl one), but to be really pedantic, that's more properly used for Perl 4 libraries. These have, for the most part, been replaced by Perl 5 modules, which generally have the extension .pm. To avoid confusion, we won't use the .pl extension.
-You can also get more information on portable Perl programming from the perlport documentation. Again, we'll see how to access this documentation very soon.
-4
 
-Introduction
- The Prompt
+For system administrators, Perl is certainly the 'Swiss Army chainsaw' that it claims to be. It's great for automating administration tasks, sending automatically generated mails and generally tidying up the system. It can process logs, report information on disk usage, produce reports on resource use and watch for security problems. There are also extensions that allow Perl to deal with the Windows registry and run as a Windows NT service, not to mention functions built into that allow it to manipulate UNIX passwd and group file entries.
+
+However, as you might expect, that's not all. Perl is becoming the de facto programming language of the Internet its networking capabilities have allowed it to be used to create clients, servers, and proxies for things such as IRC, WWW, FTP, and practically every other protocol you wish to think of. It's used to filter mail, automatically post news articles, mirror web sites, automate downloading and uploading, and so on. In fact, it's hard to find an area of the Internet in which Perl isn't used.
+
+### Windows, UNIX, and Other Operating Systems
+Perl is one of the most portable, if not the most portable programming languages around. It can be compiled on over 70 operating systems, and you can get binary distributions for most common platforms. Over the course of the book, we'll be looking at programs that can run equally well on almost any operating system.
+
+When we're setting up Perl and running our examples, we'll concentrate particularly on UNIX and Windows. By UNIX, I mean any commercial or free UNIX-like implementation – Solaris, Linux, Net-, Free- and OpenBSD, HP/UX, A/IX, and so on. Perl's home platform is UNIX, and 90% of the world uses Windows. That said, the Perl language is the same for everyone. If you need help with your particular platform, you will probably be able to find a README file for it in the Perl source distribution. We'll see how to get hold of that in the next chapter.
+
+While we're talking about operating system specifics, we'll use the filename extension .plx for our examples. Traditionally, UNIX programs take no extension, and Windows files take a three-letter extension to indicate their type. .plx is used by ActiveState to indicate a Perl program. Since UNIX isn't fussy, we'll use that idiom. You may also see the extension .pl in use for Perl programs (and, in fact, I use it myself from time to time to remind me that a given program is in fact a Perl one), but to be really pedantic, that's more properly used for Perl 4 libraries. These have, for the most part, been replaced by Perl 5 modules, which generally have the extension .pm. To avoid confusion, we won't use the .pl extension.
+
+You can also get more information on portable Perl programming from the perlport documentation. Again, we'll see how to access this documentation very soon.
+
+### The Prompt
 If you're primarily using your computer in a graphical environment like Windows or X, you may not be familiar with using the command line interface, or 'shell'. Before these graphical environments came into common use, users had to start a new program, not by finding its icon and clicking on it but by typing its name. The 'shell' is the program that takes the name from you. The 'shell prompt' (or just 'prompt') refers specifically to the text that prompts you to enter a new program name, and more generally, to working with the shell instead of using a graphical interface. Some people still find working with the shell much easier, and sophisticated shells have developed to simplify common tasks. In fact, on UNIX, the shell is programmable, and Perl takes some of its inspiration from standard 'Bourne Shell' programming practices.
 To get to a prompt in Windows, look for Command Prompt or DOS Prompt in the Start Menu. UNIX users should look for a program called something like console, terminal, konsole, xterm, eterm or kterm. You'll then be faced with a usually black screen with a small amount of text that may say:
+```
 $
 % C:\>
 # bash$
+```
 For the purposes of this book, however, we'll use a prompt that looks like this:
+```
 >
+```
 We'll show text that you type in is bold. The text the computer generates is in a lighter typeface, like this:
 > perl helloworld.plx Hello World!
-The command line may look scary at first, but you'll quickly get used to it as we go through the following examples and exercises. Note that ActiveState Perl will allow you to click on Perl programs and run them directly from the GUI if they have a .pl or .plx extension. (Later in the introduction, we'll show how you can manually configure Windows to do this.) However, the window containing the output will disappear as soon as the program has finished (try it!), and you won't be able to see what's happened, so I encourage you to use the shell instead.
-What Do I Need To Use This Book?
-As we've said, Perl is available for almost any kind of computer that has a keyboard and a screen, but we will be concentrating on perl for Windows and UNIX. Perl 5.6 will run on Windows 95 and 98 as well as NT and 2000. It'll run on more or less any UNIX, although you may find compilation is difficult if you don't have the latest C libraries. Any 2.x Linux kernel should be fine, likewise Solaris 2.6 or higher.
-As well as Perl itself, you'll need a text editor to write and edit Perl source files. We look at a couple of options in Chapter 1.
-5
 
-Introduction
+The command line may look scary at first, but you'll quickly get used to it as we go through the following examples and exercises. Note that ActiveState Perl will allow you to click on Perl programs and run them directly from the GUI if they have a .pl or .plx extension. (Later in the introduction, we'll show how you can manually configure Windows to do this.) However, the window containing the output will disappear as soon as the program has finished (try it!), and you won't be able to see what's happened, so I encourage you to use the shell instead.
+
+### What Do I Need To Use This Book?
+As we've said, Perl is available for almost any kind of computer that has a keyboard and a screen, but we will be concentrating on perl for Windows and UNIX. Perl 5.6 will run on Windows 95 and 98 as well as NT and 2000. It'll run on more or less any UNIX, although you may find compilation is difficult if you don't have the latest C libraries. Any 2.x Linux kernel should be fine, likewise Solaris 2.6 or higher.
+
+As well as Perl itself, you'll need a text editor to write and edit Perl source files. We look at a couple of options in Chapter 1.
+
  To get the most out of some chapters, you'll also need to have an Internet connection.
+
 For the chapter on CGI, you'll need a web server that supports CGI scripting. Apache is a good bet on UNIX machines (and it's included in most Linux distributions). Windows users could also use Apache, or alternatively, Microsoft's Personal Web Server (for 95 and 98). Internet Information Server (for NT and 2000) can be configured to run Perl CGIs. To use mod_perl, you'll have to use Apache, which you can obtain from http://www.apache.org.
-How Do I Get Perl?
+
+### How Do I Get Perl?
 Perl has been ported to many, many platforms. It will almost certainly build and run on anything that looks like (or pretends to be) UNIX, such as Linux, Solaris, A/IX, HP/UX, FreeBSD, or even the Cygwin32 UNIX environment for Windows. Most other current operating systems are supported: Windows 95, 98, NT, and 2000, OS/2, VMS, DOS, BeOS, the Apple MacOS, and AmigaOS to name but a few.
-❑ You can get the source to the latest stable release of Perl from http://www.perl.com/CPAN- local/src/stable.tar.gz.
-❑ Binary distributions for some ports will appear in http://www.perl.com/CPAN-local/ports. These ports may differ in implementation from the original sources.
-❑ You can get binary packages of Perl for Linux, Solaris, and Windows from ActiveState at http://www.activestate.com/ActivePerl/download.htm.
-❑ Linux users should be able to get binary packages from the contrib section of their distributor's FTP site.
+
+- You can get the source to the latest stable release of Perl from http://www.perl.com/CPAN- local/src/stable.tar.gz.
+- Binary distributions for some ports will appear in http://www.perl.com/CPAN-local/ports. These ports may differ in implementation from the original sources.
+- You can get binary packages of Perl for Linux, Solaris, and Windows from ActiveState at http://www.activestate.com/ActivePerl/download.htm.
+- Linux users should be able to get binary packages from the contrib section of their distributor's FTP site.
 Installing on Linux/UNIX
 As I said, Perl is freely available. If you're running a Linux system, then you probably got Perl packaged with your distribution. Type perl –v from a shell prompt to check this. If you see something that starts with the text This is perl, then congratulations – you already have Perl. It should, however, go on to give you a version number. If that's less than v5.6.0 then you'll need to upgrade to a newer version to run the code as we've written it in this book. A few minor tweaks will get it running in earlier versions of Perl, but there's nothing like starting with the most up-to-date version of a toy, is there?
-If you are running a package-based Linux system, such as Red Hat, SuSE, or Debian, then you have the choice of installing Perl using your system package manager, which makes upgrading and uninstalling simple. However, at the time of writing, this was complicated by the lack of availability of Perl 5.6 binary packages. ActiveState (http://www.activestate.com) makes packages in both RPM and Debian format, and if you don't already have Perl installed, these are fine. However, you may find it difficult to upgrade an existing Perl installation to ActivePerl using the package manager. In this case, installation from source may be your only option. The major distributors should, however, be making Perl 5.6 packages available from their FTP sites soon, which will allow you to upgrade.
+If you are running a package-based Linux system, such as Red Hat, SuSE, or Debian, then you have the choice of installing Perl using your system package manager, which makes upgrading and uninstalling simple. However, at the time of writing, this was complicated by the lack of availability of Perl 5.6 binary packages. ActiveState (http://www.activestate.com) makes packages in both RPM and Debian format, and if you don't already have Perl installed, these are fine. Howevenr, you may find it difficult to upgrade an existing Perl installation to ActivePerl using the package manager. In this case, installation from source may be your only option. The major distributors should, however, be making Perl 5.6 packages available from their FTP sites soon, which will allow you to upgrade.
 Installing/Upgrading an RPM Installation
 If you are installing the ActivePerl RPM from ActiveState, you need to type:
 > rpm --prefix=/usr/local -Uvh ActivePerl-5.6.0.613.rpm ActivePerl ############################
@@ -230,20 +252,20 @@ Introduction
        Because CPAN is a network of sites, there are mirror sites around the world – the
    CPAN multiplexer takes you to your nearest site. Find it at http://www.perl.com/CPAN (note: no trailing slash!)
      Other important Perl sites are:
-❑ http://www.perlclinic.com/ – Paul Ingram's Perl Clinic, providing commercial Perl support and training
-❑ http://www.perlfaq.com/ – an alternative, and very comprehensive, FAQ site
-❑ http://www.tpj.com/ – the home of the Perl Journal
-❑ http://www.activestate.com/ – the home of Perl on Windows
-❑ http://www.perl.org/ – Perl Mongers, a worldwide umbrella organisation for Perl user groups
-❑ http://www.perlarchive.com/ - another great source of articles, tutorials and information
+- http://www.perlclinic.com/ – Paul Ingram's Perl Clinic, providing commercial Perl support and training
+- http://www.perlfaq.com/ – an alternative, and very comprehensive, FAQ site
+- http://www.tpj.com/ – the home of the Perl Journal
+- http://www.activestate.com/ – the home of Perl on Windows
+- http://www.perl.org/ – Perl Mongers, a worldwide umbrella organisation for Perl user groups
+- http://www.perlarchive.com/ - another great source of articles, tutorials and information
 Newsgroups
 Perl is so cool it has its own Usenet hierarchy, comp.lang.perl.*. The groups in it are:
-❑ comp.lang.perl.announce for Perl-related announcements: new modules, new versions of
+- comp.lang.perl.announce for Perl-related announcements: new modules, new versions of
 Perl, conferences and so on.
-❑ comp.lang.perl.misc for general Perl chat and questions.
-❑ comp.lang.perl.moderated, which requires prior registration before posting, but is excellent for sensible questions and in-depth discussion of Perl's niggly bits.
-❑ comp.lang.perl.modules, for discussion and queries relating to creating and using Perl modules.
-❑ comp.lang.perl.tk, for discussion and queries relating to the Tk graphical extensions. IRC
+- comp.lang.perl.misc for general Perl chat and questions.
+- comp.lang.perl.moderated, which requires prior registration before posting, but is excellent for sensible questions and in-depth discussion of Perl's niggly bits.
+- comp.lang.perl.modules, for discussion and queries relating to creating and using Perl modules.
+- comp.lang.perl.tk, for discussion and queries relating to the Tk graphical extensions. IRC
 If you've got a more urgent mindbender, or just want to hang around like-minded individuals, come join #perl on Efnet (See http://www.efnet.org/). Make sure you read the channel rules (at http://pound.perl.org/RTFM/) and the Perl documentation thoroughly first, though. Asking questions about CGI or topics covered in the FAQ or the perldoc documentation is highly inflammatory behavior.
 If that hasn't put you off, come over and say hi to me. (I have no imagination, so my nick is usually Simon.)
 Books
