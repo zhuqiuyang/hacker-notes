@@ -4,7 +4,7 @@ Personal learning notes.
 述而不作, 信而好古.
 
 学而不思则罔, 思而不学则殆.
-- 理智 真实 本质
+- 理智 真实 本质(No more details)
 - history, fill gap
 
 ### 1. [How to Become A Hacker](http://www.catb.org/esr/faqs/hacker-howto.html) - Eric Steven Raymond
