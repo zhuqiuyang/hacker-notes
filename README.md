@@ -8,9 +8,10 @@ Personal learning notes.
 ### 理智
 - 直接
   - find your real need, fill gap
-- 真实, 本质(No more details)
+- 真实, 本质, 专注
   - Find Real, No magice
   - Find essence, No more detail.
+  - 少违理情想, 多内省, 少做 no use thing.
 - history: know why?
   - create it or do it this way.
 - 去分别, 执着
