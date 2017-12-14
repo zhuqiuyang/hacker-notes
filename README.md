@@ -9,6 +9,14 @@ Personal learning notes.
 
 ### 1. [How to Become A Hacker](http://www.catb.org/esr/faqs/hacker-howto.html) - Eric Steven Raymond
 
+1. Learn How to Program:
+- recommend order: C, Lisp, Java
+- serious programming: C/C++
+- important to hackers: include Perl and LISP.
+  > Perl is worth learning for practical reasons; it's very widely used for active web pages and system administration, so that even if you never write Perl you should learn to read it.
+  >
+- Five: Python, C/C++, Java, Perl, and LISP.
+  > they represent very different approaches to programming
 > Not simply by accumulating languages — you need to learn how to think about programming problems in a general way, independent of any one language.
 >
 > To be a real hacker, you need to get to the point where you can learn a new language in days by relating what's in the manual to what you already know.
