@@ -52,9 +52,17 @@ Such exceptions to the general evaluation rule are called **special forms**.
 > Each special form has its own evaluation rule. The various kinds of expressions (each with its associated evaluation rule) constitute the syntax of the programming language. 
 
 ## Compiler & interpreter
-compiler & interpreter 是两个相反的过程:
-- interpreter: 用machine code实现`evaluator`, up machine to high-level
-- compiler: source code -> machine code
+> https://www.youtube.com/watch?v=1OukpDfsuXE
+compiler & interpreter Both **transform** `source` -> `machine code`, just in different *time*, because computer just know `machine code`:
+- interpreter(flexible): 运行时把`source` -> `machine code`,相当于up machine to high-level.
+- compiler(fast): source code -> machine code
+
+Why?
+- some rules 确定的时间不一样:
+  - 数据类型
+  - 语法(macro...)
+  - 确定的早fast(compiler), 确定晚flexible(interpreter)
+- 两者搭配使用可以兼具flexible & fast.
 
 ### 5.1 Designing Register Machines
 To design a register machine, we must design its **data paths** (registers and operations) and the **controller** that sequences these operations.
