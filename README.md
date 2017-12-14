@@ -1,11 +1,20 @@
 # notes
 Personal learning notes.
 
-述而不作, 信而好古.
+>述而不作, 信而好古.
+>
+>学而不思则罔, 思而不学则殆.
 
-学而不思则罔, 思而不学则殆.
-- 理智 真实 本质(No more details)
-- history, fill gap
+### 理智
+- 直接
+  - find your real need, fill gap
+- 真实, 本质(No more details)
+  - Find Real, No magice
+  - Find essence, No more detail.
+- history: know why?
+  - create it or do it this way.
+- 去分别, 执着
+  - 去伪存真.
 
 ### 1. [How to Become A Hacker](http://www.catb.org/esr/faqs/hacker-howto.html) - Eric Steven Raymond
 
