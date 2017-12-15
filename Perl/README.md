@@ -14,6 +14,11 @@ IDE: Komodo
 
 ### variable
 - `my`: lexical scope
+- `$_`: default variable
+- `@_`: args pass to subroutine
+- `@array`:"in scalar context", get length of the array,
+- `$array[0]`: `$` means get single value from Array.
+- `@array[0..2]`: `@` means get multiple value(slice) from Array.
 ```pl
 # scalar(single value)
 my $animal = "camel";
@@ -25,9 +30,27 @@ my %fruit_color = (
      apple  => "red",
      banana => "yellow",
  );
+# reference
+my $variables = {
+    scalar  =>  {
+                description => "single item",
+                sigil => '$',
+                },
+    array   =>  {
+                description => "ordered list of items",
+                sigil => '@',
+                },
+    hash    =>  {
+                description => "key/value pairs",
+                sigil => '%',
+                },
+};
+print "Scalars begin with a $variables->{'scalar'}->{'sigil'}\n";
 ```
+> A reference is a scalar value and can refer to any other Perl data type.
 
-### conditional
+### conditional & loop
+- if 
 ```pl
  # the traditional way
  if ($zippy) {
@@ -36,6 +59,18 @@ my %fruit_color = (
  # the Perlish post-condition way
  print "Yow!" if $zippy;
  print "We have no bananas" unless $bananas;
+```
+
+- foreach
+```pl
+ foreach (@array) {
+     print "This element is $_\n";
+ }
+ print $list[$_] foreach 0 .. $max;
+ # you don't have to use the default $_ either...
+ foreach my $key (keys %hash) {
+     print "The value of $key is $hash{$key}\n";
+ }
 ```
 
 ### operator
@@ -75,9 +110,31 @@ my %fruit_color = (
 ```
 
 ### Files and I/O
-`<` `>` `<>`
-- scalar context: read line by line
-- list context: read whole
+- `<`: read file
+- `>`: output
+- `>>`: output append
+```pl
+open(my $in,  "<",  "input.txt")  or die "Can't open input.txt: $!";
+open(my $out, ">",  "output.txt") or die "Can't open output.txt: $!";
+open(my $log, ">>", "my.log")     or die "Can't open my.log: $!";
+```
+- `<>`: read from `file handler`
+```pl
+# scalar context: read line by line
+my $line  = <$in>;
+# list context: read whole
+my @lines = <$in>;
+```
+- close filehandler
+```pl
+close $in or die "$in: $!";
+```
 
 ### RegExp
 - 是js RegExp的超集
+
+### subroutine
+
+### OO Perl
+
+### Using Perl modules
