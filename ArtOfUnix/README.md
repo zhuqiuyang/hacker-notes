@@ -82,3 +82,39 @@ Chap 20 会介绍 UNIX 社区正努力解决 Unix 自身问题, 并重新掌握�
 * 分离 interfaces from engines
   * Emacs: embedded Lisp interpreter(interface) to `control` editing primitives(engine) written in C
   * 前端实现 policy; 后端, mechanism. (chap 5&7)
+
+##### Rule of Simplicity: Design for simplicity; add complexity only where you must.
+
+> 设计要简单, 如无需要, 勿增加复杂度
+
+The `only way` to avoid these traps is to encourage a software culture that knows that `small is beautiful`
+
+##### Design for visibility to make inspection and debugging easier.
+
+##### Rule of Robustness: Robustness is the child of transparency and simplicity.
+
+软件的透明性,就是你一眼能看出是怎么回事
+
+##### Rule of Representation: Fold knowledge into data, so program logic can be stupid and robust.
+
+主要的把复杂度有 code,转移到 data 中去.
+
+The C language's facility at manipulating pointers, in particular, has encouraged the use of dynamically-modified reference structures at all levels of coding from the kernel upward.(C 语言指针的易用性, 鼓励动态修改引用)
+
+##### Rule of Least Surprise: In interface design, always do the least surprising thing.
+
+避免标新立异, 如`+`代表`相加`
+
+##### Rule of Silence: When a program has nothing surprising to say, it should say nothing.
+
+简洁, 沉默是金. 不要浪费用户的注意力.
+
+##### Rule of Optimization: Prototype before polishing. Get it working before you optimize it.
+
+The Art Of Computer Programming: `Premature optimization is the root of all evil`
+
+Kent Beck: `Make it run, then make it right, then make it fast`
+
+#### The Unix Philosophy in One Lesson
+
+**KISS**: `Keep It Simple, Stupid!`
