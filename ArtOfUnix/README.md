@@ -194,7 +194,20 @@ Unix 从 Multics 的废墟中破茧而出.
   * 77 年, Berkeley 毕业生 Bill Joy 管理的实验室发布了第一版 BSD,
   * vi
 * 1980: DARPA 希望在 unix 环境下实现`TCP/IP`
+
   * ARPANET 和 unix 文化开始融合
+
+* 1985, IEEE POSIX
+
+  * 综合 BSD 出色的信号处理及作业控制, SVR3 的终端控制
+
+Larry Wall's patch(1) tool, 打补丁, 开发 perl 语言
+
+* 微软通知了桌面端
+
+##### Blows against the Empire: 1991-1995
+
+* Linux
 
 #### Origins and History of the Hackers, 1961-1995
 
