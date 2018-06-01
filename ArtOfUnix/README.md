@@ -118,3 +118,86 @@ Kent Beck: `Make it run, then make it right, then make it fast`
 #### The Unix Philosophy in One Lesson
 
 **KISS**: `Keep It Simple, Stupid!`
+
+#### Applying the Unix Philosophy
+
+富有哲学的原则绝不是泛泛之谈, UNIX 中这些原则都来自实践, 并形成了具体的规定, 列举部分:
+
+* 前(user interface)后端分离
+* 只有当使用单一语言会增加复杂度时, 才会采用多语言编程.
+* Small is beautiful. Write programs that do as little as is consistent with getting the job done.
+
+#### Attitude Matters Too(态度决定一切)
+
+* 发现`right thing`, do it ;不知道何是`right`,完成最小工作量即可, 直到发现.
+* 良好的运用 unix 哲学, 你需要`loyal to excellence`
+
+  * 你必须相信, 软件设计是一门艺术, 富有智慧和创造力.(专注, Everything 如此). 否则, 你永远做不出良好的设计.
+  * 不要在该`think`时,急急忙忙编程
+
+* 珍惜时间, 别人已经解决的问题, 拿来就用
+* 软件设计应该是一种快乐的艺术(享受)
+  * 当失去这种态度时, 需要静下来去`反省`,
+  * 只为了 money, 为什么不去做其他的呢?
+
+### Chapter 2. History
+
+A Tale(故事) of Two Cultures
+
+#### Origins and History of Unix, 1969-1995
+
+往往由于版本迭代, 而不堪重负, 而倒塌.
+
+Unix 从 Multics 的废墟中破茧而出.
+
+##### Genesis: 1969–1971 (创世纪)
+
+* Unix 1969 诞生出 Ken Thompson, 曾是 Multics 研究成员.
+
+* Lisp 发明者 John McCarthy, 十年前首次发表分时系统构想, 1962 年才真正部署使用.
+
+* Bell Lab 退出 Multics 研究. Ken Thompson 带着`build file system`idea, 在 PDP-7 上发明了 Unix
+
+* Dennis Ritchie 及相关研究者, 习惯了在 Multics 在工作, 并不愿放弃这一能力. Unix 给了他们机会.
+
+* Ritchie 需要的不只是编程环境, 更重要是一种 `fellowship`. 鼓励`close communication`
+
+  * (pc: 推动 unix 产生的动力是`协作`, 现在我们研究的动力是`可信`?)
+    > fellowship(伙伴)一直回响在 Unix 后续历史中.
+
+* 支持 hosting game development on the `PDP-7` 的 `utility programs` 成为了 Unix 的核心.
+
+  > UNICS (UNiplexed Information and Computing Service), 有些和 multics 唱反调的感觉.
+
+* Unix 的第一个 real job 是`word processing` in Bell Lab
+
+  * 开启了 unix 历史的另一个 theme: close association document-formatting, typesetting, and communications tools(与文本处理等密切相关)
+
+* Doug McIlroy: `从来没听说职业竞争和保护法, 好东西太多了`
+
+##### Exodus(大批离开): 1971–1980 (出埃及记)
+
+* unix 最初有 asm 和 B 语言编写
+  * 作为系统操作语言, 还不够强大. Dennis Ritchie 增加了 data types and structures
+  * 1971 年发明了 C 语言
+  * 1973 年重写了 Unix
+    * 那是为了更高效利用硬件资源, 多数用 asm 开发, `系统可移植性`鲜为人知.
+  * 1979 Ritchie: Unix 成功很大程度上来自于, 使用了`high-level language`,增加了可读性, modifiability, and portability
+* 1974 年首次发表 paper 介绍 Unix, `constraint has encouraged not only economy, but also a certain elegance of design`(硬件的设计造就了经济型, 且使得设计简约)
+  > pc: 性能不足, 硬件条件差, 并不能阻碍`创造有价值的东西`, 只要`发现正确的问题, 正确的解决之.`
+* 现在公认第一个完全意义 Unix 是 1979 年的 V7 版本.
+
+##### TCP/IP and the Unix Wars: 1980-1990
+
+* 加州大学 Berkeley 分校, 1974 年就步入 Unix
+  * Ken 75-76 在此授课
+  * 77 年, Berkeley 毕业生 Bill Joy 管理的实验室发布了第一版 BSD,
+  * vi
+* 1980: DARPA 希望在 unix 环境下实现`TCP/IP`
+  * ARPANET 和 unix 文化开始融合
+
+#### Origins and History of the Hackers, 1961-1995
+
+#### The Open-Source Movement: 1998 and Onward
+
+#### The Lessons of Unix History
