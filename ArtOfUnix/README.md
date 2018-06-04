@@ -211,6 +211,42 @@ Larry Wall's patch(1) tool, 打补丁, 开发 perl 语言
 
 #### Origins and History of the Hackers, 1961-1995
 
+RMS - Emacs 发明者
+
+* 他的宣言暗含 abolition of intellectual-property rights(废除知识产权) in software; 撰写了 General Public License (GPL, 通用公共许可证)
+
+GNU 创建十年, 但为开发出内核, 尽管 Emacs 和 gcc 是很好的工具
+
+##### Linux and the Pragmatist Reaction: 1991-1998
+
+linux Torvalds 认同自由软件更好, 但也接受专有软件. 这一点吸引了很多人.
+
+> Torvalds's cheerful pragmatism and adept but low-key style catalyzed an astonishing string of victories for the hacker culture in the years 1993–1997
+
+1995 年, 开源 web 服务器 Apache 成了 Linux 的`killer app(杀手级)`应用.
+
+为什么 Linux 开发没有在前几年崩溃:
+
+> 只要有足够人员关注, 所有 bug 都无处遁形. (“Given a sufficiently large number of eyeballs, all bugs are shallow”)
+
 #### The Open-Source Movement: 1998 and Onward
 
-#### The Lessons of Unix History
+到 1998 年 Mozzila 源码的公布时, hacker 社区更像一个松散部落群体.(IETE, BSD, Linux ..)
+1998 年三月, 社团重要领导人峰会. 与会者基本代表了所有的主要部落, 确立了一个新的标记-`开源`
+
+有一点例外, Richard Stallman and the Free Software Movement 与开源运动, 划清界限.
+
+#### The Lessons of Unix History (Unix 的历史教训)
+
+1.  unix 的历史中, 最大规律就是: 距开源越接近就越繁荣.
+
+* 虽然我们在软件设计这个重要且狭窄的领域比其他人聪明, 但这并不能使我们摆脱对技术与经济相互作用影响的茫然. 即使 unix 社区最具洞察力的思想家, 他们的眼光终将有限.
+* 对今后的教训就是: `过度依赖任何一种技术或者商业模式都是错误的`, 相反, `保持软件及其设计传统的灵活性`, 才是长存之道.
+
+2.  别和低价而灵活的方案较劲
+
+### Chap 3.Contrasts: Comparing the Unix Philosophy with Others
+
+#### The Elements of Operating-System Style
+
+在讨论特定 OS 之前, 先讨论 OS 的 design 如何对编程 style 的好坏产生影响的.
