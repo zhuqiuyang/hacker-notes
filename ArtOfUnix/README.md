@@ -250,3 +250,37 @@ linux Torvalds 认同自由软件更好, 但也接受专有软件. 这一点吸�
 #### The Elements of Operating-System Style
 
 在讨论特定 OS 之前, 先讨论 OS 的 design 如何对编程 style 的好坏产生影响的.
+
+##### Binary File Formats
+
+导致:
+
+* devepler 不再是以数据为中心.
+
+##### Preferred User Interface Style
+
+CLI 驱动很重要, 利于:
+
+* 远程登录
+
+##### Intended Audience(目标用户)
+
+unix 是程序员写给自己的
+
+##### Entry Barriers to Development (成为开发者的门槛)
+
+unix 开创了轻松编程的风格. 默认提供了编译器和脚本工具.
+
+#### Operating-System Comparisons
+
+##### Linux
+
+Linux 核心开发者: 不能为了在高端硬件上获得更好性能, 而增加了低端机上的复杂度和开销.
+
+#### What Goes Around, Comes Around (种豆得豆, 种瓜得瓜)
+
+unix 战胜同时代分时 OS 的优势就是: `可移植性`
+
+自 1980 年起, unix 和其竞争者公有的一个通病: 对网络支持不够强大.
+
+unix一直不太清楚自己的目标群体.
