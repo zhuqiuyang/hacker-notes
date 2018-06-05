@@ -283,4 +283,45 @@ unix 战胜同时代分时 OS 的优势就是: `可移植性`
 
 自 1980 年起, unix 和其竞争者公有的一个通病: 对网络支持不够强大.
 
-unix一直不太清楚自己的目标群体.
+unix 一直不太清楚自己的目标群体.
+
+# Part II
+
+### Chap 4. Modularity: Keep it simple, Keep it clean
+
+此处, 我们着重介绍 Unix tradition 教会我们如何遵循 `Rule of Modularity`.
+这一 chapter, 介绍`process units`, Chap7, Else.
+
+#### 4.1 Encapsulation and Optimal Module Size (封装和最佳模块大小)
+
+有能力的开发者: API, 简单注释, coding.
+
+最佳物理行数: 400~800 行.
+
+#### 4.2 Compactness and Orthogonality(紧凑性和正交性)
+
+##### 4.2.1 紧凑型
+
+紧凑性就是能否一次记得住(pc)
+
+C++ 不是紧凑的.
+
+紧凑是有点, 但不是绝对要求. 因为有些问题过于复杂.
+
+##### 4.2.2 正交性
+
+显示器是正交的, 改变亮度, 并不会影响对比度.
+
+Doug McIlroy's advice to `Do one thing well`, 表示出简单性, 和正交性同等程度的重视.
+
+正交性, 缩短了开发/测试时间, 那种既不产生副作用, 也不依赖其他副作用代码,的代码, 易于 debug .`<The Pragmatic Programmer>`
+
+Unix 的 API 值得学习, 富含正交性的东西.
+
+##### 4.2.3 SPOT
+
+Single Point Of Truth
+
+消除重复
+
+数据结构, `No junk, no confusion`.
