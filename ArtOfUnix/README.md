@@ -364,3 +364,35 @@ C 设计者, 理想的处理器模型是`PDP-11`, 接近`Blaauw & Brooks`的`经
 这段历史值得回味, C 语言展示了, 一个清晰/简洁的最简化设计有多么强大.
 
 Ritchie 和 Thompson 努力使`C`称为尽可能薄的硬件胶合层.
+
+#### 4.4 Library
+
+#### 4.5 Unix and Object-Oriented Languages
+
+- OO 常被过度推崇为, 解决复杂性的, 唯一正确方法.
+
+- C 倾向抽象层少, 对象层次平坦和透明
+
+OO 的副作用:
+
+- 层次不透明, 易出 bug.
+
+- 丧失优化的机会, `a + a + a + a` => `a * 4`或 `a << 2`
+
+`The Elements of Networking Style`[Padlipsky]: `如果你知道做什么, 三层就够了, 否则十七层也没有用`
+
+`OO 取得成功的领域`(GUI, 仿真和图形), 主要`原因`可能是: `对象的关系映射很难弄错`.
+
+#### 4.6 Coding for Modularity
+
+### Chap 5. Textuality
+
+#### Good Protocols Make Good Practice
+
+#### 5.1 The Importance of Being Textual
+
+#### 5.2 Data File Metaformats
+
+#### 5.3 Application Protocol Design
+
+#### 5.4 Application Protocol Metaformats
