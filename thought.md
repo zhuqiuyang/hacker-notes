@@ -19,6 +19,16 @@
 
 - code -> code
 
+### 5. Script
+
+> `脚步语言`注定适合`IO`或者小而美的事情, 不适合大工程吗?
+
+- perl: 文本处理
+- lua/node: IO 密集型
+- python: AI ?
+- Lisp
+- Elixir
+
 ## 领域
 
 ### 1. 网络
